@@ -1,13 +1,17 @@
-Pythonic Data Structures and Algorithms
+Data Structure and Algorithms Problems solved in many languages
 =========================================
 
-Minimal and clean example implementations of data structures and algorithms in Python.
+This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in python. 
+I wanted to compare solutions across different languages and learn in the process. 
+Solutions may be my own If I feel like It can be done better.
 
+### Contributing
+feel free to submit suggestions about implementations in different languages, specially in those I'm starting to grasp (ruby, go).
 
 ## List of Implementations
 
 - [array](array)
-    - [circular_counter](array/circular_counter.py)
+    - [circular_counter](array/circular_counter)
     - [flatten](array/flatten.py)
     - [garage](array/garage.py)
     - [longest_non_repeat](array/longest_non_repeat.py/)
