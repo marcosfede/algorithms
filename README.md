@@ -3,7 +3,7 @@ Data Structure and Algorithms Problems solved in many languages
 
 This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in python. 
 I wanted to compare solutions across different languages and learn in the process.
-Solutions may be my own, or shamelessly stolen from the interwebs.
+Solutions may be my own, keon's or shamelessly stolen from the interwebs.
 
 ### Contributing
 feel free to submit suggestions about implementations in different languages, specially in those I'm starting to grasp (ruby, go).
