@@ -12,8 +12,8 @@ feel free to submit suggestions about implementations in different languages, sp
 
 - [array](array)
     - [circular_counter](array/circular_counter)
-    - [flatten](array/flatten.py)
-    - [garage](array/garage.py)
+    - [flatten](array/flatten)
+    - [garage](array/garage)
     - [longest_non_repeat](array/longest_non_repeat.py/)
     - [merge_intervals](array/merge_intervals.py)
     - [missing_ranges](array/missing_ranges.py)
