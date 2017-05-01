@@ -2,18 +2,21 @@ Data Structure and Algorithms Problems solved in many languages
 =========================================
 
 This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in python. 
-I wanted to compare solutions across different languages and learn in the process. 
-Solutions may be my own If I feel like It can be done better.
+I wanted to compare solutions across different languages and learn in the process.
+Solutions may be my own, or shamelessly stolen from the interwebs.
 
 ### Contributing
 feel free to submit suggestions about implementations in different languages, specially in those I'm starting to grasp (ruby, go).
 
-## List of Implementations
+## List of my Implementations
 
 - [array](array)
     - [circular_counter](array/circular_counter)
     - [flatten](array/flatten)
     - [garage](array/garage)
+
+## TODO
+- [array](array)
     - [longest_non_repeat](array/longest_non_repeat.py/)
     - [merge_intervals](array/merge_intervals.py)
     - [missing_ranges](array/missing_ranges.py)
