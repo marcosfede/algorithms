@@ -14,7 +14,7 @@ feel free to submit suggestions about implementations in different languages, sp
     - [circular_counter](array/circular_counter)
     - [flatten](array/flatten)
     - [garage](array/garage)
-    - [longest_non_repeat](array/longest_non_repeat.py/)
+    - [longest_non_repeat](array/longest_non_repeat)
 
 ## TODO
 - [array](array)
