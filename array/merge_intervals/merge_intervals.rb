@@ -1,5 +1,15 @@
 def merge_intervals(arr)
-    arr.sort
+    arr.sort! {|a, b| a[0] - b[0]}
+    n = [arr[0]]
+    arr[1..-1].each do |i|
+        last = n[-1]
+        if i[0] > last[1]
+            n.push(i)
+        else
+            n[-1] = [last[0], [i[1], last[1]].max]
+        end
+    end
+    return n
 end
 
 
