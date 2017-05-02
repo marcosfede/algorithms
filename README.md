@@ -14,10 +14,10 @@ feel free to submit suggestions about implementations in different languages, sp
     - [circular_counter](array/circular_counter)
     - [flatten](array/flatten)
     - [garage](array/garage)
+    - [longest_non_repeat](array/longest_non_repeat.py/)
 
 ## TODO
 - [array](array)
-    - [longest_non_repeat](array/longest_non_repeat.py/)
     - [merge_intervals](array/merge_intervals.py)
     - [missing_ranges](array/missing_ranges.py)
     - [plus_one](array/plus_one.py)
