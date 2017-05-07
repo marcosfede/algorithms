@@ -15,11 +15,11 @@ feel free to submit suggestions about implementations in different languages, sp
     - [flatten](array/flatten)
     - [garage](array/garage)
     - [longest_non_repeat](array/longest_non_repeat)
+    - [merge_intervals](array/merge_intervals.py)
+    - [missing_ranges](array/missing_ranges.py)
 
 ## TODO
 - [array](array)
-    - [merge_intervals](array/merge_intervals.py)
-    - [missing_ranges](array/missing_ranges.py)
     - [plus_one](array/plus_one.py)
     - [rotate_array](array/rotate_array.py)
     - [summary_ranges](array/summary_ranges.py)
