@@ -19,10 +19,10 @@ feel free to submit suggestions about implementations in different languages, sp
     - [missing_ranges](array/missing_ranges.py)
     - [plus_one](array/plus_one.py)
     - [rotate_array](array/rotate_array.py)
+    - [summary_ranges](array/summary_ranges.py)
 
 ## TODO
 - [array](array)
-    - [summary_ranges](array/summary_ranges.py)
     - [three_sum](array/three_sum.py)
     - [two_sum](array/two_sum.py)
 - [backtrack](backtrack)
