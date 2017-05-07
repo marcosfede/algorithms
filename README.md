@@ -20,10 +20,10 @@ feel free to submit suggestions about implementations in different languages, sp
     - [plus_one](array/plus_one.py)
     - [rotate_array](array/rotate_array.py)
     - [summary_ranges](array/summary_ranges.py)
+    - [three_sum](array/three_sum.py)
 
 ## TODO
 - [array](array)
-    - [three_sum](array/three_sum.py)
     - [two_sum](array/two_sum.py)
 - [backtrack](backtrack)
     - [general_solution.md](backtrack/)
