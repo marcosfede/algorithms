@@ -18,8 +18,8 @@ getSteps initial final | initial == final = []
                               zeroPos = fst $ head $ filter ((==0) . snd) iInitial -- where is zero
                               idealPos = map (\x -> fst $ head $ filter ((==x) . snd) iFinal) initial -- where everyone should be                              
                               benefit = map (\i -> abs(i - (idealPos !! i)) - abs(zeroPos - (idealPos !! i))) [0..length initial-1] -- what advantage if switching places with zero
-                              minPos = fst $ head $ filter ((== (maximum benefit)) . snd) $ filter ((/=zeroPos) . fst) $ zip [0..] benefit -- the one with higher advantage, other than zero
-                              step = map (\(i,x) -> if i == zeroPos then initial !! minPos else if i == minPos then 0 else x) iInitial --swapping zero and the closer
+                              bestPos = fst $ head $ filter ((== (maximum benefit)) . snd) $ filter ((/=zeroPos) . fst) $ zip [0..] benefit -- the one with highest advantage, other than zero
+                              step = map (\(i,x) -> if i == zeroPos then initial !! bestPos else if i == bestPos then 0 else x) iInitial --swapping zero and the best
 
 
 
