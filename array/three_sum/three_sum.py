@@ -1,7 +1,4 @@
-from typing import List
-
-
-def three_sum(nums: List[int])->List[int]:
+def three_sum(nums):
     res = []
     nums.sort()
     for i in range(len(nums) - 2):
@@ -16,7 +13,7 @@ def three_sum(nums: List[int])->List[int]:
                 l += 1
             else:
                 # found three sum
-                res.append((nums[i], nums[l], nums[r]))
+                res.append([nums[i], nums[l], nums[r]])
                 # remove duplicates
                 while l < r and nums[l] == nums[l + 1]:
                     l += 1
@@ -29,4 +26,6 @@ def three_sum(nums: List[int])->List[int]:
 
 if __name__ == "__main__":
     x = [-1, 0, 1, 2, -1, -4]
-    print(three_sum(x))
+    print("input: ", x)
+    print("output should be: ", [[-1, -1, 2], [-1, 0, 1]])
+    print("output: ", three_sum(x))
