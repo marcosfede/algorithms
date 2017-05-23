@@ -1,3 +1,4 @@
+//just to practice with scala lists
 def circular_counter(input:List[Int]):List[Int] = {
     if (input.length < 3) return input
     var selection = List[Int]()
@@ -25,6 +26,7 @@ def circular_counter(input:List[Int]):List[Int] = {
     return selection ++ circular_counter(remainder)
 }
 
+//same as before but with folds and lambdas
 def circular_counter2(input:List[Int]):List[Int] = {
     if (input.length < 3) return input     
     var (selection, remainder) = input.zipWithIndex.foldLeft((List[(Int, Int)](), List[(Int,Int)]())){
@@ -38,6 +40,7 @@ def circular_counter2(input:List[Int]):List[Int] = {
     return selection.map(_._1) ++ circular_counter2(remainder2)
 }
 
+//a middle ground between the previous two
 def circular_counter3(input:List[Int]):List[Int] = {
     if (input.length < 3) return input
     var selection = List[(Int, Int)]()
@@ -55,4 +58,26 @@ def circular_counter3(input:List[Int]):List[Int] = {
     }
     val remainder2 = tail ++ head
     return selection.map(_._2) ++ circular_counter3(remainder2)
+}
+
+//a much simpler implementation
+def circular_counter4(input:List[Int]): List[Int] = {    
+    val N = 3
+    var used = Set[Int]()
+    var remaining = input.length
+    var index = 0
+    var result = List[Int]()
+    var steps = 0
+    while (remaining > 0){        
+        if (!used.contains(index)){
+            if (steps == N - 1){                
+                used += index
+                result :+= input(index)
+                remaining -= 1
+            }
+            steps = (steps + 1) % N
+        }        
+        index = (index + 1) % input.length        
+    }
+    return result
 }
