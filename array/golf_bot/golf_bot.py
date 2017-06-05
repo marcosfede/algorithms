@@ -1,23 +1,25 @@
-from numpy import rfft, irfft
+from numpy.fft import rfft, irfft
+import numpy as np
 
 
-def convolution(arr1, arr2):
-    ftarr1 = rfft(arr1)
-    ftarr2 = rfft(arr2)
-    return irfft(ftarr1 * ftarr2)
+def self_convolution(arr):
+    n = len(arr)
+    k = 2*n - 1
+    ftarr = rfft(arr, k)
+    return irfft(ftarr * ftarr, k)
 
 
 def calc_holes(moves, distances):
-    sum_set = set(convolution(moves, moves))
-    count = 0
-    for hole in distances:
-        if hole in sum_set:
-            count += 1
-        else:
-            return count
+    moves_poly = np.zeros(np.max(moves)+1)
+    for move in moves:
+        moves_poly[move] = 1
+    moves_poly[0] = 1
+    conv = self_convolution(moves_poly)
+    return sum(round(conv[d]) > 0 for d in distances)
 
 
 moves = [1, 3, 5]
 distances = [2, 4, 5, 7, 8, 9]
 
 expected_out = 4
+print(calc_holes(moves, distances))
