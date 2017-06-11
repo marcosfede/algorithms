@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
+	"sync"
 )
 type result struct {
 	subperms []string
 	letter string
 }
+var cache = make(map[string][]string)
+var mutex = &sync.Mutex{}
 
 func multiperm(word string) []string {
 	var list []string
@@ -26,6 +29,13 @@ func multiperm(word string) []string {
 }
 
 func perm(word string) []string {
+	mutex.Lock()
+	prevResult , ok := cache[word]
+	mutex.Unlock()
+	if ok {
+		return prevResult
+	}
+
 	if len(word) <= 1 {
 		return []string{word}
 	}
@@ -36,6 +46,9 @@ func perm(word string) []string {
 			list = append(list, string(l)+c)
 		}
 	}
+	mutex.Lock()
+	cache[word] = list
+	mutex.Unlock()
 	return list
 }
 
