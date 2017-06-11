@@ -2,25 +2,29 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
+type result struct {
+	subperms []string
+	letter string
+}
 
 func multiperm(word string) []string {
 	var list []string
-	var wg sync.WaitGroup
-	wg.Add(len(word))
+	ch := make(chan result, len(word))
 	for i, l := range word {
-		go func(i int, l rune) {
-			defer wg.Done()
-			subperm := perm(word[:i] + word[i+1:])
-			for _, c := range subperm {
-				list = append(list, string(l)+c)
-			}
-		}(i, l)
+		go func(i int, l string) {
+			ch <- result{perm(word[:i] + word[i+1:]), l}
+		}(i, string(l))
 	}
-	wg.Wait()
+	for i := 0; i< len(word); i++ {
+		result := <- ch
+		for _, p := range result.subperms {
+			list = append(list, result.letter + p)
+		}
+	}
 	return list
 }
+
 func perm(word string) []string {
 	if len(word) <= 1 {
 		return []string{word}
@@ -34,7 +38,8 @@ func perm(word string) []string {
 	}
 	return list
 }
+
 func main() {
 	word := "abcdefghi"
-	fmt.Println(multiperm(word))
+	fmt.Println(len(multiperm(word)))
 }

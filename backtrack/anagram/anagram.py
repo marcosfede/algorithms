@@ -1,4 +1,4 @@
-# lol, probably the most pythonic way
+# lol, probably the most pythonic (and fastest) way
 def perm(word):
     from itertools import permutations
     return permutations(word)
@@ -10,4 +10,4 @@ def perm(word):
 
 
 word = 'abcdefghi'
-print(list(perm(word)))
+print(len(list(perm(word))))
