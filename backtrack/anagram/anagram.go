@@ -9,6 +9,7 @@ type result struct {
 	letter string
 }
 var cache = make(map[string][]string)
+var count = 0
 var mutex = &sync.Mutex{}
 
 func multiperm(word string) []string {
@@ -31,6 +32,7 @@ func multiperm(word string) []string {
 func perm(word string) []string {
 	mutex.Lock()
 	prevResult , ok := cache[word]
+	count++
 	mutex.Unlock()
 	if ok {
 		return prevResult
@@ -55,4 +57,5 @@ func perm(word string) []string {
 func main() {
 	word := "abcdefghi"
 	fmt.Println(len(multiperm(word)))
+	fmt.Println(count)
 }
