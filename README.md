@@ -5,6 +5,13 @@ This repository is inspired by [keon's](https://github.com/keon/algorithms) solv
 I wanted to compare solutions across different languages and learn in the process.
 Solutions may be my own, or shamelessly stolen from the interwebs.
 
+![go](assets/go.png)
+![js](assets/javascript.png)
+![py](assets/python.png)
+![ruby](assets/ruby.png)
+![julia](assets/julia.png)
+![haskell](assets/haskell.png)
+
 ### Contributing
 feel free to submit suggestions about implementations in different languages, specially in those I'm starting to grasp (ruby, go).
 
