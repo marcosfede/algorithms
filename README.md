@@ -22,12 +22,11 @@ feel free to submit suggestions about implementations in different languages, sp
     - [summary_ranges](array/summary_ranges.py)
     - [three_sum](array/three_sum.py)
     - [two_sum](array/two_sum.py)
-
-## TODO
 - [backtrack](backtrack)
-    - [general_solution.md](backtrack/)
     - [anagram](backtrack/anagram.py)
     - [array_sum_combinations](backtrack/array_sum_combination.py)
+
+## TODO
     - [combination_sum](backtrack/combination_sum.py)
     - [expression_add_operators](backtrack/expression_add_operators.py)
     - [factor_combinations](backtrack/factor_combinations.py)
