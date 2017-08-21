@@ -1,15 +1,3 @@
-from collections import deque, Iterable
-from itertools import chain
-
-def count(iter):
-    return sum(1 for _ in iter)
-
-def flatten(x):
-    if isinstance(x, Iterable):
-        return [a for i in x for a in flatten(i)]
-    else:
-        return [x]
-
 class Game():
 
     def __init__(self, board):
@@ -18,28 +6,221 @@ class Game():
     def open(self, y, x):
         v = self.board[y][x]
         if v == 'x':
-            raise ValueError('Upss! a mine is there')
+            raise ValueError(
+                'Opss! you stepped on a mine at ({}, {})'.format(x, y))
         return v
 
     def __str__(self):
         return '\n'.join([' '.join([str(cell) for cell in row]) for row in self.board])
 
 
+# gamemap = """
+# 0 0 0 0 0 0 0 0 0 0 0 0 ? ? ? 0 0 0 0 0 0 0 0 ? ? ? ? ? ? 0
+# 0 0 0 0 0 0 0 0 0 0 0 0 ? ? ? 0 ? ? ? 0 0 0 0 ? ? ? ? ? ? 0
+# ? ? ? 0 0 0 0 ? ? ? 0 0 0 0 ? ? ? ? ? 0 0 0 0 ? ? ? ? ? ? 0
+# ? ? ? ? ? ? 0 ? ? ? ? ? 0 0 ? ? ? ? ? 0 0 0 0 ? ? ? 0 0 0 0
+# ? ? ? ? ? ? 0 ? ? ? ? ? 0 0 ? ? ? ? 0 0 0 0 0 ? ? ? 0 0 ? ?
+# 0 ? ? ? ? ? 0 0 0 ? ? ? 0 ? ? ? ? ? 0 0 0 0 0 ? ? ? 0 0 ? ?
+# 0 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 0 0 0 ? ? ? ? ? ? ?
+# 0 0 0 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 0 ? ? ? 0 0 ? ? ? 0
+# 0 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 0 ? ? ? 0 0 ? ? ? 0
+# ? ? ? ? 0 ? ? ? ? 0 0 0 ? ? ? ? ? ? ? 0 0 ? ? ? 0 0 ? ? ? 0
+# ? ? ? ? 0 ? ? ? ? ? 0 0 ? ? ? ? ? ? ? 0 0 0 ? ? ? 0 0 0 0 0
+# ? ? ? ? ? ? ? ? ? ? 0 0 ? ? ? ? ? ? ? 0 0 0 ? ? ? ? 0 0 0 0
+# ? ? ? ? ? ? ? ? ? ? 0 0 0 0 ? ? ? ? ? 0 0 0 ? ? ? ? 0 0 0 0
+# ? ? ? ? ? ? ? 0 0 ? ? ? 0 0 ? ? ? 0 0 0 0 0 ? ? ? ? 0 0 0 0
+# ? ? ? ? 0 0 0 0 0 ? ? ? 0 0 ? ? ? 0 0 0 0 0 ? ? ? 0 0 0 0 0
+# """.strip()
+# result = """
+# 0 0 0 0 0 0 0 0 0 0 0 0 1 x 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0
+# 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 0 0 0 0 2 x 2 1 x 1 0
+# 1 1 1 0 0 0 0 1 1 1 0 0 0 0 1 1 2 x 1 0 0 0 0 2 x 2 1 1 1 0
+# 1 x 1 1 1 1 0 1 x 2 1 1 0 0 1 x 2 1 1 0 0 0 0 1 1 1 0 0 0 0
+# 1 2 2 3 x 2 0 1 1 2 x 1 0 0 1 2 2 1 0 0 0 0 0 1 1 1 0 0 1 1
+# 0 1 x 3 x 2 0 0 0 1 1 1 0 1 2 3 x 1 0 0 0 0 0 1 x 1 0 0 1 x
+# 0 1 1 3 3 3 2 1 1 1 1 2 1 2 x x 2 2 1 1 0 0 0 1 1 1 1 1 2 1
+# 0 0 0 1 x x 2 x 1 1 x 2 x 2 3 3 3 2 x 1 0 1 1 1 0 0 2 x 2 0
+# 0 1 1 2 2 2 3 2 2 1 1 2 1 1 1 x 2 x 2 1 0 1 x 1 0 0 2 x 2 0
+# 1 2 x 1 0 1 2 x 1 0 0 0 1 1 2 2 3 2 1 0 0 1 1 1 0 0 1 1 1 0
+# 1 x 2 1 0 1 x 3 2 1 0 0 1 x 1 1 x 2 1 0 0 0 1 1 1 0 0 0 0 0
+# 1 1 2 1 2 2 2 2 x 1 0 0 1 1 1 1 2 x 1 0 0 0 1 x 2 1 0 0 0 0
+# 1 1 2 x 2 x 1 1 1 1 0 0 0 0 1 1 2 1 1 0 0 0 1 2 x 1 0 0 0 0
+# 1 x 3 2 2 1 1 0 0 1 1 1 0 0 1 x 1 0 0 0 0 0 1 2 2 1 0 0 0 0
+# 1 2 x 1 0 0 0 0 0 1 x 1 0 0 1 1 1 0 0 0 0 0 1 x 1 0 0 0 0 0
+# """.strip()
+
+# gamemap = """
+# ? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? 0 0 0 0 0 0 ? ? ? ? ? ?
+# ? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? 0 0 0 ? ? ? ? ? ? ? ? ?
+# ? ? ? ? 0 0 ? ? ? 0 0 0 0 0 0 0 0 0 ? ? ? ? ? ? 0 0 0
+# 0 ? ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? ? ? ? 0 0 0
+# 0 ? ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 0 0 ? ? ? ? ? 0 0 0
+# """.strip()
+# result = """
+# 1 2 x 1 0 0 0 0 0 0 0 0 1 x 1 0 0 0 0 0 0 1 1 1 1 x 1
+# 1 x 2 1 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1 1 1 1 x 1 1 1 1
+# 1 2 2 1 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 x 2 2 1 1 0 0 0
+# 0 1 x 2 1 2 2 x 2 1 0 0 0 0 0 0 0 0 1 3 x 3 1 1 0 0 0
+# 0 1 1 2 x 2 x 3 x 1 0 0 0 0 0 0 0 0 0 2 x 3 x 1 0 0 0
+# """.strip()
+
 gamemap = """
-? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? 0 0 0 0 0 0 ? ? ? ? ? ?
-? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? 0 0 0 ? ? ? ? ? ? ? ? ?
-? ? ? ? 0 0 ? ? ? 0 0 0 0 0 0 0 0 0 ? ? ? ? ? ? 0 0 0
-0 ? ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 0 ? ? ? ? ? ? 0 0 0
-0 ? ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 0 0 ? ? ? ? ? 0 0 0
+0 0 0 0 ? ? ? ? ? ?
+0 0 0 ? ? ? ? ? ? ?
+0 ? ? ? ? ? ? ? ? ?
+? ? ? ? ? ? ? ? ? 0
+? ? ? ? 0 0 0 0 0 0
+? ? ? 0 0 0 0 0 0 0
 """.strip()
 result = """
-1 2 x 1 0 0 0 0 0 0 0 0 1 x 1 0 0 0 0 0 0 1 1 1 1 x 1
-1 x 2 1 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1 1 1 1 x 1 1 1 1
-1 2 2 1 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 x 2 2 1 1 0 0 0
-0 1 x 2 1 2 2 x 2 1 0 0 0 0 0 0 0 0 1 3 x 3 1 1 0 0 0
-0 1 1 2 x 2 x 3 x 1 0 0 0 0 0 0 0 0 0 2 x 3 x 1 0 0 0
+0 0 0 0 1 1 1 1 1 1
+0 0 0 1 2 x 2 2 x 1
+0 1 1 2 x 2 2 x 2 1
+1 2 x 2 1 1 1 1 1 0
+1 x 2 1 0 0 0 0 0 0
+1 1 1 0 0 0 0 0 0 0
 """.strip()
+
+
+# gamemap = """
+# ? ? ? ? ? ?
+# ? ? ? ? ? ?
+# ? ? ? 0 ? ?
+# ? ? ? ? ? ?
+# ? ? ? ? ? ?
+# 0 0 0 ? ? ?
+# """.strip()
+# result = """
+# 1 x 1 1 x 1
+# 2 2 2 1 2 2
+# 2 x 2 0 1 x
+# 2 x 2 1 2 2
+# 1 1 1 1 x 1
+# 0 0 0 1 1 1
+# """.strip()
+
+# gamemap = """
+# 0 ? ?
+# 0 ? ?
+# """.strip()
+# result = """
+# 0 1 x
+# 0 1 1
+# """.strip()
+
+# gamemap = """
+# ? ? ? ? 0 0 0
+# ? ? ? ? 0 ? ?
+# ? ? ? 0 0 ? ?
+# ? ? ? 0 0 ? ?
+# 0 ? ? ? 0 0 0
+# 0 ? ? ? 0 0 0
+# 0 ? ? ? 0 ? ?
+# 0 0 0 0 0 ? ?
+# 0 0 0 0 0 ? ?
+# """.strip()
+# result = """
+# 1 x x 1 0 0 0
+# 2 3 3 1 0 1 1
+# 1 x 1 0 0 1 x
+# 1 1 1 0 0 1 1
+# 0 1 1 1 0 0 0
+# 0 1 x 1 0 0 0
+# 0 1 1 1 0 1 1
+# 0 0 0 0 0 1 x
+# 0 0 0 0 0 1 1
+# """.strip()
+
+# gamemap = """
+# ? ? 0 ? ? ? 0 0 ? ? ? 0 0 0 0 ? ? ? 0
+# ? ? 0 ? ? ? 0 0 ? ? ? 0 0 0 0 ? ? ? ?
+# ? ? 0 ? ? ? ? ? ? ? ? 0 0 0 0 ? ? ? ?
+# 0 ? ? ? ? ? ? ? ? ? ? 0 0 0 0 0 ? ? ?
+# 0 ? ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 0 0
+# 0 ? ? ? 0 0 0 ? ? ? 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 ? ? ? ? ? ? ? 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0 0 ? ? ? ? 0 0 0 0 0
+# 0 0 ? ? ? 0 ? ? ? 0 ? ? ? ? 0 0 0 0 0
+# 0 0 ? ? ? ? ? ? ? 0 0 0 0 0 0 ? ? ? 0
+# 0 0 ? ? ? ? ? ? ? ? ? 0 0 0 0 ? ? ? 0
+# 0 0 0 0 ? ? ? ? ? ? ? 0 0 0 0 ? ? ? 0
+# 0 0 0 0 0 ? ? ? ? ? ? 0 0 0 0 0 ? ? ?
+# 0 0 ? ? ? ? ? ? 0 0 0 0 0 0 0 0 ? ? ?
+# 0 0 ? ? ? ? ? ? ? 0 0 0 0 0 0 0 ? ? ?
+# 0 0 ? ? ? ? ? ? ? ? 0 0 0 0 0 0 0 ? ?
+# 0 0 0 0 0 0 ? ? ? ? 0 0 0 ? ? ? 0 ? ?
+# 0 0 0 ? ? ? ? ? ? ? 0 0 0 ? ? ? ? ? ?
+# 0 0 0 ? ? ? ? ? 0 0 0 ? ? ? ? ? ? ? ?
+# 0 0 0 ? ? ? ? ? 0 0 0 ? ? ? 0 ? ? ? ?
+# 0 0 0 0 ? ? ? ? ? ? ? ? ? ? 0 ? ? ? ?
+# 0 0 0 0 ? ? ? ? ? ? ? ? ? ? 0 ? ? ? ?
+# 0 0 0 0 ? ? ? ? ? ? ? ? ? ? 0 ? ? ? ?
+# """.strip()
+# result = """
+# 1 1 0 1 1 1 0 0 1 1 1 0 0 0 0 1 1 1 0
+# x 1 0 1 x 1 0 0 2 x 2 0 0 0 0 1 x 2 1
+# 1 1 0 2 3 3 1 1 3 x 2 0 0 0 0 1 2 x 1
+# 0 1 1 2 x x 1 2 x 3 1 0 0 0 0 0 1 1 1
+# 0 1 x 2 2 2 1 3 x 3 0 0 0 0 0 0 0 0 0
+# 0 1 1 1 0 0 0 2 x 2 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 1 1 1 1 2 2 1 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0 0 1 x x 1 0 0 0 0 0
+# 0 0 1 1 1 0 1 1 1 0 1 2 2 1 0 0 0 0 0
+# 0 0 1 x 2 1 3 x 2 0 0 0 0 0 0 1 1 1 0
+# 0 0 1 1 2 x 3 x 3 1 1 0 0 0 0 1 x 1 0
+# 0 0 0 0 1 2 3 2 2 x 1 0 0 0 0 1 1 1 0
+# 0 0 0 0 0 1 x 1 1 1 1 0 0 0 0 0 1 1 1
+# 0 0 1 1 2 2 2 1 0 0 0 0 0 0 0 0 1 x 1
+# 0 0 1 x 2 x 2 1 1 0 0 0 0 0 0 0 1 1 1
+# 0 0 1 1 2 1 3 x 3 1 0 0 0 0 0 0 0 1 1
+# 0 0 0 0 0 0 2 x x 1 0 0 0 1 1 1 0 1 x
+# 0 0 0 1 1 1 1 2 2 1 0 0 0 1 x 1 1 2 2
+# 0 0 0 1 x 3 2 1 0 0 0 1 1 2 1 1 1 x 2
+# 0 0 0 1 2 x x 1 0 0 0 1 x 1 0 1 2 3 x
+# 0 0 0 0 1 2 2 1 1 1 1 1 1 1 0 1 x 3 2
+# 0 0 0 0 1 1 1 1 2 x 1 1 1 1 0 2 3 x 2
+# 0 0 0 0 1 x 1 1 x 2 1 1 x 1 0 1 x 3 x
+# """.strip()
+
+# gamemap = """
+# 0 0 0 0 0 0 0 0 ? ? ? ? ? 0 ? ? ? 0 ? ? ?
+# 0 0 0 0 0 0 0 0 ? ? ? ? ? 0 ? ? ? ? ? ? ?
+# 0 0 0 0 0 0 0 0 0 0 ? ? ? 0 ? ? ? ? ? ? ?
+# 0 0 0 0 0 ? ? ? 0 0 ? ? ? 0 ? ? ? ? ? ? 0
+# ? ? 0 0 0 ? ? ? 0 ? ? ? ? 0 0 ? ? ? ? ? ?
+# ? ? 0 0 0 ? ? ? 0 ? ? ? 0 0 0 ? ? ? ? ? ?
+# ? ? ? 0 0 0 0 0 0 ? ? ? 0 0 0 0 0 0 ? ? ?
+# ? ? ? 0 0 0 0 0 0 0 ? ? ? ? 0 0 ? ? ? 0 0
+# ? ? ? 0 0 0 0 0 0 0 ? ? ? ? 0 0 ? ? ? 0 0
+# """.strip()
+# result = """
+# 0 0 0 0 0 0 0 0 1 x x 2 1 0 1 x 1 0 1 2 x
+# 0 0 0 0 0 0 0 0 1 2 3 x 1 0 2 2 2 1 2 x 2
+# 0 0 0 0 0 0 0 0 0 0 2 2 2 0 1 x 1 1 x 2 1
+# 0 0 0 0 0 1 1 1 0 0 1 x 1 0 1 2 2 2 1 1 0
+# 1 1 0 0 0 1 x 1 0 1 2 2 1 0 0 1 x 1 1 1 1
+# x 1 0 0 0 1 1 1 0 1 x 1 0 0 0 1 1 1 1 x 1
+# 2 2 1 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 1 1 1
+# 1 x 1 0 0 0 0 0 0 0 1 2 2 1 0 0 1 1 1 0 0
+# 1 1 1 0 0 0 0 0 0 0 1 x x 1 0 0 1 x 1 0 0
+# """.strip()
+
 game = Game(result)
+
+
+from collections import deque, Iterable
+from itertools import chain
+
+
+def count(iter):
+    return sum(1 for _ in iter)
+
+
+def flatten(x):
+    if isinstance(x, Iterable):
+        return [a for i in x for a in flatten(i)]
+    else:
+        return [x]
 
 
 class Cell:
@@ -129,7 +310,7 @@ class Board:
         return None
 
     def near_notmine(self, cell):
-        return filter(lambda c: c.isnotmine(), self.adjacents(cell)) 
+        return filter(lambda c: c.isnotmine(), self.adjacents(cell))
 
     def near_mines(self, cell):
         return filter(lambda c: c.ismine(), self.adjacents(cell))
@@ -154,6 +335,33 @@ class Board:
             for mine in near_und:
                 yield mine
 
+    def near_discovered_around(self, original_unk):
+        near_numb = set()
+        for n in original_unk:
+            for neigh in self.near_discovered(n):
+                near_numb.add(neigh)
+        return iter(near_numb)
+
+    def near_und_around_original(self, original_unk):
+        near_und = set()
+        for n in original_unk:
+            for neigh in self.near_und(n):
+                near_und.add(neigh)
+        return iter(near_und)
+
+    def issolved_around(self, original_unk):
+        near_numb = self.near_discovered_around(original_unk)
+
+        for e in near_numb:
+            if int(e.v) != count(self.near_mines(e)):
+                return False
+        near_und = self.near_und_around_original(original_unk)
+
+        for n in chain(near_und, self.notmineiterator()):
+            if count(self.near_mines(n)) == 0:
+                return False
+        return True
+
     def issolved(self):
         for e in self.discovered:
             if int(e.v) != count(self.near_mines(e)):
@@ -177,24 +385,30 @@ class Board:
             for safe in self.safe_moves_arround(cell):
                 self.open(safe)
                 queue.append(safe)
-        
+                for neigh in self.near_discovered(safe):
+                    if neigh != cell:
+                        queue.append(neigh)
+
         if self.mines_left == 0:
             for notmine in self.unknowniterator():
                 self.open(notmine)
             return True
         return False
 
-    def safe_moves_between_boards(self, boards):
-        common = []
-        for y in range(self.height):
-            for x in range(self.width):
-                compare = [ board.get(x,y) for board in boards ]
-                if all(c.isund() or c.isnotmine() for c in compare):
-                    common.append((x,y))
-        return common
+    def safe_moves_between_boards_around(self, boards, x, y):
+        notmines = []
+        mines = []
+        unks = list(self.near_und_around(x, y))
+        for unk in unks:
+            compare = list(board.get(unk.x, unk.y) for board in boards)
+            if all(c.isnotmine() for c in compare):
+                notmines.append((unk.x, unk.y))
+            if all(c.ismine() for c in compare):
+                mines.append((unk.x, unk.y))
+        return notmines, mines
 
     def find_subblock():
-        
+        pass
 
     def solve(self):
         while True:
@@ -202,27 +416,48 @@ class Board:
             done = self.safe_moves()
             if done:
                 return str(self)
-            
-            subblock = self.find_subblock()
-            solvable, boards = sublblock.speculate()
-            boards = flatten(boards)
+
+            # subblock = self.find_subblock()
+            # choose ? near a number
+            sets_of_unk = [[list(self.near_und_around(unk.x, unk.y)), unk] for unk in self.unknowniterator() if count(self.near_discovered(unk)) > 0]
+
+            candidate = max(sets_of_unk, key=lambda x: len(x[0]))
+            # different_blocks_len = set(len(s) for s in sets_of_unk)
+            solvable, boards = self.speculate(candidate[1].x, candidate[1].y, candidate[0])
 
             if not solvable:
                 return '?'
-            if len(boards) == 1:
-                board = boards[0].board
-                for notmine in chain(board.notmineiterator(), board.unknowniterator()):
-                    self.open_at(notmine.x, notmine.y)
-                return str(self)
-            safe_moves = subblock.safe_moves_between_boards(boards)
-            if not safe_moves:
-                return '?'
-            for safe in safe_moves:
-                self.open_at(safe[0], safe[1])
 
-    def speculate(self):
-        queue = deque(filter(lambda x: count(self.near_mines(x))
-                             > 0 and count(self.near_und(x)) > 0, self.discovered))
+            if len(boards) == 1:
+                board = boards[0]
+                for notmine in chain(board.notmineiterator(), board.unknowniterator()):
+                    board.open_at(notmine.x, notmine.y)
+                return str(board)
+
+            notmines, mines = self.safe_moves_between_boards_around(
+                boards, candidate[1].x, candidate[1].y)
+            if not notmines:
+                return '?'
+            for safe in notmines:
+                self.open_at(safe[0], safe[1])
+            for mine in mines:
+                self.set_mine_at(mine[0], mine[1])
+
+    def near_und_around(self, x, y):
+        res = set()
+        checked = set()
+        q = deque([self.get(x, y)])
+        while q:
+            cell = q.pop()
+            checked.add(cell)
+            for neigh in self.near_und(cell):
+                res.add(neigh)
+                if neigh not in checked:
+                    q.append(neigh)
+        return iter(res)
+
+    def speculate(self, x, y, original_unk):
+        queue = deque(d for c in original_unk for d in self.near_discovered(c))
         while queue and self.mines_left >= 0:
             cell = queue.popleft()
             near_und = list(self.near_und(cell))
@@ -242,27 +477,43 @@ class Board:
                     for neigh in filter(lambda c: c != cell and count(self.near_und(c)) > 0, self.near_discovered(safe)):
                         queue.append(neigh)
 
+        print(self)
+        print()
         if self.mines_left < 0:
-            return None, None        
+            return None, None
+
+        if self.issolved_around(original_unk):
+            if self.mines_left == 0:
+                for n in self.near_und_around_original(original_unk):
+                    n.v = 'n'
+            return True, self
+
         if self.mines_left == 0:
-            if self.issolved():
-                return True, self
             return None, None
 
         sols = []
-        for fruta in filter(lambda x: count(self.near_discovered(x)) + count(self.near_notmine(x)) > 0, self.unknowniterator()):
+        fruta_list = [c for c in self.near_und_around(x, y) if count(
+            self.near_discovered(c)) + count(self.near_notmine(c)) > 0]
+        # if len(fruta_list) == 0:
+        #     return True, [self]
+        for fruta in fruta_list:
+            if any(sol.get(fruta.x, fruta.y).ismine() for sol in sols):
+                continue
             board_cp = [[Cell(e.x, e.y, e.v) for e in row]
                         for row in self.board]
             board_cp[fruta.y][fruta.x].set_mine()
             s = '\n'.join([' '.join([str(c.v) for c in row])
                            for row in board_cp])
             b = Board(s, self.mines_left - 1)
-            solvable, board = b.speculate()
+            solvable, board = b.speculate(fruta.x, fruta.y, original_unk)
             if solvable is not None:
-                sols.append(board)
+                if isinstance(board, Board):
+                    sols.append(board)
+                else:
+                    sols.extend(board)
         if len(sols) == 0:
             return None, None
-        return True, sols
+        return True, flatten(sols)
 
     def open(self, cell):
         cell.open()
@@ -276,6 +527,10 @@ class Board:
         cell.set_mine()
         self.mines_left -= 1
 
+    def set_mine_at(self, x, y):
+        mine = self.get(x, y)
+        self.set_mine(mine)
+
     def __str__(self):
         return '\n'.join([' '.join([str(c.v) for c in row]) for row in self.board])
 
@@ -287,5 +542,6 @@ def solve_mine(gamemap, n):
     board = Board(gamemap, n)
     sol = board.solve()
     return sol
+
 
 print(solve_mine(gamemap, result.count('x')))
