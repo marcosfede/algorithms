@@ -1,6 +1,8 @@
 "use strict"
+
 // sigh JS ...
 
+// cute two line generator although it reverses order
 function* product(head, ...tail) {
   const remaining = tail.length > 0 ? product(...tail) : [[]]
   for (let r of remaining) for (let h of head) yield [h, ...r]
@@ -24,7 +26,7 @@ function* sum_combinations(target, ...arrs) {
   for (let combination of product(...rest)) {
     const difference = target - sum(combination)
     if (counter_last.has(difference)) {
-      for (let repeated of range(counter_last.get(difference))) {
+      for (let _ of range(counter_last.get(difference))) {
         yield combination.concat(difference)
       }
     }
