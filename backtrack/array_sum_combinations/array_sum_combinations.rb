@@ -29,6 +29,8 @@ B = [2, 3, 3, 4]
 C = [1, 2, 2, 2]
 target = 7
 
-sum_combinations(target, A, B, C).each do |sol|
+solution = sum_combinations(target, A, B, C).to_a
+p solution.length
+solution.each do |sol|
   p sol
 end

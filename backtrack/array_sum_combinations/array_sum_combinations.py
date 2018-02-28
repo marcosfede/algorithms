@@ -19,5 +19,8 @@ B = [2, 3, 3, 4]
 C = [1, 2, 2, 2]
 target = 7
 
-for combination in sum_combinations(target, A, B, C):
+solution = list(sum_combinations(target, A, B, C))
+
+print(len(solution))
+for combination in solution:
     print(combination)
