@@ -7,3 +7,10 @@ longest_non_repeat str = let sequences n xs = filter ((==n) . length) $ takeWhil
                              longestStr = longest $ map longest nonRepeats
                          in longestStr
 
+
+longest_non_repeat2 :: [Char] -> [Char]
+longest_non_repeat2 str = let next string char = if char `elem` string then [char] else string ++ [char]
+                              longest new prev = if length new > length prev then new else prev
+                              select (new, prev) = longest new prev
+                              f (new,prev) char = (next new char, longest new prev)
+                          in select $ foldl f ("", "") str
