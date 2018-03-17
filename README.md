@@ -12,21 +12,27 @@ feel free to submit suggestions about implementations in different languages, sp
 
 ## List of my Implementations
 
+- [googlecodejam](googlecodejam)
+    - [Bathroom Stalls](googlecodejam/bathroom_stalls)
+    - [Oversized Pancake Flipper](googlecodejam/oversized_pancake_flipper)
+    - [Tidy Numbers](googlecodejam/tidy_numbers)
+    - [Fashion Show](googlecodejam/fashion_show)
 - [array](array)
     - [circular_counter](array/circular_counter)
     - [flatten](array/flatten)
     - [garage](array/garage)
+    - [golf_bot](array/golf_bot)
     - [longest_non_repeat](array/longest_non_repeat)
-    - [merge_intervals](array/merge_intervals.py)
-    - [missing_ranges](array/missing_ranges.py)
+    - [merge_intervals](array/merge_intervals)
+    - [missing_ranges](array/missing_ranges)
     - [plus_one](array/plus_one.py)
-    - [rotate_array](array/rotate_array.py)
-    - [summary_ranges](array/summary_ranges.py)
-    - [three_sum](array/three_sum.py)
-    - [two_sum](array/two_sum.py)
+    - [rotate_array](array/rotate_array)
+    - [summary_ranges](array/summary_ranges)
+    - [three_sum](array/three_sum)
+    - [two_sum](array/two_sum)
 - [backtrack](backtrack)
-    - [anagram](backtrack/anagram.py)
-    - [array_sum_combinations](backtrack/array_sum_combination.py)
+    - [anagram](backtrack/anagram)
+    - [array_sum_combinations](backtrack/array_sum_combination)
 
 ## TODO
 
