@@ -5,7 +5,14 @@ This repository is inspired by [keon's](https://github.com/keon/algorithms) solv
 I wanted to compare solutions across different languages and learn them in the process.
 Solutions may be my own, or shamelessly stolen from the internet.
 
-![go](assets/go.png) ![js](assets/javascript.png) ![py](assets/python.png) ![ruby](assets/ruby.png) ![julia](assets/julia.png) ![haskell](assets/prog-haskell.png)
+<p align="center">
+    <img src="assets/go.png" alt="go"/>
+    <img src="assets/python.png" alt="python"/>
+    <img src="assets/ruby.png" alt="ruby"/>
+    <img src="assets/julia.png" alt="julia"/>
+    <img src="assets/prog-haskell.png" alt="haskell"/>
+    <img src="assets/julia.png" alt="julia"/>
+</p>
 
 ## Contributing
 I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBUTING](CONTRIBUTING.md)
