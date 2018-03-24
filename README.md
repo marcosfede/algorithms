@@ -9,7 +9,7 @@ Solutions may be my own, or shamelessly stolen from the internet.
     <img src="assets/go.png" alt="go"/>
     <img src="assets/python.png" alt="python"/>
     <img src="assets/ruby.png" alt="ruby"/>
-    <img src="assets/julia.png" alt="julia"/>
+    <img src="assets/javascript.png" alt="javascript"/>
     <img src="assets/prog-haskell.png" alt="haskell"/>
     <img src="assets/julia.png" alt="julia"/>
 </p>
