@@ -20,10 +20,10 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
 ## List of problems
 
 - [googlecodejam](googlecodejam)
-    - [x] [Bathroom Stalls](googlecodejam/Bathroom Stalls)
-    - [x] [Oversized Pancake Flipper](googlecodejam/Oversized Pancake Flipper)
-    - [x] [Tidy Numbers](googlecodejam/Tidy Numbers)
-    - [x] [Fashion Show](googlecodejam/Fashion Show)
+    - [x] [Bathroom Stalls](googlecodejam/Bathroom%20Stalls)
+    - [x] [Oversized Pancake Flipper](googlecodejam/Oversized%20Pancake%20Flipper)
+    - [x] [Tidy Numbers](googlecodejam/Tidy%20Numbers)
+    - [x] [Fashion Show](googlecodejam/Fashion%20Show)
 - [array](array)
     - [x] [circular_counter](array/circular_counter)
     - [x] [flatten](array/flatten)
