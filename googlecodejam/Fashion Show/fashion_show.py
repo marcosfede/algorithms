@@ -1,6 +1,20 @@
+def map_board(func, board):
+    return [[func(el) for el in row] for row in board]
+
+
+def clone_board(board):
+    return map_board(lambda x: x, board)
+
+
+def print_board(board):
+    print()
+    for row in board:
+        print(' '.join(row))
+
+
 def solve_rooks(board):
     n = len(board)
-    board = [[el for el in row] for row in board]
+    board = clone_board(board)
     av_rows = set(range(n))
     av_cols = set(range(n))
     for ir in range(n):
@@ -15,9 +29,9 @@ def solve_rooks(board):
     return board
 
 
-def solve_bishops(board):
+def solve_bishops_small(board):
     n = len(board)
-    board = [[el for el in r] for r in board]
+    board = clone_board(board)
     for i in range(n):
         board[0][i] = '+'
     if n > 1:
@@ -43,8 +57,8 @@ def merge_solutions(rook_solution, bishop_solution):
 
 
 def solve(board):
-    rook_board = [['x' if (piece == 'x' or piece == 'o') else '.' for piece in row] for row in board]
-    bishop_board = [['+' if (piece == '+' or piece == 'o') else '.' for piece in row] for row in board]
+    rook_board = map_board(lambda piece: 'x' if (piece == 'x' or piece == 'o') else '.', board)
+    bishop_board = map_board(lambda piece: '+' if (piece == '+' or piece == 'o') else '.', board)
     rook_solution = solve_rooks(rook_board)
     bishop_solution = solve_bishops(bishop_board)
     solution = merge_solutions(rook_solution, bishop_solution)
@@ -86,6 +100,6 @@ def read_input():
             print(f'{insertion[0]} {str(insertion[1])} {str(insertion[2])}')
 
 
-read_input()
-# for row in solve([['.', '.', '.'], ['+', '+', '+'], ['.', '.', '.']]):
-#     print(row)
+# read_input()
+for row in solve([['.', '.', '.'], ['+', '+', '+'], ['.', '.', '.']]):
+    print(row)
