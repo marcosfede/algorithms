@@ -14,7 +14,7 @@ from __future__ import print_function
 
 def treePrint(tree):
     for key in tree:
-        print(key, end=' ')  # comma prevents a newline character
+        print(key, end=' ')  # end=' ' prevents a newline character
         treeElem = tree[key]  # multiple lookups is expensive, even amortized O(1)!
         for subElem in treeElem:
             print(" -> ", subElem, end=' ')
