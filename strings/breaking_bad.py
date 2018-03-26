@@ -115,4 +115,3 @@ def bracket(words, symbols):
 
 
 bracket(['amazon', 'microsoft', 'google'], ['i', 'am', 'cro', 'na', 'le', 'abc'])
->> > ('[am]azon', 'mi[cro]soft', 'goog[le]')
