@@ -14,6 +14,7 @@ eg: for given string -> "appletablet"
 
 count = 0
 
+
 def make_sentence(str_piece, dictionarys):
     global count
     if len(str_piece) == 0:
@@ -31,4 +32,5 @@ if __name__ == "__main__":
     dictionarys = ["", "app", "let", "t", "apple", "applet"]
     word = "applet"
     make_sentence(word, dictionarys)
-    print count
+    print
+    count

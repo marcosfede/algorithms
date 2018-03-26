@@ -27,7 +27,7 @@ example_graph_without_cycle = {'A': ['B', 'C'],
                                'D': ['E'],
                                'E': [],
                                'F': []}
-                               
+
 
 def is_in_cycle(graph, traversal_states, vertex):
     if traversal_states[vertex] == TraversalState.GRAY:
@@ -44,9 +44,10 @@ def contains_cycle(graph):
     traversal_states = {vertex: TraversalState.WHITE for vertex in graph}
     for vertex, state in traversal_states.items():
         if (state == TraversalState.WHITE and
-           is_in_cycle(graph, traversal_states, vertex)):
+                is_in_cycle(graph, traversal_states, vertex)):
             return True
     return False
+
 
 print(contains_cycle(example_graph_with_cycle))
 print(contains_cycle(example_graph_without_cycle))

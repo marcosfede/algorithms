@@ -1,13 +1,14 @@
 class FastList {
 
-    constructor(arr){
+    constructor(arr) {
         this.arr = arr
         // dict for O(1) lookups by value
         let indexof = {}
         arr.forEach((v, i) => indexof[v] = i)
         this.indexof = indexof
     }
-    swap(e1, e2){
+
+    swap(e1, e2) {
         const i1 = this.indexof[e1]
         const i2 = this.indexof[e2]
         // set element where 0 is to final element
@@ -20,18 +21,19 @@ class FastList {
         this.indexof[e1] = i2
         this.moves += 1
     }
-    calc_moves(end){
+
+    calc_moves(end) {
         this.moves = 0
-        while (!this.equals(end)){
+        while (!this.equals(end)) {
             const i0 = this.indexof[0]
-            if (end[i0] !== 0){  // if element can be moved to its final position
+            if (end[i0] !== 0) {  // if element can be moved to its final position
                 this.swap(0, end[i0])
                 console.log(this.arr)
                 continue
             }
-            for (let ind=0; ind < this.arr.length; ind++){
+            for (let ind = 0; ind < this.arr.length; ind++) {
                 let el = this.arr[ind]
-                if (el !== end[ind]){
+                if (el !== end[ind]) {
                     this.swap(0, el)
                     console.log(this.arr)
                     break
@@ -40,12 +42,13 @@ class FastList {
         }
         return this.moves
     }
-    equals(other){
+
+    equals(other) {
         return this.arr.length === other.length && this.arr.every((v, i) => v === other[i])
     }
 }
 
-function garage(beg, end){
+function garage(beg, end) {
     fl = new FastList(beg)
     return fl.calc_moves(end)
 }

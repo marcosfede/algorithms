@@ -9,8 +9,8 @@ def lastOccurance(array, query):
     lo, hi = 0, len(array) - 1
     while lo <= hi:
         mid = lo + (hi - lo) // 2
-        if (array[mid] == query and mid == len(array)-1) or \
-           (array[mid] == query and array[mid+1] > query):
+        if (array[mid] == query and mid == len(array) - 1) or \
+                (array[mid] == query and array[mid + 1] > query):
             return mid
         elif (array[mid] <= query):
             lo = mid + 1
@@ -42,6 +42,7 @@ def main():
     print("-----SEARCH-----")
     query = 6
     print("found last: ", query, " in index:", lastOccurance(array, query))
+
 
 if __name__ == "__main__":
     main()

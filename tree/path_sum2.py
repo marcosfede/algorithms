@@ -26,14 +26,15 @@ def path_sum(root, sum):
     DFS(root, sum, [], res)
     return res
 
+
 def DFS(root, sum, ls, res):
     if not root.left and not root.right and root.val == sum:
         ls.append(root.val)
         res.append(ls)
     if root.left:
-        DFS(root.left, sum-root.val, ls+[root.val], res)
+        DFS(root.left, sum - root.val, ls + [root.val], res)
     if root.right:
-        DFS(root.right, sum-root.val, ls+[root.val], res)
+        DFS(root.right, sum - root.val, ls + [root.val], res)
 
 
 # DFS with stack
@@ -47,9 +48,9 @@ def path_sum2(root, s):
         if not node.left and not node.right and sum(ls) == s:
             res.append(ls)
         if node.left:
-            stack.append((node.left, ls+[node.left.val]))
+            stack.append((node.left, ls + [node.left.val]))
         if node.right:
-            stack.append((node.right, ls+[node.right.val]))
+            stack.append((node.right, ls + [node.right.val]))
     return res
 
 
@@ -64,7 +65,7 @@ def path_sum3(root, sum):
         if not node.left and not node.right and val == sum:
             res.append(ls)
         if node.left:
-            queue.append((node.left, val+node.left.val, ls+[node.left.val]))
+            queue.append((node.left, val + node.left.val, ls + [node.left.val]))
         if node.right:
-            queue.append((node.right, val+node.right.val, ls+[node.right.val]))
+            queue.append((node.right, val + node.right.val, ls + [node.right.val]))
     return res

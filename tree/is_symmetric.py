@@ -19,6 +19,7 @@ Note:
 Bonus points if you could solve it both recursively and iteratively.
 """
 
+
 # TC: O(b) SC: O(log n)
 def is_symmetric(root):
     if not root:

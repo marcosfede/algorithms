@@ -1,6 +1,8 @@
-function listFlatten(l){
+function listFlatten(l) {
     return l.reduce((pv, cv) => {
-        if (!Array.isArray(cv)){ return pv.concat(cv) }
+        if (!Array.isArray(cv)) {
+            return pv.concat(cv)
+        }
         return pv.concat(listFlatten(cv))
     }, [])
 }

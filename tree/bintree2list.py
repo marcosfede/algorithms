@@ -1,8 +1,9 @@
 class Node():
-    def __init__(self, val = 0):
+    def __init__(self, val=0):
         self.val = val
         self.left = None
         self.right = None
+
 
 def bintree2list(root):
     """
@@ -14,6 +15,7 @@ def bintree2list(root):
     while root.left:
         root = root.left
     return root
+
 
 def bintree2list_util(root):
     if not root:
@@ -32,16 +34,18 @@ def bintree2list_util(root):
         root.right = right
     return root
 
+
 def print_tree(root):
     while root:
         print(root.val)
         root = root.right
 
+
 tree = Node(10)
 tree.left = Node(12)
 tree.right = Node(15)
-tree.left.left  = Node(25)
-tree.left.left.right  = Node(100)
+tree.left.left = Node(25)
+tree.left.left.right = Node(100)
 tree.left.right = Node(30)
 tree.right.left = Node(36)
 

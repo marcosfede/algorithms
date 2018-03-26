@@ -1,4 +1,5 @@
 import unittest
+
 '''
 Given a matrix of words and a list of words to search, return a list of words that exists in the board
 This is Word Search II on LeetCode
@@ -14,6 +15,7 @@ words = ["oath","pea","eat","rain"]
 
 '''
 
+
 def find_words(board, words):
     # make a trie structure that is essentially dictionaries of dictionaries that map each character to a potential next character
     trie = {}
@@ -27,12 +29,13 @@ def find_words(board, words):
 
     # result is a set of found words since we do not want repeats
     result = set()
-    used = [[False]*len(board[0]) for _ in range(len(board))]
-    
+    used = [[False] * len(board[0]) for _ in range(len(board))]
+
     for i in range(len(board)):
         for j in range(len(board[0])):
             backtrack(board, i, j, trie, '', used, result)
     return list(result)
+
 
 '''
 backtrack tries to build each words from the board and return all words found
@@ -47,42 +50,44 @@ backtrack tries to build each words from the board and return all words found
 @return: list of words found
 '''
 
+
 def backtrack(board, i, j, trie, pre, used, result):
     if '#' in trie:
         result.add(pre)
-    
+
     if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
         return
-    
+
     if not used[i][j] and board[i][j] in trie:
-        used[i][j]=True
-        backtrack(board,i+1,j,trie[board[i][j]],pre+board[i][j], used, result)
-        backtrack(board,i,j+1,trie[board[i][j]],pre+board[i][j], used, result)
-        backtrack(board,i-1,j,trie[board[i][j]],pre+board[i][j], used, result)
-        backtrack(board,i,j-1,trie[board[i][j]],pre+board[i][j], used, result)
-        used[i][j]=False
+        used[i][j] = True
+        backtrack(board, i + 1, j, trie[board[i][j]], pre + board[i][j], used, result)
+        backtrack(board, i, j + 1, trie[board[i][j]], pre + board[i][j], used, result)
+        backtrack(board, i - 1, j, trie[board[i][j]], pre + board[i][j], used, result)
+        backtrack(board, i, j - 1, trie[board[i][j]], pre + board[i][j], used, result)
+        used[i][j] = False
+
 
 class MyTests(unittest.TestCase):
     def test_normal(self):
         board = [
-         ['o','a','a','n'],
-         ['e','t','a','e'],
-         ['i','h','k','r'],
-         ['i','f','l','v']
-         ]
+            ['o', 'a', 'a', 'n'],
+            ['e', 't', 'a', 'e'],
+            ['i', 'h', 'k', 'r'],
+            ['i', 'f', 'l', 'v']
+        ]
 
-        words = ["oath","pea","eat","rain"]  
+        words = ["oath", "pea", "eat", "rain"]
         self.assertEqual(find_words(board, words), ['oath', 'eat'])
 
     def test_none(self):
         board = [
-         ['o','a','a','n'],
-         ['e','t','a','e'],
-         ['i','h','k','r'],
-         ['i','f','l','v']
-         ]
+            ['o', 'a', 'a', 'n'],
+            ['e', 't', 'a', 'e'],
+            ['i', 'h', 'k', 'r'],
+            ['i', 'f', 'l', 'v']
+        ]
 
-        words = ["chicken", "nugget", "hello", "world"]  
+        words = ["chicken", "nugget", "hello", "world"]
         self.assertEqual(find_words(board, words), [])
 
     def test_empty(self):
@@ -92,20 +97,21 @@ class MyTests(unittest.TestCase):
 
     def test_uneven(self):
         board = [
-         ['o','a','a','n'],
-         ['e','t','a','e']
+            ['o', 'a', 'a', 'n'],
+            ['e', 't', 'a', 'e']
         ]
-        words = ["oath","pea","eat","rain"]  
+        words = ["oath", "pea", "eat", "rain"]
         self.assertEqual(find_words(board, words), ['eat'])
 
     def test_repeat(self):
         board = [
-        ['a','a','a'],
-        ['a','a','a'],
-        ['a','a','a']
+            ['a', 'a', 'a'],
+            ['a', 'a', 'a'],
+            ['a', 'a', 'a']
         ]
         words = ["a", "aa", "aaa", "aaaa", "aaaaa"]
-        self.assertTrue(len(find_words(board, words))==5)
+        self.assertTrue(len(find_words(board, words)) == 5)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     unittest.main()

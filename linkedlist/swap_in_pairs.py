@@ -17,7 +17,7 @@ class Node:
         self.next = None
 
 
-def swap_pairs(head:"Node")->"Node":
+def swap_pairs(head: "Node") -> "Node":
     if not head:
         return head
     start = Node()
@@ -42,4 +42,3 @@ if __name__ == "__main__":
         print(res.val, end=" ")
         res = res.next
     print("should be 2 1 4 3 ")
-

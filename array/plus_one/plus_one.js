@@ -3,7 +3,7 @@ function plusOne(digits) {
     for (let i = n - 1; i >= 0; i--) {
         if (digits[i] < 9) {
             digits[i]++
-                return digits
+            return digits
         }
         digits[i] = 0
     }

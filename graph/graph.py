@@ -15,7 +15,8 @@ class Graph:
             self.graph[u].append(v)
         else:
             self.graph[u] = [v]
-            
+
+
 g = Graph(4)
 g.add_edge(0, 1)
 g.add_edge(0, 2)

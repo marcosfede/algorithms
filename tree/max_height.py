@@ -7,15 +7,16 @@ longest path from the root node down to the farthest leaf node.
 
 
 class Node():
-    def __init__(self, val = 0):
+    def __init__(self, val=0):
         self.val = val
         self.left = None
         self.right = None
 
+
 # def max_height(root):
-    # if not root:
-        # return 0
-    # return max(maxDepth(root.left), maxDepth(root.right)) + 1
+# if not root:
+# return 0
+# return max(maxDepth(root.left), maxDepth(root.right)) + 1
 
 # iterative
 def max_height(root):
@@ -35,17 +36,19 @@ def max_height(root):
         queue = level
     return height
 
+
 def print_tree(root):
     if root:
         print(root.val)
         print_tree(root.left)
         print_tree(root.right)
 
+
 tree = Node(10)
 tree.left = Node(12)
 tree.right = Node(15)
-tree.left.left  = Node(25)
-tree.left.left.right  = Node(100)
+tree.left.left = Node(25)
+tree.left.left.right = Node(100)
 tree.left.right = Node(30)
 tree.right.left = Node(36)
 

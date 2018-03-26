@@ -46,9 +46,9 @@ def intersection(h1, h2):
 
 
 class Node(object):
-  def __init__(self, val=None):
-    self.val = val
-    self.next = None
+    def __init__(self, val=None):
+        self.val = val
+        self.next = None
 
 
 def test():
@@ -89,5 +89,6 @@ def test():
     printLinkedList(a2)
     print(intersection(a1, a2))
     assert intersection(a1, a2).val == d.val
+
 
 test()

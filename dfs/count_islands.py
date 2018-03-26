@@ -22,6 +22,7 @@ Example 2:
 Answer: 3
 """
 
+
 def num_islands(grid):
     count = 0
     for i, row in enumerate(grid):
@@ -38,7 +39,7 @@ def DFS(grid, i, j):
     if grid[i][j] != '1':
         return
     grid[i][j] = '0'
-    DFS(grid, i+1, j)
-    DFS(grid, i-1, j)
-    DFS(grid, i, j+1)
-    DFS(grid, i, j-1)
+    DFS(grid, i + 1, j)
+    DFS(grid, i - 1, j)
+    DFS(grid, i, j + 1)
+    DFS(grid, i, j - 1)

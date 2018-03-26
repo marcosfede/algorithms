@@ -5,15 +5,15 @@ class ZigZagIterator:
         :type v1: List[int]
         :type v2: List[int]
         """
-        self.queue=[_ for _ in (v1,v2) if _]
+        self.queue = [_ for _ in (v1, v2) if _]
         print(self.queue)
 
     def next(self):
         """
         :rtype: int
         """
-        v=self.queue.pop(0)
-        ret=v.pop(0)
+        v = self.queue.pop(0)
+        ret = v.pop(0)
         if v: self.queue.append(v)
         return ret
 
@@ -23,6 +23,7 @@ class ZigZagIterator:
         """
         if self.queue: return True
         return False
+
 
 l1 = [1, 2]
 l2 = [3, 4, 5, 6]

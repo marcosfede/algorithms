@@ -23,7 +23,7 @@ def helper(n, length):
         return [""]
     if n == 1:
         return ["1", "0", "8"]
-    middles = helper(n-2, length)
+    middles = helper(n - 2, length)
     result = []
     for middle in middles:
         if n != length:
@@ -43,7 +43,7 @@ def strobogrammaticInRange(low, high):
     """
     res = []
     count = 0
-    for i in range(len(low), len(high)+1):
+    for i in range(len(low), len(high) + 1):
         res.extend(helper2(i, i))
     for perm in res:
         if len(perm) == len(low) and int(perm) < int(low):
@@ -60,13 +60,13 @@ def helper2(self, n, length):
         return [""]
     if n == 1:
         return ["0", "8", "1"]
-    mids = helper(n-2, length)
+    mids = helper(n - 2, length)
     res = []
     for mid in mids:
         if n != length:
-            res.append("0"+mid+"0")
-        res.append("1"+mid+"1")
-        res.append("6"+mid+"9")
-        res.append("9"+mid+"6")
-        res.append("8"+mid+"8")
+            res.append("0" + mid + "0")
+        res.append("1" + mid + "1")
+        res.append("6" + mid + "9")
+        res.append("9" + mid + "6")
+        res.append("8" + mid + "8")
     return res

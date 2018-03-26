@@ -3,6 +3,7 @@
  back to the original list of strings.
 """
 
+
 # Implement the encode and decode methods.
 
 def encode(strs):
@@ -15,6 +16,7 @@ def encode(strs):
         res += str(len(string)) + ":" + string
     return res
 
+
 def decode(s):
     """Decodes a single string to a list of strings.
     :type s: str
@@ -25,9 +27,10 @@ def decode(s):
     while i < len(s):
         index = s.find(":", i)
         size = int(s[i:index])
-        strs.append(s[index+1: index+1+size])
-        i = index+1+size
+        strs.append(s[index + 1: index + 1 + size])
+        i = index + 1 + size
     return strs
+
 
 strs = "keon is awesome"
 print(strs)

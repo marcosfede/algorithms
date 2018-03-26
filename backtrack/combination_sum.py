@@ -15,11 +15,13 @@ A solution set is:
 ]
 """
 
+
 def combinationSum(self, candidates, target):
     res = []
     candidates.sort()
     self.dfs(candidates, target, 0, [], res)
     return res
+
 
 def dfs(self, nums, target, index, path, res):
     if target < 0:
@@ -28,4 +30,4 @@ def dfs(self, nums, target, index, path, res):
         res.append(path)
         return
     for i in range(index, len(nums)):
-        self.dfs(nums, target-nums[i], i, path+[nums[i]], res)
+        self.dfs(nums, target - nums[i], i, path + [nums[i]], res)

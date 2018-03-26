@@ -9,11 +9,12 @@ The brackets must close in the correct order,
 
 import unittest
 
+
 def is_valid(s: str) -> bool:
     stack = []
-    dic = { ")":"(",
-            "}":"{",
-            "]":"["}
+    dic = {")": "(",
+           "}": "{",
+           "]": "["}
     for char in s:
         if char in dic.values():
             stack.append(char)
@@ -26,10 +27,11 @@ def is_valid(s: str) -> bool:
     return stack == []
 
 
-class TestSuite (unittest.TestCase):
+class TestSuite(unittest.TestCase):
     """
         test suite for the function (above)
     """
+
     def test_is_valid(self):
         self.assertTrue(is_valid("[]"))
         self.assertTrue(is_valid("[]()[]"))

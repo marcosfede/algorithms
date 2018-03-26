@@ -11,6 +11,7 @@ Examples:
 "3456237490", 9191 -> []
 """
 
+
 def add_operator(num, target):
     """
     :type num: str
@@ -22,21 +23,22 @@ def add_operator(num, target):
     helper(res, "", num, target, 0, 0, 0)
     return res
 
+
 def helper(res, path, num, target, pos, prev, multed):
     if pos == len(num):
         if (target == prev):
             res.append(path)
         return
     for i in range(pos, len(num)):
-        if i != pos and num[pos] == '0': # all digits have to be used
+        if i != pos and num[pos] == '0':  # all digits have to be used
             break
-        cur = int(num[pos:i+1])
+        cur = int(num[pos:i + 1])
         if pos == 0:
-            helper(res, path + str(cur), num, target, i+1, cur, cur)
+            helper(res, path + str(cur), num, target, i + 1, cur, cur)
         else:
-            helper(res, path + "+" + str(cur), num, target, i+1, prev + cur, cur)
-            helper(res, path + "-" + str(cur), num, target, i+1, prev - cur, -cur)
-            helper(res, path + "*" + str(cur), num, target, i+1, prev - multed + multed * cur, multed * cur)
+            helper(res, path + "+" + str(cur), num, target, i + 1, prev + cur, cur)
+            helper(res, path + "-" + str(cur), num, target, i + 1, prev - cur, -cur)
+            helper(res, path + "*" + str(cur), num, target, i + 1, prev - multed + multed * cur, multed * cur)
 
 
 # "123", 6 -> ["1+2+3", "1*2*3"]

@@ -29,7 +29,7 @@ class Solution(object):
         """
         count = []
         self.helper(root, count)
-        return count[k-1]
+        return count[k - 1]
 
     def helper(self, node, count):
         if not node:
@@ -38,6 +38,7 @@ class Solution(object):
         self.helper(node.left, count)
         count.append(node.val)
         self.helper(node.right, count)
+
 
 if __name__ == '__main__':
     n1 = Node(100)

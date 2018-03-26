@@ -1,5 +1,3 @@
-
-
 def serialize(root):
     def build_string(node):
         if node:
@@ -8,6 +6,7 @@ def serialize(root):
             build_string(node.right)
         else:
             vals.append("#")
+
     vals = []
     build_string(root)
     return " ".join(vals)
@@ -22,5 +21,6 @@ def deserialize(data):
         node.left = build_tree()
         node.right = build_tree()
         return node
+
     vals = iter(data.split())
     return build_tree()

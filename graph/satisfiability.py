@@ -6,7 +6,6 @@ is no solution.
 https://en.wikipedia.org/wiki/2-satisfiability
 '''
 
-
 ''' Format:
         - each clause is a pair of literals
         - each literal in the form (name, is_neg)
@@ -118,8 +117,10 @@ def solve_sat(formula):
 
     return value
 
+
 if __name__ == '__main__':
     result = solve_sat(formula)
 
     for (variable, assign) in result.iteritems():
-        print variable, ":", assign
+        print
+        variable, ":", assign

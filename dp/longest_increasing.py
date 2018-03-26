@@ -1,5 +1,3 @@
-
-
 def longest_increasing_subsequence(sequence):
     """
     Dynamic Programming Algorithm for
@@ -20,4 +18,3 @@ sequence = [1, 101, 10, 2, 3, 100, 4, 6, 2]
 print("sequence: ", sequence)
 print("output: ", longest_increasing_subsequence(sequence))
 print("answer: ", 5)
-

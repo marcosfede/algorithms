@@ -19,6 +19,8 @@ Return 0 if there is no such transformation sequence.
 All words have the same length.
 All words contain only lowercase alphabetic characters.
 """
+
+
 def ladderLength(beginWord, endWord, wordList):
     """
     Bidirectional BFS!!!
@@ -49,14 +51,16 @@ def ladderLength(beginWord, endWord, wordList):
         print(result)
     return 0
 
+
 def wordRange(word):
     for ind in range(len(word)):
         tempC = word[ind]
-        for c in [chr(x) for x in range(ord('a'), ord('z')+1)]:
+        for c in [chr(x) for x in range(ord('a'), ord('z') + 1)]:
             if c != tempC:
-                yield word[:ind] + c + word[ind+1:]
+                yield word[:ind] + c + word[ind + 1:]
+
 
 beginWord = "hit"
 endWord = "cog"
-wordList = ["hot","dot","dog","lot","log"]
+wordList = ["hot", "dot", "dog", "lot", "log"]
 print(ladderLength(beginWord, endWord, wordList))

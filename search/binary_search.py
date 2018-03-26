@@ -33,5 +33,6 @@ def main():
     print("found: ", -1, " in index:", binary_search(array, -1))
     print("-----SEARCH-----")
 
+
 if __name__ == "__main__":
     main()

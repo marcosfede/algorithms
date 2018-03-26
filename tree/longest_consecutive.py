@@ -6,24 +6,26 @@
 # (cannot be the reverse).
 
 # For example,
-   # 1
-    # \
-     # 3
-    # / \
-   # 2   4
-        # \
-         # 5
+# 1
+# \
+# 3
+# / \
+# 2   4
+# \
+# 5
 # Longest consecutive sequence path is 3-4-5, so return 3.
-   # 2
-    # \
-     # 3
-    # /
-   # 2
-  # /
- # 1
+# 2
+# \
+# 3
+# /
+# 2
+# /
+# 1
 
 
 maxlen = 0
+
+
 def longestConsecutive(root):
     """
     :type root: TreeNode
@@ -34,6 +36,7 @@ def longestConsecutive(root):
     DFS(root, 0, root.val)
     return maxlen
 
+
 def DFS(root, cur, target):
     if not root: return
     if root.val == target:
@@ -41,5 +44,5 @@ def DFS(root, cur, target):
     else:
         cur = 1
     maxlen = max(cur, maxlen)
-    DFS(root.left, cur, root.val+1)
-    DFS(root.right, cur, root.val+1)
+    DFS(root.left, cur, root.val + 1)
+    DFS(root.right, cur, root.val + 1)

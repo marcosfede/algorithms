@@ -1,8 +1,8 @@
-function two_sum(nums, target){
+function two_sum(nums, target) {
     const dic = new Map()
-    for (let i=0 ; i < nums.length; i++){
+    for (let i = 0; i < nums.length; i++) {
         let num = nums[i]
-        if (dic.has(num)){
+        if (dic.has(num)) {
             return [dic.get(num), i]
         } else {
             dic.set(target - num, i)

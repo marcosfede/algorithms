@@ -1,5 +1,3 @@
-
-
 # fill the empty room with distance to its nearest gate
 
 
@@ -16,7 +14,7 @@ def DFS(rooms, i, j, depth):
     if rooms[i][j] < depth:
         return  # crossed
     rooms[i][j] = depth
-    DFS(rooms, i+1, j, depth+1)
-    DFS(rooms, i-1, j, depth+1)
-    DFS(rooms, i, j+1, depth+1)
-    DFS(rooms, i, j-1, depth+1)
+    DFS(rooms, i + 1, j, depth + 1)
+    DFS(rooms, i - 1, j, depth + 1)
+    DFS(rooms, i, j + 1, depth + 1)
+    DFS(rooms, i, j - 1, depth + 1)

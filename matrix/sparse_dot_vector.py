@@ -13,7 +13,6 @@ def vector_to_index_value_list(vector):
 
 
 def dot_product(iv_list1, iv_list2):
-
     product = 0
     p1 = len(iv_list1) - 1
     p2 = len(iv_list2) - 1

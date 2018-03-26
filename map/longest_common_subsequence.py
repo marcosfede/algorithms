@@ -20,7 +20,7 @@ def max_common_sub_string(s1, s2):
                 k += 1
                 j += 1
             if k - i > maxr:
-                maxr = k-i
+                maxr = k - i
                 subs = s1[i:k]
             i = k
         else:

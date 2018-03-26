@@ -25,5 +25,3 @@ def reconstruct_queue(people):
     for h, k in people:
         queue.insert(k, (h, k))
     return queue
-
-

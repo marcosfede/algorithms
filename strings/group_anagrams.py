@@ -21,7 +21,7 @@ class Solution(object):
             sstr = ''.join(sorted(str))
             if sstr not in d:
                 d[sstr] = k
-                k = k+1
+                k = k + 1
                 ans.append([])
                 ans[-1].append(str)
             else:

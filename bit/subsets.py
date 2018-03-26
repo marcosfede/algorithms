@@ -46,6 +46,7 @@ def subsets2(self, nums):
         res.append(tmp)
     return res
 
+
 """
 this explanation is from leet_nik @ leetcode
 This is an amazing solution. Learnt a lot.

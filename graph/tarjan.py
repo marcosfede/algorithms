@@ -4,10 +4,11 @@ in a graph.
 https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm
 """
 
+
 class Node(object):
     def __init__(self, name):
         self.name = name
-    
+
     def __eq__(self, obj):
         if isinstance(obj, Node):
             return obj.name == self.name
@@ -17,9 +18,10 @@ class Node(object):
 
     def __repr__(self):
         return self.name
-    
+
     def __hash__(self):
         return hash(self.name)
+
 
 class DirectedEdge(object):
     def __init__(self, node_from, node_to):
@@ -30,9 +32,10 @@ class DirectedEdge(object):
         if isinstance(obj, DirectedEdge):
             return obj.nf == self.nf and obj.nt == self.nt
         return False
-    
+
     def __repr__(self):
         return '({0} -> {1})'.format(self.nf, self.nt)
+
 
 class DirectedGraph(object):
     def __init__(self, load_dict={}):
@@ -56,7 +59,7 @@ class DirectedGraph(object):
             node = Node(node_name)
             self.nodes.append(node)
             return node
-    
+
     def add_edge(self, node_name_from, node_name_to):
         try:
             node_from = self.nodes[self.nodes.index(node_name_from)]
@@ -64,12 +67,11 @@ class DirectedGraph(object):
             self.edges.append(DirectedEdge(node_from, node_to))
         except ValueError:
             pass
-            
-
 
 
 INDEX = 0
 STACK = []
+
 
 def strongconnect(graph, v, sccs):
     global INDEX, STACK
@@ -92,7 +94,7 @@ def strongconnect(graph, v, sccs):
             # Note: The next line may look odd - but is correct.
             # It says w.index not w.lowlink; that is deliberate and from the original paper
             v.lowlink = min(v.lowlink, w.index)
-    
+
     # If v is a root node, pop the stack and generate an SCC
     if v.lowlink == v.index:
         # start a new strongly connected component
@@ -115,7 +117,7 @@ def tarjan(graph):
     for v in graph.nodes:
         if v.index == None:
             strongconnect(graph, v, sccs)
-    
+
     return sccs
 
 
@@ -149,5 +151,3 @@ if __name__ == '__main__':
 
     g = DirectedGraph(example)
     print(tarjan(g))
-
-    

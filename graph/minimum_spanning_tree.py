@@ -17,10 +17,10 @@ class DisjointSet:
         # Args:
         #   n (int): Number of vertices in the graph
 
-        self.parent = [None] * n # Contains wich node is the parent of the node at poisition <i>
-        self.size = [1] * n # Contains size of node at index <i>, used to optimize merge
+        self.parent = [None] * n  # Contains wich node is the parent of the node at poisition <i>
+        self.size = [1] * n  # Contains size of node at index <i>, used to optimize merge
         for i in range(n):
-            self.parent[i] = i # Make all nodes his own parent, creating n sets.
+            self.parent[i] = i  # Make all nodes his own parent, creating n sets.
 
     def mergeSet(self, a, b):
         # Args:
@@ -33,14 +33,14 @@ class DisjointSet:
 
         # Join the shortest node to the longest, minimizing tree size (faster find)
         if self.size[a] < self.size[b]:
-            self.parent[a] = b # Merge set(a) and set(b)
-            self.size[b] += self.size[a] # Add size of old set(a) to set(b)
+            self.parent[a] = b  # Merge set(a) and set(b)
+            self.size[b] += self.size[a]  # Add size of old set(a) to set(b)
         else:
-            self.parent[b] = a # Merge set(b) and set(a)
-            self.size[a] += self.size[b] # Add size of old set(b) to set(a)
+            self.parent[b] = a  # Merge set(b) and set(a)
+            self.size[a] += self.size[b]  # Add size of old set(b) to set(a)
 
     def findSet(self, a):
-        if self.parent[a] != a: 
+        if self.parent[a] != a:
             # Very important, memoize result of the 
             # recursion in the list to optimize next
             # calls and make this operation practically constant, O(1)
@@ -70,22 +70,20 @@ def kruskal(n, edges, ds):
     #   After repeat this until select n-1 edges, we will have the complete MST.
     edges.sort(key=lambda edge: edge.weight)
 
-    mst = [] # List of edges taken, minimum spanning tree
+    mst = []  # List of edges taken, minimum spanning tree
 
     for edge in edges:
-        set_u = ds.findSet(edge.u) # Set of the node <u>
-        set_v = ds.findSet(edge.v) # Set of the node <v>
+        set_u = ds.findSet(edge.u)  # Set of the node <u>
+        set_v = ds.findSet(edge.v)  # Set of the node <v>
         if set_u != set_v:
             ds.mergeSet(set_u, set_v)
             mst.append(edge)
-            if len(mst) == n-1: 
+            if len(mst) == n - 1:
                 # If we have selected n-1 edges, all the other 
                 # edges will be discarted, so, we can stop here
                 break
 
     return sum([edge.weight for edge in mst])
-
-
 
 
 if __name__ == "__main__":
@@ -114,16 +112,17 @@ if __name__ == "__main__":
     # Sum of weights of the optimal paths:
     # 14, 40
     import sys
+
     for n_m in sys.stdin:
         n, m = map(int, n_m.split())
         ds = DisjointSet(m)
-        edges = [None] * m # Create list of size <m>
+        edges = [None] * m  # Create list of size <m>
 
         # Read <m> edges from input
         for i in range(m):
             u, v, weight = map(int, input().split())
-            u -= 1 # Convert from 1-indexed to 0-indexed
-            v -= 1 # Convert from 1-indexed to 0-indexed
+            u -= 1  # Convert from 1-indexed to 0-indexed
+            v -= 1  # Convert from 1-indexed to 0-indexed
             edges[i] = Edge(u, v, weight)
 
         # After finish input and graph creation, use Kruskal algorithm for MST:

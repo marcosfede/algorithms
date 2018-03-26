@@ -22,7 +22,9 @@ def decode_string(s):
     :type s: str
     :rtype: str
     """
-    stack = []; cur_num = 0; cur_string = ''
+    stack = [];
+    cur_num = 0;
+    cur_string = ''
     for c in s:
         if c == '[':
             stack.append((cur_string, cur_num))
@@ -32,13 +34,14 @@ def decode_string(s):
             prev_string, num = stack.pop()
             cur_string = prev_string + num * cur_string
         elif c.isdigit():
-            cur_num = cur_num*10 + int(c)
+            cur_num = cur_num * 10 + int(c)
         else:
             cur_string += c
     return cur_string
 
-a = "3[a]2[bc]" #"aaabcbc".
-b = "3[a2[c]]" #"accaccacc".
+
+a = "3[a]2[bc]"  # "aaabcbc".
+b = "3[a2[c]]"  # "accaccacc".
 
 print(decode_string(a))
 print(decode_string(b))

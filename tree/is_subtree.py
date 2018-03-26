@@ -6,38 +6,38 @@
 
 # Given s:
 
-     # 3
-    # / \
-   # 4   5
-  # / \
- # 1   2
+# 3
+# / \
+# 4   5
+# / \
+# 1   2
 
 # Given t:
 
-   # 4
-  # / \
- # 1   2
+# 4
+# / \
+# 1   2
 # Return true, because t is a subtree of s.
 
 # Example 2:
 
 # Given s:
 
-     # 3
-    # / \
-   # 4   5
-  # / \
- # 1   2
-    # /
-   # 0
+# 3
+# / \
+# 4   5
+# / \
+# 1   2
+# /
+# 0
 
 # Given t:
 
-     # 3
-    # /
-   # 4
-  # / \
- # 1   2
+# 3
+# /
+# 4
+# / \
+# 1   2
 # Return false, because even though t is part of s,
 # it does not contain all descendants of t.
 
@@ -59,11 +59,10 @@ def is_subtree(big, small):
             queue.append(node.right)
     return flag
 
+
 def comp(p, q):
     if not p and not q:
         return True
     if p and q:
-        return p.val == q.val and comp(p.left,q.left) and comp(p.right, q.right)
+        return p.val == q.val and comp(p.left, q.left) and comp(p.right, q.right)
     return False
-
-

@@ -12,7 +12,7 @@ def kth_to_last_eval(head, k):
     if not isinstance(k, int) or not head.val:
         return False
 
-    nexts = '.'.join(['next' for n in range(1, k+1)])
+    nexts = '.'.join(['next' for n in range(1, k + 1)])
     seeker = str('.'.join(['head', nexts]))
 
     while head:
@@ -38,7 +38,7 @@ def kth_to_last_dict(head, k):
         d[count] = head
         head = head.next
         count += 1
-    return len(d)-k in d and d[len(d)-k]
+    return len(d) - k in d and d[len(d) - k]
 
 
 def kth_to_last(head, k):
@@ -51,7 +51,7 @@ def kth_to_last(head, k):
         return False
     p1 = head
     p2 = head
-    for i in range(1, k+1):
+    for i in range(1, k + 1):
         if p1 is None:
             # Went too far, k is not valid
             raise IndexError
@@ -115,6 +115,7 @@ def test():
         e.args += ("Expecting D, got %s" % kth.val,)
         raise
     print("all passed.")
+
 
 if __name__ == '__main__':
     test()

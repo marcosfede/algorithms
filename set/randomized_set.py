@@ -59,7 +59,7 @@ def __test():
 
     print(len(ground_truth), len(rset.elements), len(rset.index_map))
     for i in ground_truth:
-        assert(i == rset.elements[rset.index_map[i]])
+        assert (i == rset.elements[rset.index_map[i]])
 
     for i in range(n):
         print(rset.random_element(), end=' ')

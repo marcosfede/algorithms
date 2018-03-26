@@ -81,7 +81,6 @@ result = """
 1 1 1 0 0 0 0 0 0 0
 """.strip()
 
-
 # gamemap = """
 # ? ? ? ? ? ?
 # ? ? ? ? ? ?
@@ -207,7 +206,6 @@ result = """
 
 game = Game(result)
 
-
 from collections import deque, Iterable
 from itertools import chain
 
@@ -287,7 +285,8 @@ class Board:
                 cell.adjacents = self.adjacents(cell)
 
     def adjacents(self, cell):
-        return [self.get(direc.x + cell.x, direc.y + cell.y) for direc in self.directions if self.get(direc.x + cell.x, direc.y + cell.y) is not None]
+        return [self.get(direc.x + cell.x, direc.y + cell.y) for direc in self.directions if
+                self.get(direc.x + cell.x, direc.y + cell.y) is not None]
 
     def celliterator(self):
         return (el for row in self.board for el in row)
@@ -419,7 +418,8 @@ class Board:
 
             # subblock = self.find_subblock()
             # choose ? near a number
-            sets_of_unk = [[list(self.near_und_around(unk.x, unk.y)), unk] for unk in self.unknowniterator() if count(self.near_discovered(unk)) > 0]
+            sets_of_unk = [[list(self.near_und_around(unk.x, unk.y)), unk] for unk in self.unknowniterator() if
+                           count(self.near_discovered(unk)) > 0]
 
             candidate = max(sets_of_unk, key=lambda x: len(x[0]))
             # different_blocks_len = set(len(s) for s in sets_of_unk)
@@ -474,7 +474,8 @@ class Board:
             if int(cell.v) == near_mines:
                 for safe in near_und:
                     safe.v = 'n'
-                    for neigh in filter(lambda c: c != cell and count(self.near_und(c)) > 0, self.near_discovered(safe)):
+                    for neigh in filter(lambda c: c != cell and count(self.near_und(c)) > 0,
+                                        self.near_discovered(safe)):
                         queue.append(neigh)
 
         print(self)
