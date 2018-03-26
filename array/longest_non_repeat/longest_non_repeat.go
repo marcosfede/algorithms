@@ -10,9 +10,9 @@ func longestNonRepeat(s string) int {
 		char := string(r)
 		if val, ok := usedChar[char]; ok && start <= val {
 			start = val + 1
-		// go has no ternary or built int max
-		} else if maxlen <= i + 1 - start {
-			maxlen = i + 1 -start
+			// go has no ternary or built int max
+		} else if maxlen <= i+1-start {
+			maxlen = i + 1 - start
 		}
 		usedChar[char] = i
 	}

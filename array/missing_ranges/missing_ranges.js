@@ -1,7 +1,7 @@
-function missingRanges(arr, lo, hi){
+function missingRanges(arr, lo, hi) {
     const hashed = new Set(arr)
-    for (let n=lo; n<hi; n++){
-        if (!hashed.has(n)){
+    for (let n = lo; n < hi; n++) {
+        if (!hashed.has(n)) {
             console.log(n)
         }
     }

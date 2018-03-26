@@ -1,5 +1,6 @@
-from itertools import product
 from collections import Counter
+from itertools import product
+
 
 # Can be improved via FFT
 # https://cstheory.stackexchange.com/questions/32036/finding-witness-in-minkowski-sum-of-integers

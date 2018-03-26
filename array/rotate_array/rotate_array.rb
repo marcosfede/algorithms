@@ -1,7 +1,7 @@
 def rotate(arr, k)
-    n = arr.length
-    k = k % n
-    return arr[n-k..-1] + arr[0...n-k]
+  n = arr.length
+  k = k % n
+  return arr[n - k..-1] + arr[0...n - k]
 end
 
 

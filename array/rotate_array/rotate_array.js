@@ -1,7 +1,7 @@
-function rotate (arr, k){
+function rotate(arr, k) {
     const n = arr.length
     k = k % n
-    return arr.slice(n-k).concat(arr.slice(0,n-k))
+    return arr.slice(n - k).concat(arr.slice(0, n - k))
 }
 
 

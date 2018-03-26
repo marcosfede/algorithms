@@ -12,6 +12,7 @@ def perm(elements):
             for i in range(len(elements)):
                 yield per[:i] + elements[0:1] + per[i:]
 
+
 # cute but slow oneliner
 def perm(word):
     yield from (l + x for i, l in enumerate(word) for x in perm(word[:i] + word[i + 1:])) if len(word) > 1 else word
