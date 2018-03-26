@@ -44,6 +44,8 @@
 # Follow up:
 # What if one tree is significantly lager than the other?
 
+import collections
+
 
 def is_subtree(big, small):
     flag = False
@@ -59,11 +61,10 @@ def is_subtree(big, small):
             queue.append(node.right)
     return flag
 
+
 def comp(p, q):
     if not p and not q:
         return True
     if p and q:
-        return p.val == q.val and comp(p.left,q.left) and comp(p.right, q.right)
+        return p.val == q.val and comp(p.left, q.left) and comp(p.right, q.right)
     return False
-
-

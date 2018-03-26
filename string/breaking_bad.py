@@ -20,8 +20,11 @@ worked. But I din't make it through the interview, I am guessing my solution
 was O(n2) and they expected an efficient algorithm.
 """
 
+from functools import reduce
+
 chemicals = ['Amazon', 'Microsoft', 'Google']
 symbols = ['I', 'Am', 'cro', 'le', 'abc']
+
 
 def match_symbol(chemicals, symbols):
     import re
@@ -36,7 +39,7 @@ def match_symbol(chemicals, symbols):
     return combined
 
 
-print match_symbol(chemicals, symbols)
+print(match_symbol(chemicals, symbols))
 
 """
 One approach is to use a Trie for the dictionary (the symbols), and then match
@@ -45,12 +48,12 @@ if all are suffixes of the other, it will be n*m
 (where m is the size of the dictionary). For example, in Python:
 """
 
-from functools import reduce
 
 class TrieNode:
     def __init__(self):
         self.c = dict()
         self.sym = None
+
 
 def bracket(words, symbols):
     root = TrieNode()
@@ -78,5 +81,6 @@ def bracket(words, symbols):
             result[word] = "{}[{}]{}".format(word[:sym[0]], sym[2], word[sym[1]:])
     return tuple(word if word not in result else result[word] for word in words)
 
+
 bracket(['amazon', 'microsoft', 'google'], ['i', 'am', 'cro', 'na', 'le', 'abc'])
->>> ('[am]azon', 'mi[cro]soft', 'goog[le]')
+# >>> ('[am]azon', 'mi[cro]soft', 'goog[le]')

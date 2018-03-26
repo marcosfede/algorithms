@@ -8,7 +8,7 @@ length. Expected complexity O(nlogn).
 
 def max_common_sub_string(s1, s2):
     # Assuming s2 has all unique chars
-    s2dic = {s2[i]: i for i in xrange(len(s2))}
+    s2dic = {c: i for i, c in enumerate(s2)}
     maxr = 0
     subs = ''
     i = 0
@@ -20,7 +20,7 @@ def max_common_sub_string(s1, s2):
                 k += 1
                 j += 1
             if k - i > maxr:
-                maxr = k-i
+                maxr = k - i
                 subs = s1[i:k]
             i = k
         else:
