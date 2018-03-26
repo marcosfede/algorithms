@@ -27,12 +27,14 @@ Visually, the graph looks like the following:
          \_/
 """
 
+import collections
+
 
 # Definition for a undirected graph node
-# class UndirectedGraphNode:
-#     def __init__(self, x):
-#         self.label = x
-#         self.neighbors = []
+class UndirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
 
 
 # BFS
@@ -45,7 +47,7 @@ def cloneGraph1(self, node):
     while queue:
         node = queue.popleft()
         for neighbor in node.neighbors:
-            if neighbor not in dic: # neighbor is not visited
+            if neighbor not in dic:  # neighbor is not visited
                 neighborCopy = UndirectedGraphNode(neighbor.label)
                 dic[neighbor] = neighborCopy
                 dic[node].neighbors.append(neighborCopy)
@@ -53,6 +55,7 @@ def cloneGraph1(self, node):
             else:
                 dic[node].neighbors.append(dic[neighbor])
     return nodeCopy
+
 
 # DFS iteratively
 def cloneGraph2(self, node):
@@ -73,6 +76,7 @@ def cloneGraph2(self, node):
                 dic[node].neighbors.append(dic[neighbor])
     return nodeCopy
 
+
 # DFS recursively
 def cloneGraph(self, node):
     if not node:
@@ -81,6 +85,7 @@ def cloneGraph(self, node):
     dic = {node: nodeCopy}
     self.dfs(node, dic)
     return nodeCopy
+
 
 def dfs(self, node, dic):
     for neighbor in node.neighbors:

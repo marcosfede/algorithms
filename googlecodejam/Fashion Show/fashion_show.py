@@ -57,10 +57,10 @@ def merge_solutions(rook_solution, bishop_solution):
 
 
 def solve(board):
-    rook_board = map_board(lambda piece: 'x' if (piece == 'x' or piece == 'o') else '.', board)
-    bishop_board = map_board(lambda piece: '+' if (piece == '+' or piece == 'o') else '.', board)
+    rook_board = map_board(lambda piece: 'x' if piece in 'xo' else '.', board)
+    bishop_board = map_board(lambda piece: '+' if piece in '+o' else '.', board)
     rook_solution = solve_rooks(rook_board)
-    bishop_solution = solve_bishops(bishop_board)
+    bishop_solution = solve_bishops_small(bishop_board)
     solution = merge_solutions(rook_solution, bishop_solution)
     score = score_board(solution)
     insertions = diff_board(board, solution)
