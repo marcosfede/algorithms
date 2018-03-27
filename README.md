@@ -4,7 +4,7 @@ Data Structure and Algorithmic Problems solved in many languages
 [![Join the chat at https://gitter.im/marcosfede/algorithms](https://badges.gitter.im/marcosfede/algorithms.svg)](https://gitter.im/marcosfede/algorithms?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/marcosfede/algorithms.svg?branch=master)](https://travis-ci.org/marcosfede/algorithms)
 
-This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in python. 
+This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in Python 3. 
 I wanted to compare solutions across different languages and learn them in the process.
 Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
 
