@@ -35,7 +35,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [x] [longest_non_repeat](array/longest_non_repeat)
     - [x] [merge_intervals](array/merge_intervals)
     - [x] [missing_ranges](array/missing_ranges)
-    - [x] [plus_one](array/plus_one.py)
+    - [x] [plus_one](array/plus_one)
     - [x] [rotate_array](array/rotate_array)
     - [x] [summary_ranges](array/summary_ranges)
     - [x] [three_sum](array/three_sum)
