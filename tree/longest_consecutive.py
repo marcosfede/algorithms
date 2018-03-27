@@ -38,6 +38,7 @@ def longestConsecutive(root):
 
 
 def DFS(root, cur, target):
+    global maxlen
     if not root: return
     if root.val == target:
         cur += 1
