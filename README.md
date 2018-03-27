@@ -42,7 +42,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
 - [ ] [backtrack](backtrack)
     - [x] [anagram](backtrack/anagram)
     - [x] [array_sum_combinations](backtrack/array_sum_combination)
-    - [ ] [combination_sum](backtrack/combination_sum.py)
+    - [x] [combination_sum](backtrack/combination_sum)
     - [ ] [expression_add_operators](backtrack/expression_add_operators.py)
     - [ ] [factor_combinations](backtrack/factor_combinations.py)
     - [ ] [generate_abbreviations](backtrack/generate_abbreviations.py)
