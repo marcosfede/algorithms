@@ -26,13 +26,14 @@ Visually, the graph looks like the following:
          / \
          \_/
 """
+from collections import deque
 
 
 # Definition for a undirected graph node
-# class UndirectedGraphNode:
-#     def __init__(self, x):
-#         self.label = x
-#         self.neighbors = []
+class UndirectedGraphNode:
+    def __init__(self, x):
+        self.label = x
+        self.neighbors = []
 
 
 # BFS
@@ -41,7 +42,7 @@ def cloneGraph1(self, node):
         return
     nodeCopy = UndirectedGraphNode(node.label)
     dic = {node: nodeCopy}
-    queue = collections.deque([node])
+    queue = deque([node])
     while queue:
         node = queue.popleft()
         for neighbor in node.neighbors:

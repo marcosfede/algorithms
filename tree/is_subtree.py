@@ -44,10 +44,12 @@
 # Follow up:
 # What if one tree is significantly lager than the other?
 
+from collections import deque
+
 
 def is_subtree(big, small):
     flag = False
-    queue = collections.deque()
+    queue = deque()
     queue.append(big)
     while queue:
         node = queue.popleft()

@@ -17,7 +17,7 @@ def addWithoutOperator(x, y):
 
 
 def main():
-    x, y = map(int, raw_input().split())
+    x, y = map(int, input().split())
     addWithoutOperator(x, y)
 
 
