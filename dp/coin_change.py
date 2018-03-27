@@ -41,8 +41,8 @@ def count(S, n):
 if __name__ == '__main__':
     coins = [1, 2, 3]
     n = 4
-    assert count(S, n) == 4
+    assert count(coins, n) == 4
 
     coins = [2, 5, 3, 6]
     n = 10
-    assert count(S, n) == 5
+    assert count(coins, n) == 5
