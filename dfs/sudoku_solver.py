@@ -31,8 +31,8 @@ def solveSudoku(self, board):
 def PossibleVals(self):
     a = "123456789"
     d, val = {}, {}
-    for i in xrange(9):
-        for j in xrange(9):
+    for i in range(9):
+        for j in range(9):
             ele = self.board[i][j]
             if ele != ".":
                 d[("r", i)] = d.get(("r", i), []) + [ele]
@@ -41,7 +41,9 @@ def PossibleVals(self):
             else:
                 val[(i, j)] = []
     for (i, j) in val.keys():
-        inval = d.get(("r", i), []) + d.get(("c", j), []) + d.get((i / 3, j / 3), [])
+        inval = (d.get(("r", i), []) +
+                 d.get(("c", j), []) +
+                 d.get((i / 3, j / 3), []))
         val[(i, j)] = [n for n in a if n not in inval]
     return val
 
@@ -66,7 +68,8 @@ def ValidOne(self, n, kee, update):
     i, j = kee
     for ind in self.val.keys():
         if n in self.val[ind]:
-            if ind[0] == i or ind[1] == j or (ind[0] / 3, ind[1] / 3) == (i / 3, j / 3):
+            if (ind[0] == i or ind[1] == j or
+                    (ind[0] / 3, ind[1] / 3) == (i / 3, j / 3)):
                 update[ind] = n
                 self.val[ind].remove(n)
                 if len(self.val[ind]) == 0:

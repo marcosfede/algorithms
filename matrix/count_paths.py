@@ -8,6 +8,8 @@
 #                           matrix. Return count[m-1][n-1]
 # T(n)- O(mn), S(n)- O(mn)
 #
+
+
 def count_paths(m, n):
     if m < 1 or n < 1:
         return -1
@@ -30,7 +32,7 @@ def count_paths(m, n):
 
 
 def main():
-    m, n = map(int, raw_input().split())
+    m, n = map(int, input().split())
     count_paths(m, n)
 
 

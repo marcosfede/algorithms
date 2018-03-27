@@ -18,6 +18,7 @@ isMatch("aa", ".*") → true
 isMatch("ab", ".*") → true
 isMatch("aab", "c*a*b") → true
 """
+import unittest
 
 
 class Solution(object):
@@ -37,8 +38,7 @@ class Solution(object):
                 if pp != '*':
                     # The previous character has matched and the current one
                     # has to be matched. Two possible matches: the same or .
-                    matches[i][j] = matches[i - 1][j - 1] and \
-                                    (ss == pp or pp == '.')
+                    matches[i][j] = matches[i - 1][j - 1] and pp in (ss, '.')
                 else:
                     # Horizontal look up [j - 2].
                     # Not use the character before *.
