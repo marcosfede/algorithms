@@ -8,15 +8,16 @@ import (
 // need to figure out how to close the channel though...
 
 func recurDfs(nums []int, target int, index int, path []int, res [][]int, ch chan []int) {
-	if target < 0 {
-		return // backtracking
-	}
 	if target == 0 {
 		ch <- path
 		return
 	}
 	for i := index; i < len(nums); i++ {
-		recurDfs(nums, target-nums[i], i, append(path, nums[i]), res, ch)
+		next := target - nums[i]
+		if next < 0 {
+			return
+		}
+		recurDfs(nums, next, i, append(path, nums[i]), res, ch)
 	}
 }
 
