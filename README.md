@@ -9,12 +9,14 @@ I wanted to compare solutions across different languages and learn them in the p
 Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
 
 <p align="center">
-    <img src="assets/go.png" alt="go"/>
-    <img src="assets/python.png" alt="python"/>
-    <img src="assets/ruby.png" alt="ruby"/>
-    <img src="assets/javascript.png" alt="javascript"/>
-    <img src="assets/prog-haskell.png" alt="haskell"/>
-    <img src="assets/julia.png" alt="julia"/>
+    <img height="50" src="assets/go.png" alt="go"/>
+    <img height="50" src="assets/python.png" alt="python"/>
+    <img height="50" src="assets/ruby.png" alt="ruby"/>
+    <img height="50" src="assets/javascript.png" alt="javascript"/>
+    <img height="50" src="assets/haskell.png" alt="haskell"/>
+    <img height="50" src="assets/julia.png" alt="julia"/>
+    <img height="50" src="assets/elixir.png" alt="elixir"/>
+    <img height="50" src="assets/scala.png" alt="scala"/>
 </p>
 
 ## Contributing
