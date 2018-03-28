@@ -8,15 +8,15 @@ This repository is inspired by [keon's](https://github.com/keon/algorithms) solv
 I wanted to compare solutions across different languages and learn them in the process.
 Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
 
-<p align="center">
-    <img height="50" src="assets/go.png" alt="go"/>
-    <img height="50" src="assets/python.png" alt="python"/>
-    <img height="50" src="assets/ruby.png" alt="ruby"/>
-    <img height="50" src="assets/javascript.png" alt="javascript"/>
-    <img height="50" src="assets/haskell.png" alt="haskell"/>
-    <img height="50" src="assets/julia.png" alt="julia"/>
-    <img height="50" src="assets/elixir.png" alt="elixir"/>
-    <img height="50" src="assets/scala.png" alt="scala"/>
+<p  align="center">
+    <img height="70" src="assets/go.png" alt="go"/>
+    <img height="70" src="assets/python.png" alt="python"/>
+    <img height="70" src="assets/javascript.png" alt="javascript"/>
+    <img height="70" src="assets/haskell.png" alt="haskell"/>
+    <img height="70" src="assets/julia.png" alt="julia"/>
+    <img height="70" src="assets/elixir.png" alt="elixir"/>
+    <img height="70" src="assets/scala.png" alt="scala"/>
+    <img height="70" src="assets/ruby.png" alt="ruby"/>
 </p>
 
 ## Contributing
