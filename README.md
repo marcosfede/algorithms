@@ -2,18 +2,21 @@ Data Structure and Algorithmic Problems solved in many languages
 =========================================
 
 [![Join the chat at https://gitter.im/marcosfede/algorithms](https://badges.gitter.im/marcosfede/algorithms.svg)](https://gitter.im/marcosfede/algorithms?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/marcosfede/algorithms.svg?branch=master)](https://travis-ci.org/marcosfede/algorithms)
 
-This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in python. 
+This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in Python 3. 
 I wanted to compare solutions across different languages and learn them in the process.
 Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
 
-<p align="center">
-    <img src="assets/go.png" alt="go"/>
-    <img src="assets/python.png" alt="python"/>
-    <img src="assets/ruby.png" alt="ruby"/>
-    <img src="assets/javascript.png" alt="javascript"/>
-    <img src="assets/prog-haskell.png" alt="haskell"/>
-    <img src="assets/julia.png" alt="julia"/>
+<p  align="center">
+    <img height="70" src="assets/go.png" alt="go"/>
+    <img height="70" src="assets/python.png" alt="python"/>
+    <img height="70" src="assets/javascript.png" alt="javascript"/>
+    <img height="70" src="assets/haskell.png" alt="haskell"/>
+    <img height="70" src="assets/julia.png" alt="julia"/>
+    <img height="70" src="assets/elixir.png" alt="elixir"/>
+    <img height="70" src="assets/scala.png" alt="scala"/>
+    <img height="60" src="assets/ruby.png" alt="ruby"/>
 </p>
 
 ## Contributing
@@ -34,7 +37,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [x] [longest_non_repeat](array/longest_non_repeat)
     - [x] [merge_intervals](array/merge_intervals)
     - [x] [missing_ranges](array/missing_ranges)
-    - [x] [plus_one](array/plus_one.py)
+    - [x] [plus_one](array/plus_one)
     - [x] [rotate_array](array/rotate_array)
     - [x] [summary_ranges](array/summary_ranges)
     - [x] [three_sum](array/three_sum)

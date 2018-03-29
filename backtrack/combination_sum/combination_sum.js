@@ -6,15 +6,16 @@ function solve(candidates, target) {
 }
 
 function dfs(nums, target, index, path, res) {
-    if (target < 0) {
-        return  // backtracking
-    }
     if (target === 0) {
         res.push(path)
         return
     }
     for (let i = index; i < nums.length; i++) {
-        dfs(nums, target - nums[i], i, path.concat(nums[i]), res)
+        let next = target - nums[i]
+        if (next < 0) {
+            return  // backtracking
+        }
+        dfs(nums, next, i, path.concat(nums[i]), res)
     }
 }
 

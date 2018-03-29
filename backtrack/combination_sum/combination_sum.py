@@ -6,14 +6,15 @@ def solve(candidates, target):
 
 
 def dfs(nums, target, index, path, res):
-    if target < 0:
-        return  # backtracking
     if target == 0:
         res.append(path)
         return
     for i in range(index, len(nums)):
-        dfs(nums, target - nums[i], i, path + [nums[i]], res)
+        next = target - nums[i]
+        if next < 0:
+            return
+        dfs(nums, next, i, path + [nums[i]], res)
 
 
-a = [1,2,3,4]
-print(solve(a, 6))  # should be [[2, 2, 3], [7]]
+a = [2, 3, 6, 7]
+print(solve(a, 7))  # should be [[2, 2, 3], [7]]
