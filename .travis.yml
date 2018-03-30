@@ -16,6 +16,13 @@ matrix:
           install:
             - pip install flake8  # pytest  # add another testing frameworks later
 
+        - language: node_js
+          node_js: 9.9.0
+          install:
+          - npm install
+          script:
+          - npm run lint
+
 script:
     - true  # pytest --capture=sys  # add other tests here
 notifications:
