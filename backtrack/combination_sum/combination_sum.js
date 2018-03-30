@@ -11,13 +11,13 @@ function dfs(nums, target, index, path, res) {
         return
     }
     for (let i = index; i < nums.length; i++) {
-        let next = target - nums[i]
+        const next = target - nums[i]
         if (next < 0) {
-            return  // backtracking
+            return  // Backtracking
         }
         dfs(nums, next, i, path.concat(nums[i]), res)
     }
 }
 
 const a = [2, 3, 6, 7]
-console.log(solve(a, 7)) // should be  [[2, 2, 3]], [7]]
+console.log(solve(a, 7)) // Should be  [[2, 2, 3]], [7]]
