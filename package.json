@@ -1,0 +1,33 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "Solved algorithms and data structures problems in many languages",
+  "main": "index.js",
+  "repository": "git@github.com:marcosfede/algorithms.git",
+  "author": "Federico Marcos <marcosfede@gmail.com>",
+  "license": "GPL",
+  "private": false,
+  "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.11.1",
+    "xo": "0.18.2"
+  },
+  "scripts": {
+    "lint": "xo",
+    "fix": "xo --fix ."
+  },
+  "xo": {
+    "esnext": true,
+    "semicolon": false,
+    "extends": ["prettier"]
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "eslintIntegration": true
+  }
+}
