@@ -1,13 +1,12 @@
 function twoSum(nums, target) {
-    const dic = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        const num = nums[i]
-        if (dic.has(num)) {
-            return [dic.get(num), i]
-        }
-            dic.set(target - num, i)
-
+  const dic = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i]
+    if (dic.has(num)) {
+      return [dic.get(num), i]
     }
+    dic.set(target - num, i)
+  }
 }
 
 const arr = [3, 2, 4]
