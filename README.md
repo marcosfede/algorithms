@@ -258,3 +258,8 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [ride_sharing](design/ride_sharing.md)
     - [ ] [task_runner](design/task_runner.md)
     - [ ] [twitter_feeds](design/twitter_feeds.md)
+
+## Additional resources
+
+* [keon/algorithms](https://github.com/keon/algorithms)
+* [lndgalante/codewars-katas](https://github.com/lndgalante/codewars-katas)
