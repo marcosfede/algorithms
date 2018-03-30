@@ -1,19 +1,19 @@
-function summary_ranges(nums) {
-    res = []
+function summaryRanges(nums) {
+    const res = []
     const l = nums.length
-    if (l == 1) {
-        return [str(nums[0])]
+    if (l === 1) {
+        return [nums[0].toString()]
     }
     let i = 0
     while (i < l) {
         const start = nums[i]
-        while (i + 1 < l && nums[i + 1] - nums[i] == 1) {
+        while (i + 1 < l && nums[i + 1] - nums[i] === 1) {
             i++
         }
-        if (nums[i] != start) {
-            res.push(start.toString() + "->" + nums[i].toString())
+        if (nums[i] === start) {
+          res.push(start.toString())
         } else {
-            res.push(start.toString())
+          res.push(start.toString() + "->" + nums[i].toString())
         }
         i++
     }
@@ -26,4 +26,4 @@ console.log(a)
 console.log("output should be")
 console.log(["0->2", "4->5", "7"])
 console.log("output: ")
-console.log(summary_ranges(a))
+console.log(summaryRanges(a))

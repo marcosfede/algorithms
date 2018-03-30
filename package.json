@@ -20,7 +20,12 @@
   "xo": {
     "esnext": true,
     "semicolon": false,
-    "extends": ["prettier"]
+    "extends": ["prettier"],
+    "plugins": ["unicorn"],
+    "rules": {
+      "unicorn/filename-case": ["error", {"case": "snakeCase"}],
+      "no-eval": ["off"]
+    }
   },
   "prettier": {
     "semi": false,

@@ -4,7 +4,9 @@ class FastList {
         this.arr = arr
         // Dict for O(1) lookups by value
         const indexof = {}
-        arr.forEach((v, i) => indexof[v] = i)
+        arr.forEach((v, i) => {
+          indexof[v] = i
+        })
         this.indexof = indexof
     }
 
@@ -22,7 +24,7 @@ class FastList {
         this.moves += 1
     }
 
-    calc_moves(end) {
+    calcMoves(end) {
         this.moves = 0
         while (!this.equals(end)) {
             const i0 = this.indexof[0]
@@ -49,12 +51,12 @@ class FastList {
 }
 
 function garage(beg, end) {
-    fl = new FastList(beg)
-    return fl.calc_moves(end)
+    const fl = new FastList(beg)
+    return fl.calcMoves(end)
 }
 
-initial = [1, 2, 3, 0, 4]
-final = [0, 3, 2, 1, 4]
+const initial = [1, 2, 3, 0, 4]
+const final = [0, 3, 2, 1, 4]
 console.log("initial:", initial)
 console.log(garage(initial, final))
 console.log("final should be:", final)

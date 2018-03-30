@@ -5,7 +5,7 @@ function rotate(arr, k) {
 }
 
 
-a = [1, 2, 3, 4, 5, 6, 7]
+const a = [1, 2, 3, 4, 5, 6, 7]
 console.log("in: ", a)
 console.log("expected: ", [5, 6, 7, 1, 2, 3, 4])
 console.log("out: ", rotate(a, 3))

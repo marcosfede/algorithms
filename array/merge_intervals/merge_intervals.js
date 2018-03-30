@@ -16,11 +16,11 @@ function mergeIntervals(arr) {
 }
 
 const given = [[1, 3], [2, 6], [8, 10], [15, 18]]
-const given_obj = given.map((interv, i) => ({
+const givenObj = given.map((interv) => ({
     start: interv[0],
     end: interv[1]
 }))
 const expected = [[1, 6], [8, 10], [15, 18]]
 console.log("input: ", given)
-console.log("result: ", mergeIntervals(given_obj).map(i => [i.start, i.end]))
+console.log("result: ", mergeIntervals(givenObj).map(i => [i.start, i.end]))
 console.log("output should be: ", expected)

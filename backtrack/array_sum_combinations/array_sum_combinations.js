@@ -17,17 +17,17 @@ function Counter(iterable) {
 }
 
 const sum = iterable => iterable.reduce((pv, cv) => pv + cv)
-const range = upto => Array.from(Array(upto).keys())
 
-function* sum_combinations(target, ...arrs) {
+function* sumCombinations(target, ...arrs) {
     const last = arrs[arrs.length - 1]
     const rest = arrs.slice(0, -1)
-    const counter_last = new Counter(last)
+    const counterLast = new Counter(last)
     for (const combination of product(...rest)) {
         const difference = target - sum(combination)
-        if (counter_last.has(difference)) {
-            for (const _ of range(counter_last.get(difference))) {
-                yield combination.concat(difference)
+        if (counterLast.has(difference)) {
+            const times = counterLast.get(difference).length
+            for (let i=0; i< times; i++){
+              yield combination.concat(difference)
             }
         }
     }
@@ -38,6 +38,6 @@ const B = [2, 3, 3, 4]
 const C = [1, 2, 2, 2]
 const target = 7
 
-for (const combination of sum_combinations(target, A, B, C)) {
+for (const combination of sumCombinations(target, A, B, C)) {
     console.log(combination)
 }
