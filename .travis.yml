@@ -17,11 +17,11 @@ matrix:
             - pip install flake8  # pytest  # add another testing frameworks later
 
         - language: node_js
-          node_js: 9.9.0
+          node_js: "9.9"
           install:
-          - npm install
+          - yarn
           script:
-          - npm run lint
+          - yarn run lint
 
 script:
     - true  # pytest --capture=sys  # add other tests here
