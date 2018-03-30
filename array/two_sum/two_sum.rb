@@ -1,11 +1,8 @@
 def two_sum(nums, target)
-  dic = Hash.new
+  dic = {}
   nums.each.with_index do |num, i|
-    if dic.include? num
-      return [dic[num], i]
-    else
-      dic[target - num] = i
-    end
+    return [dic[num], i] if dic.include? num
+    dic[target - num] = i
   end
 end
 

@@ -7,9 +7,9 @@ def plus_one(digits)
     end
     digits[i] = 0
   end
-  new_num = Array.new(n + 1) {0}
+  new_num = Array.new(n + 1) { 0 }
   new_num[0] = 1
-  return new_num
+  new_num
 end
 
 a = [8, 8, 9]

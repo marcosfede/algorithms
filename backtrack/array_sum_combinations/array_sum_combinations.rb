@@ -1,4 +1,4 @@
-def Counter(iterable)
+def counter(iterable)
   hmap = Hash.new(0)
   iterable.each do |el|
     hmap[el] = hmap[el] + 1
@@ -12,7 +12,7 @@ def product(head, *tail)
 end
 
 def sum_combinations(target, *arrs)
-  counter_last = Counter(arrs[-1])
+  counter_last = counter(arrs[-1])
   Enumerator.new do |enum|
     product(*arrs.slice(0, arrs.length - 1)).each do |combination|
       difference = target - combination.reduce(:+)
@@ -24,9 +24,9 @@ def sum_combinations(target, *arrs)
   end
 end
 
-A = [1, 2, 3, 3]
-B = [2, 3, 3, 4]
-C = [1, 2, 2, 2]
+A = [1, 2, 3, 3].freeze
+B = [2, 3, 3, 4].freeze
+C = [1, 2, 2, 2].freeze
 target = 7
 
 solution = sum_combinations(target, A, B, C).to_a

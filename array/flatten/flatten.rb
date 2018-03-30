@@ -1,5 +1,5 @@
-def list_flatten(l)
-  l.reduce([]) do |pv, cv|
+def list_flatten(list)
+  list.reduce([]) do |pv, cv|
     if !cv.is_a?(Array)
       pv + [cv]
     else
