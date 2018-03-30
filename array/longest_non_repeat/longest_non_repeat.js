@@ -1,7 +1,7 @@
 function longestNonRepeat(s) {
     let start = 0
     let maxlen = 0
-    let used_char = new Map()
+    const used_char = new Map()
     s.split("").forEach((char, i) => {
         if (used_char.has(char) && start <= used_char.get(char)) {
             start = used_char.get(char) + 1

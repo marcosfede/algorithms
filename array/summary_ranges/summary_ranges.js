@@ -6,7 +6,7 @@ function summary_ranges(nums) {
     }
     let i = 0
     while (i < l) {
-        let start = nums[i]
+        const start = nums[i]
         while (i + 1 < l && nums[i + 1] - nums[i] == 1) {
             i++
         }

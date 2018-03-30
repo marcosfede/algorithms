@@ -7,7 +7,7 @@ function plusOne(digits) {
         }
         digits[i] = 0
     }
-    let new_num = Array(n + 1).fill(0)
+    const new_num = Array(n + 1).fill(0)
     new_num[0] = 1
     return new_num
 }

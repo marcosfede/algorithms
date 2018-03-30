@@ -1,11 +1,11 @@
 function* product(arr, repeat) {
   if (repeat === 1) {
-    for (let e of arr) {
+    for (const e of arr) {
       yield [e]
     }
   } else {
-    for (let el of arr) {
-      for (let prod of product(arr, repeat - 1)) {
+    for (const el of arr) {
+      for (const prod of product(arr, repeat - 1)) {
         yield [el].concat(prod)
       }
     }
@@ -14,7 +14,7 @@ function* product(arr, repeat) {
 
 function* solve(num, target) {
   const n = num.length
-  for (let comb of product(["", "+", "*", "-"], n - 1)) {
+  for (const comb of product(["", "+", "*", "-"], n - 1)) {
     let solution = []
     for (let i = 0; i < n - 1; i++) {
       solution.push(num[i])
