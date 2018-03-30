@@ -3,7 +3,7 @@ class FastList {
     constructor(arr) {
         this.arr = arr
         // Dict for O(1) lookups by value
-        var indexof = {}
+        const indexof = {}
         arr.forEach((v, i) => {
           indexof[v] = i
         })
