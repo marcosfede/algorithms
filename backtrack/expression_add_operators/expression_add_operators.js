@@ -14,14 +14,14 @@ function* product(arr, repeat) {
 
 function* solve(num, target) {
   const n = num.length
-  for (const comb of product(["", "+", "*", "-"], n - 1)) {
+  for (const comb of product(['', '+', '*', '-'], n - 1)) {
     let solution = []
     for (let i = 0; i < n - 1; i++) {
       solution.push(num[i])
       solution.push(comb[i])
     }
     solution.push(num[n - 1])
-    solution = solution.join("")
+    solution = solution.join('')
     if (eval(solution) === target) {
       yield solution
     }
@@ -29,12 +29,12 @@ function* solve(num, target) {
 }
 
 // "123", 6 -> ["1+2+3", "1*2*3"]
-console.log(Array.from(solve("123", 6)))
+console.log(Array.from(solve('123', 6)))
 
 // "232", 8 -> ["2*3+2", "2+3*2"]
-console.log(Array.from(solve("232", 8)))
+console.log(Array.from(solve('232', 8)))
 
 // "123045", 3 -> ['1+2+3*0*4*5', '1+2-3*0*4*5', '1*2+3*0-4+5', '1*2-3*0-4+5', '1-2+3+0-4+5', '1-2+3-0-4+5']
-console.log(Array.from(solve("123045", 3)))
+console.log(Array.from(solve('123045', 3)))
 
-console.log(Array.from(solve("105", 5)))
+console.log(Array.from(solve('105', 5)))
