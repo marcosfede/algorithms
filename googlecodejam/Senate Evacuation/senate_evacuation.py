@@ -17,30 +17,53 @@ class MaxHeap:
     def peek(self):
         return self.data[0]
 
+    def __len__(self):
+        return len(self.data)
 
-def solve(people_arr):
-    letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    ngroups = len(people_arr)
-    total = sum(people_arr)
-    Party = namedtuple('Party', ['people', 'name'])
-    people = [Party(p, letters[p]) for p in people_arr]
-    heap = MaxHeap(people, lambda party: -1*party[0])
-    while total > 0:
-        top = heap.pop()
-        
+
+Party = namedtuple('Party', ['people', 'name'])
+letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+class Solver:
+    def __init__(self, people):
+        self.people = [Party(p, letters[i]) for i, p in enumerate(people)]
+        self.heap = MaxHeap(self.people, lambda party: -1 * party[0])
+        self.total = sum(people)
+        self.solution = []
+
+    def pop_senator(self):
+        top = self.heap.pop()
+        self.total -= 1
+        if top.people > 1:
+            new = Party(top.people - 1, top.name)
+            self.heap.push(new)
+        return top
+
+    def evacuate_single_senator(self):
+        senator = self.pop_senator()
+        self.solution.append(senator.name)
+
+    def evacuate_two_senators(self):
+        senator1 = self.pop_senator()
+        senator2 = self.pop_senator()
+        self.solution.append(senator1.name + senator2.name)
+
+    def solve(self):
+        while self.total > 0:
+            while len(self.heap) > 2:
+                self.evacuate_single_senator()
+            self.evacuate_two_senators()
+        return " ".join(self.solution)
 
 
 def read_input():
     ncases = int(input())
     for case in range(1, ncases + 1):
         groups = int(input())
-        people_per_group = map(int, input().split(" "))
-        plan = solve(people_per_group)
+        people_per_group = list(map(int, input().split(" ")))
+        plan = Solver(people_per_group).solve()
         print('CASE #{}: {}'.format(case, plan))
 
 
-# read_input()
-print(solve([2, 2]))
-print(solve([3, 2, 2]))
-print(solve([1, 1, 2]))
-print(solve([2, 3, 1]))
+read_input()
