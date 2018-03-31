@@ -29,6 +29,8 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [x] [Oversized Pancake Flipper](googlecodejam/Oversized%20Pancake%20Flipper)
     - [x] [Tidy Numbers](googlecodejam/Tidy%20Numbers)
     - [x] [Fashion Show](googlecodejam/Fashion%20Show)
+    - [x] [Number Guessing](googlecodejam/Number%20Guessing)
+    - [ ] [Senate Evacuation](googlecodejam/Senate%20Evacuation)
 - [x] [array](array)
     - [x] [circular_counter](array/circular_counter)
     - [x] [flatten](array/flatten)
