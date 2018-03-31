@@ -24,7 +24,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
 
 ## List of problems
 
-- [ ] [googlecodejam](googlecodejam)
+- [x] [googlecodejam](googlecodejam)
     - [x] [Bathroom Stalls](googlecodejam/Bathroom%20Stalls)
     - [x] [Oversized Pancake Flipper](googlecodejam/Oversized%20Pancake%20Flipper)
     - [x] [Tidy Numbers](googlecodejam/Tidy%20Numbers)
