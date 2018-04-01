@@ -6,17 +6,18 @@ Data Structure and Algorithmic Problems solved in many languages
 
 This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in Python 3. 
 I wanted to compare solutions across different languages and learn them in the process.
-Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
+Solutions may be my own, from keon's repo or taken from the internet.
 
+Click on the icons to search by language
 <p  align="center">
-    <img height="70" src="assets/go.png" alt="go"/>
-    <img height="70" src="assets/python.png" alt="python"/>
-    <img height="70" src="assets/javascript.png" alt="javascript"/>
-    <img height="70" src="assets/haskell.png" alt="haskell"/>
-    <img height="70" src="assets/julia.png" alt="julia"/>
-    <img height="70" src="assets/elixir.png" alt="elixir"/>
-    <img height="70" src="assets/scala.png" alt="scala"/>
-    <img height="60" src="assets/ruby.png" alt="ruby"/>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AGo&type="><img height="70" src="assets/go.png" alt="go"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3APython&type="><img height="70" src="assets/python.png" alt="python"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AJavascript&type="><img height="70" src="assets/javascript.png" alt="javascript"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AHaskell&type="><img height="70" src="assets/haskell.png" alt="haskell"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?l=Go&q=language%3AJulia&type="><img height="70" src="assets/julia.png" alt="julia"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AElixir&type="><img height="70" src="assets/elixir.png" alt="elixir"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AScala&type="><img height="70" src="assets/scala.png" alt="scala"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3ARuby&type="><img height="60" src="assets/ruby.png" alt="ruby"/></a>
 </p>
 
 ## Contributing
