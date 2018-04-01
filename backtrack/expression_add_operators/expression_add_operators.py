@@ -16,6 +16,7 @@ import re
 def int2base(n, b):
     if n == 0:
         return [0]
+
     digits = []
     while n:
         digits.append(int(n % b))
@@ -24,16 +25,18 @@ def int2base(n, b):
 
 
 # alternative algo using base 4 numbers
+
+
 def solve2(num, target):
     n = len(num)
-    possibilities = 4**(n-1)
+    possibilities = 4 ** (n - 1)
     operator_map = ["", "+", "*", "-"]
     for comb_base10 in range(possibilities):
         comb_base4 = int2base(comb_base10, 4)
-        comb_base4 = "".join(map(str, comb_base4)).zfill(n-1)
+        comb_base4 = "".join(map(str, comb_base4)).zfill(n - 1)
         comb = list(map(lambda x: operator_map[int(x)], comb_base4))
         solution = []
-        for i in range(n-1):
+        for i in range(n - 1):
             solution.append(num[i])
             solution.append(comb[i])
         solution.append(num[-1])
@@ -44,16 +47,16 @@ def solve2(num, target):
 
 def calc(string):
     # hack to patch eval around leading zeroes
-    stripped = re.sub(r'\b0+(?!\b)', '', string)
+    stripped = re.sub(r"\b0+(?!\b)", "", string)
     return eval(stripped)
 
 
 def solve(num, target):
     n = len(num)
-    for comb in product(["", "+", "*", "-"], repeat=(n-1)):
+    for comb in product(["", "+", "*", "-"], repeat=(n - 1)):
         solution = []
         # interleave numbers with operators
-        for i in range(n-1):
+        for i in range(n - 1):
             solution.append(num[i])
             solution.append(comb[i])
         solution.append(num[-1])
