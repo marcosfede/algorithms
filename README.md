@@ -9,7 +9,7 @@ I wanted to compare solutions across different languages and learn them in the p
 Solutions may be my own, from keon's repo (mainly the unchecked python ones) or shamelessly stolen from the internet.
 
 <p  align="center">
-    <img height="70" src="assets/go.png" alt="go"/>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AGo&type="><img height="70" src="assets/go.png" alt="go"/></a>
     <img height="70" src="assets/python.png" alt="python"/>
     <img height="70" src="assets/javascript.png" alt="javascript"/>
     <img height="70" src="assets/haskell.png" alt="haskell"/>
