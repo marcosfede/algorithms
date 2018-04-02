@@ -1,13 +1,41 @@
+import scala.collection.mutable.ListBuffer
+
 def product(arr: List[String], repeat: Int): List[List[String]] = repeat match {
-  case 1 => for (el <- arr) yield List[String](el)
-  case _ => for (el <- arr; prod <- product(arr, repeat - 1)) yield List[String](el) ++ prod
+  case 1 => for (el <- arr) yield List(el)
+  case _ => for (el <- arr; prod <- product(arr, repeat - 1)) yield el :: prod
 }
 
-def solve(num: String, target: Int): List[List[String]] = {
+def eval(string: String): Int = {
+  var splitted = string.split("\\+")
+  if (splitted.length > 1) {
+    return splitted.map(eval).sum
+  }
+  splitted = string.split("\\-")
+  if (splitted.length > 1) {
+    return -1*splitted.map(eval).sum + 2*eval(splitted(0))
+  }
+  splitted = string.split("\\*")
+  if (splitted.length > 1) {
+    return splitted.map(eval).product
+  }
+  string.toInt
+}
+
+def solve(num: String, target: Int): List[String] = {
   val operators = List[String]("", "+", "-", "*")
-  product(operators, 3)
+  val n = num.length
+  product(operators, n - 1)
+    .map(comb => {
+      val solution = ListBuffer[String]()
+      for (i <- 0 until n - 1) {
+        solution.append(num(i).toString)
+        solution.append(comb(i))
+      }
+      solution += num.last.toString
+      solution.toList.mkString("")
+    })
+    .filter(sol => eval(sol) == target)
 }
-
 
 
 // "123", 6 -> ["1+2+3", "1*2*3"]
