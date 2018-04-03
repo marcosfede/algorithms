@@ -51,7 +51,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [x] [array_sum_combinations](backtrack/array_sum_combination)
     - [x] [combination_sum](backtrack/combination_sum)
     - [ ] [expression_add_operators](backtrack/expression_add_operators.py)
-    - [ ] [factor_combinations](backtrack/factor_combinations.py)
+    - [ ] [factor_combinations](backtrack/factor_combinations/factor_combinations.py)
     - [ ] [generate_abbreviations](backtrack/generate_abbreviations.py)
     - [ ] [generate_parenthesis](backtrack/generate_parenthesis.py)
     - [ ] [letter_combination](backtrack/letter_combination.py)
