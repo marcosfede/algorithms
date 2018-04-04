@@ -62,6 +62,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [subsets](backtrack/subsets.py)
     - [ ] [subsets_unique](backtrack/subsets_unique.py)
 - [ ] [bfs](bfs)
+	- [x] [puzzle_game](bfs/puzzle_game)
     - [ ] [shortest_distance_from_all_buildings](bfs/shortest_distance_from_all_buildings.py)
     - [ ] [word_ladder](bfs/word_ladder.py)
 - [ ] [bit](bit)
