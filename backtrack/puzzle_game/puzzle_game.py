@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from timeit import default_timer as timer
 
 primes = {3, 5, 7, 11, 13, 17, 19}
 # full_neighbours_map = {
@@ -99,11 +98,7 @@ def read_input():
         print(solution)
 
 
-# t1 = timer()
-
 # read_input()
-# print(bfs([[2, 1, 3], [4, 5, 6], [7, 8, 9]]))  # should be 1
-print(bfs([[7, 3, 2], [4, 1, 5], [6, 8, 9]]))   # should be 6
-# print(bfs([[9, 8, 5], [2, 4, 1], [3, 7, 6]]))  # should be -1
-
-# print(timer() - t1)
+print(bfs([[2, 1, 3], [4, 5, 6], [7, 8, 9]]))  # should be 1
+print(bfs([[7, 3, 2], [4, 1, 5], [6, 8, 9]]))  # should be 6
+print(bfs([[9, 8, 5], [2, 4, 1], [3, 7, 6]]))  # should be -1
