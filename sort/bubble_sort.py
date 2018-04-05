@@ -1,8 +1,36 @@
 """
-
+Bubble Sort
+An iterators goes through the list and sorts by swapping adjacent pairs of
+elements to the corrent order.
 https://en.wikipedia.org/wiki/Bubble_sort
 
 Worst-case performance: O(N^2)
+eg
+<- is the location of the iterator i
+[3, 2, 5, 4] Initial list
+
+Set swapped := false
+First iteration
+[2, 3<-, 5, 4] Swap 3 > 2
+Set swapped := true
+[2, 3, 5<-, 4] No swap 5 > 3
+[2, 3, 5, 4<-] Swap 5 > 4
+[2, 3, 4, 5]
+iterator i > n
+    then break out of inner for-loop
+swapped == true
+    then stay in while-loop
+
+Set swapped := false
+Second iteration
+[2, 3<-, 4, 5] No swap 3 > 2
+[2, 3, 4<-, 5] No swap 4 > 3
+[2, 3, 4, 5<-] No swap 5 > 4
+[2, 3, 4, 5]
+iterator i > n
+    then break out of inner for-loop
+swapped != true
+    then break out of while-loop and list is sorted
 
 """
 
