@@ -23,7 +23,7 @@ def solve(towns, gold):
     current_gold = gold
     counter = 0
     raided = []
-    sorted_towns = sorted(towns, key=lambda town: town[1])
+    sorted_towns = sorted(towns, key=lambda t: (t[1], -t[0]))
     for town in sorted_towns:
         if current_gold - town[0] >= 0:
             raided.append(town)
@@ -44,11 +44,13 @@ def solve(towns, gold):
 # print(brute_force_checker([(10, 6), (9, 1), (1, 1), (1, 1), (5, 1)], 10))  # 4
 # print(brute_force_checker([(10, 8), (2, 1), (2, 1)], 10))  # 2
 # print(brute_force_checker([(10, 6), (9, 1), (1, 1), (1, 1)], 10))  # 3
+print(brute_force_checker([(7, 1), (3, 1), (3, 1), (8, 4)], 10))  # 4
 
 # print(solve([(10, 5), (7, 3), (7, 3)], 10))  # 2
 # print(solve([(10, 7), (5, 1), (9, 1), (1, 1)], 10))  # 3
-print(solve([(10, 1), (9, 5), (4, 1), (3, 1), (2, 1)], 10))  # 5
+# print(solve([(10, 1), (9, 5), (4, 1), (3, 1), (2, 1)], 10))  # 5
 # print(solve([(10, 6), (1, 1), (1, 1), (1, 1)], 10))  # 4
 # print(solve([(10, 6), (9, 1), (1, 1), (1, 1), (5, 1)], 10))  # 4
 # print(solve([(10, 8), (2, 1), (2, 1)], 10))  # 2
 # print(solve([(10, 6), (9, 1), (1, 1), (1, 1)], 10))  # 3
+print(solve([(7, 1), (3, 1), (3, 1), (8, 4)], 10))  # 4
