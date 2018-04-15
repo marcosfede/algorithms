@@ -37,6 +37,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [x] [Go Gopher](googlecodejam/Go%20Gopher)
     - [x] [Saving The Universe Again](googlecodejam/Saving%20The%20Universe%20Again)
     - [x] [Trouble Sort](googlecodejam/Trouble%20Sort)
+    - [x] [Waffle Choppers](googlecodejam/Waffle%20Choppers)
 - [x] [array](array)
     - [x] [circular_counter](array/circular_counter)
     - [x] [flatten](array/flatten)
