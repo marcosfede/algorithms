@@ -29,7 +29,6 @@ int main()
     int i;
     node nodes[NODES_COUNT];
     list l;
-
     for (i = 0; i < NODES_COUNT - 1; i++) {
         nodes[i].id = i;
         nodes[i].next = &nodes[i + 1];
