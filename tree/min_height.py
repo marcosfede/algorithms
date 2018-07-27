@@ -1,5 +1,5 @@
 class Node():
-    def __init__(self, val = 0):
+    def __init__(self, val=0):
         self.val = val
         self.left = None
         self.right = None
@@ -13,7 +13,7 @@ def minDepth(self, root):
     if not root:
         return 0
     if not root.left or not root.right:
-        return max(self.minDepth(root.left), self.minDepth(root.right))+1
+        return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
     return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
 
 
@@ -43,11 +43,12 @@ def print_tree(root):
         print_tree(root.left)
         print_tree(root.right)
 
+
 tree = Node(10)
 tree.left = Node(12)
 tree.right = Node(15)
-tree.left.left  = Node(25)
-tree.left.left.right  = Node(100)
+tree.left.left = Node(25)
+tree.left.left.right = Node(100)
 tree.left.right = Node(30)
 tree.right.left = Node(36)
 

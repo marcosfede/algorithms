@@ -12,16 +12,16 @@ then a valid sequence is [c, b, a]
 
 depGraph = {
 
-    "a" : [ "b" ],
-    "b" : [ "c" ],
-    "c" :  [ 'e'],
-    'e' : [ ],
-    "d" : [ ],
-    "f" : ["e" , "d"]
+    "a": ["b"],
+    "b": ["c"],
+    "c": ['e'],
+    'e': [],
+    "d": [],
+    "f": ["e", "d"]
 }
 
+given = ["b", "c", "a", "d", "e", "f"]
 
-given = [ "b", "c", "a", "d", "e", "f" ]
 
 def retDeps(visited, start):
     queue = []
@@ -46,7 +46,7 @@ def retDepGraph():
         if pac in visited:
             continue
         visited.add(pac)
-        #out.append(pac)
+        # out.append(pac)
         if pac in depGraph:
             # find all children
             for child in depGraph[pac]:
@@ -55,4 +55,6 @@ def retDepGraph():
                 out.extend(retDeps(visited, child))
         out.append(pac)
     print(out)
+
+
 retDepGraph()

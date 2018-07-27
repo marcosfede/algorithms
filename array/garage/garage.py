@@ -1,4 +1,4 @@
-from typing import List, Dict, Iterator
+from typing import List
 
 
 class FastList:
@@ -48,7 +48,6 @@ if __name__ == '__main__':
     print("initial:", initial)
     print(garage(initial, final))
     print("final should be:", final)
-
 
 # def garage(beg, end):
 #     i = 0

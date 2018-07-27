@@ -36,7 +36,7 @@ func sum(iterable []int) int {
 }
 
 func sumCombinations(target int, arrs ...[]int) [][]int {
-	rest := arrs[0 : len(arrs)-1]
+	rest := arrs[0: len(arrs)-1]
 	last := arrs[len(arrs)-1]
 	counterLast := counter(last)
 	ans := [][]int{}

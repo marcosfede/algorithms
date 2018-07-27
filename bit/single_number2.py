@@ -8,7 +8,6 @@ Your algorithm should have a linear runtime complexity.
 Could you implement it without using extra memory?
 """
 
-
 """
 32 bits for each integer.
 Consider 1 bit in it, the sum of each integer's corresponding bit
@@ -32,8 +31,8 @@ def single_number(nums):
             if ((num >> i) & 1):
                 count += 1
         res |= ((count % 3) << i)
-    if res >= 2**31:
-        res -= 2**32
+    if res >= 2 ** 31:
+        res -= 2 ** 32
     return res
 
 

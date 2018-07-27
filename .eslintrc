@@ -1,0 +1,12 @@
+{
+  "extends": "standard",
+  "rules": {
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "no-eval": "off",
+    "generator-star-spacing": "off"
+  }
+}

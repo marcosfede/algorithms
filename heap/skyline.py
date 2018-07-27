@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 A city's skyline is the outer contour of the silhouette formed by all the buildings
 in that city when viewed from a distance.
@@ -36,6 +37,7 @@ into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 
 import heapq
 
+
 def get_skyline(LRH):
     """
     Wortst Time Complexity: O(NlogN)
@@ -59,8 +61,7 @@ def get_skyline(LRH):
             skyline += [x, height],
     return skyline
 
-buildings = [ [2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8] ]
+
+buildings = [[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]
 # [ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]
 print(get_skyline(buildings))
-
-

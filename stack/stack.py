@@ -12,6 +12,9 @@
 # size() returns the number of items on the stack.
 #    It needs no parameters and returns an integer.
 
+import unittest
+
+
 class AbstractStack:
     def __init__(self):
         self.top = 0
@@ -27,6 +30,7 @@ class AbstractStack:
         for element in self:
             result += str(element) + '\n'
         return result[:-1] + '\n------'
+
 
 class ArrayStack(AbstractStack):
     def __init__(self, size=10):
@@ -53,16 +57,19 @@ class ArrayStack(AbstractStack):
         return value
 
     def peek(self):
+        """
+            returns the current top element of the stack.
+        """
         if self.isEmpty():
             raise IndexError("stack is empty")
-        return self.array[self.top]
+        return self.array[self.top - 1]
 
     def expand(self):
         """
          expands size of the array.
          Time Complexity: O(n)
         """
-        newArray = [None] * len(self.array) * 2 # double the size of the array
+        newArray = [None] * len(self.array) * 2  # double the size of the array
         for i, element in enumerate(self.array):
             newArray[i] = element
         self.array = newArray
@@ -75,10 +82,12 @@ class ArrayStack(AbstractStack):
             yield self.array[probe]
             probe -= 1
 
+
 class StackNode(object):
     def __init__(self, value):
         self.value = value
         self.next = None
+
 
 class LinkedListStack(AbstractStack):
     def __init__(self):
@@ -111,3 +120,67 @@ class LinkedListStack(AbstractStack):
                 raise StopIteration
             yield probe.value
             probe = probe.next
+
+
+class TestSuite(unittest.TestCase):
+    """
+        Test suite for the stack data structures (above)
+    """
+
+    def test_ArrayStack(self):
+        stack = ArrayStack()
+        stack.push(1)
+        stack.push(2)
+        stack.push(3)
+        # test __iter__()
+        it = stack.__iter__()
+        self.assertEqual(3, next(it))
+        self.assertEqual(2, next(it))
+        self.assertEqual(1, next(it))
+        try:
+            next(it)
+            self.assertTrue(False)
+        except:
+            self.assertTrue(True)
+        # test __len__()
+        self.assertEqual(3, stack.__len__())
+        # test isEmpty()
+        self.assertFalse(stack.isEmpty())
+        # test peek()
+        self.assertEqual(3, stack.peek())
+        # test pop()
+        self.assertEqual(3, stack.pop())
+        self.assertEqual(2, stack.pop())
+        self.assertEqual(1, stack.pop())
+        self.assertTrue(stack.isEmpty())
+
+    def test_LinkedListStack(self):
+        stack = LinkedListStack()
+        stack.push(1)
+        stack.push(2)
+        stack.push(3)
+        # test __iter__()
+        it = stack.__iter__()
+        self.assertEqual(3, next(it))
+        self.assertEqual(2, next(it))
+        self.assertEqual(1, next(it))
+        try:
+            next(it)
+            self.assertTrue(False)
+        except:
+            self.assertTrue(True)
+        # test __len__()
+        self.assertEqual(3, stack.__len__())
+        # test isEmpty()
+        self.assertFalse(stack.isEmpty())
+        # test peek()
+        self.assertEqual(3, stack.peek())
+        # test pop()
+        self.assertEqual(3, stack.pop())
+        self.assertEqual(2, stack.pop())
+        self.assertEqual(1, stack.pop())
+        self.assertTrue(stack.isEmpty())
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -20,6 +20,7 @@ def inorder(root):
         root = root.right
     return res
 
+
 if __name__ == '__main__':
     n1 = Node(100)
     n2 = Node(50)

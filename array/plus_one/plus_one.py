@@ -20,4 +20,3 @@ print('output', plus_one(a))
 b = [9, 9, 9, 9]
 print('input', b)
 print('output', plus_one(b))
-

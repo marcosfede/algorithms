@@ -1,7 +1,8 @@
 class Node():
-    def __init__(self, val = None):
+    def __init__(self, val=None):
         self.val = val
         self.next = None
+
 
 def removeDups(head):
     """
@@ -18,6 +19,7 @@ def removeDups(head):
             prev = head
         head = head.next
 
+
 def removeDupsWithoutSet(head):
     """
     Time Complexity: O(N^2)
@@ -33,6 +35,7 @@ def removeDupsWithoutSet(head):
                 runner = runner.next
         current = current.next
 
+
 def printLinkedList(head):
     string = ""
     while head.next:
@@ -40,6 +43,7 @@ def printLinkedList(head):
         head = head.next
     string += head.val
     print(string)
+
 
 # A A B C D C F G
 
@@ -64,4 +68,3 @@ removeDups(a1)
 printLinkedList(a1)
 removeDupsWithoutSet(a1)
 printLinkedList(a1)
-

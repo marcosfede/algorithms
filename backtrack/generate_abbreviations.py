@@ -19,8 +19,8 @@ def backtrack(result, word, pos, count, cur):
         return
 
     if count > 0:  # add the current word
-        backtrack(result, word, pos+1, 0, cur+str(count)+word[pos])
+        backtrack(result, word, pos + 1, 0, cur + str(count) + word[pos])
     else:
-        backtrack(result, word, pos+1, 0, cur+word[pos])
+        backtrack(result, word, pos + 1, 0, cur + word[pos])
     # skip the current word
-    backtrack(result, word, pos+1, count+1, cur)
+    backtrack(result, word, pos + 1, count + 1, cur)

@@ -7,6 +7,7 @@ def list_flatten(l):
             return pv + [cv]
         else:
             return pv + list_flatten(cv)
+
     return reduce(flatten, l, [])
 
 

@@ -20,6 +20,7 @@ def house_robber(houses):
         last = tmp
     return now
 
+
 houses = [1, 2, 16, 3, 15, 3, 12, 1]
 
 print(house_robber(houses))

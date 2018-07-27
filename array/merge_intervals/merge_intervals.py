@@ -2,6 +2,7 @@ from collections import namedtuple
 
 Interval = namedtuple('Interval', ['start', 'end'])
 
+
 # O(n*logn) for sorting. merging takes linear time
 
 

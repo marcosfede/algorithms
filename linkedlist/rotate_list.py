@@ -7,6 +7,7 @@ Given 1->2->3->4->5->NULL and k = 2,
 return 4->5->1->2->3->NULL.
 """
 
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -32,7 +33,7 @@ def rotate_right(head, k):
     current.next = head
     k = k % length
     # rotate until length-k
-    for i in range(length-k):
+    for i in range(length - k):
         current = current.next
     head = current.next
     current.next = None

@@ -15,11 +15,13 @@ search(“b..”) -> true
 """
 import collections
 
+
 class TrieNode(object):
     def __init__(self, letter, is_terminal=False):
         self.children = dict()
         self.letter = letter
         self.is_terminal = is_terminal
+
 
 class WordDictionary(object):
     def __init__(self):
@@ -40,13 +42,13 @@ class WordDictionary(object):
         for i, letter in enumerate(word):
             # if dot
             if letter == ".":
-                if i == len(word) - 1: # if last character
+                if i == len(word) - 1:  # if last character
                     for child in cur.children.itervalues():
                         if child.is_terminal:
                             return True
                     return False
                 for child in cur.children.itervalues():
-                    if self.search(word[i+1:], child) == True:
+                    if self.search(word[i + 1:], child) == True:
                         return True
                 return False
             # if letter
@@ -55,10 +57,10 @@ class WordDictionary(object):
             cur = cur.children[letter]
         return cur.is_terminal
 
+
 class WordDictionary2(object):
     def __init__(self):
         self.word_dict = collections.defaultdict(list)
-
 
     def addWord(self, word):
         if word:

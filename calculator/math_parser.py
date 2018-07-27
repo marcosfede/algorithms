@@ -14,21 +14,25 @@ Example:
         |   Parsed expression: ['2452', '*', '(', '3', '*', '6', '+', '1', ')', '*', '6', '/', '235']
         |   Evaluation result: 1189.4808510638297
 -------------------------------------------------------------------------------------------------
+
+Now added '^' operator for exponents. (by @goswami-rahul)
 """
 
-from collections import deque
 import re
+from collections import deque
 
 numeric_value = re.compile('\d+(\.\d+)?')
 
-__operators__ = "+-/*"
+__operators__ = "+-/*^"
 __parenthesis__ = "()"
 __priority__ = {
     '+': 0,
     '-': 0,
     '*': 1,
     '/': 1,
+    '^': 2
 }
+
 
 def is_operator(token):
     """
@@ -37,6 +41,7 @@ def is_operator(token):
     token Char: Token
     """
     return token in __operators__
+
 
 def higher_priority(op1, op2):
     """
@@ -47,6 +52,7 @@ def higher_priority(op1, op2):
     """
     return __priority__[op1] >= __priority__[op2]
 
+
 def calc(n2, n1, operator):
     """
     Calculate operation result
@@ -55,11 +61,18 @@ def calc(n2, n1, operator):
     n1 Number: Number 1
     operator Char: Operation to calculate
     """
-    if operator == '-': return n1 - n2
-    elif operator == '+': return n1 + n2
-    elif operator == '*': return n1 * n2
-    elif operator == '/': return n1 / n2
+    if operator == '-':
+        return n1 - n2
+    elif operator == '+':
+        return n1 + n2
+    elif operator == '*':
+        return n1 * n2
+    elif operator == '/':
+        return n1 / n2
+    elif operator == '^':
+        return n1 ** n2
     return 0
+
 
 def apply_operation(op_stack, out_stack):
     """
@@ -69,6 +82,7 @@ def apply_operation(op_stack, out_stack):
     out_stack Deque (reference)
     """
     out_stack.append(calc(out_stack.pop(), out_stack.pop(), op_stack.pop()))
+
 
 def parse(expression):
     """
@@ -85,11 +99,15 @@ def parse(expression):
             if len(current) > 0:
                 result.append(current)
                 current = ""
-            if i != ' ':
+            if i in __operators__ or i in __parenthesis__:
                 result.append(i)
+            else:
+                raise Exception("invalid syntax " + i)
+
     if len(current) > 0:
         result.append(current)
     return result
+
 
 def evaluate(expression):
     """
@@ -98,9 +116,10 @@ def evaluate(expression):
     expression String: The expression
     type Type (optional): Number type [int, float]
     """
-    op_stack  = deque() # operator stack
-    out_stack = deque() # output stack (values)
-    for token in parse(expression):
+    op_stack = deque()  # operator stack
+    out_stack = deque()  # output stack (values)
+    tokens = parse(expression)  # calls the function only once!
+    for token in tokens:
         if numeric_value.match(token):
             out_stack.append(float(token))
         elif token == '(':
@@ -108,8 +127,8 @@ def evaluate(expression):
         elif token == ')':
             while len(op_stack) > 0 and op_stack[-1] != '(':
                 apply_operation(op_stack, out_stack)
-            op_stack.pop() # Remove remaining '('
-        else: # is_operator(token)
+            op_stack.pop()  # Remove remaining '('
+        else:  # is_operator(token)
             while len(op_stack) > 0 and is_operator(op_stack[-1]) and higher_priority(op_stack[-1], token):
                 apply_operation(op_stack, out_stack)
             op_stack.append(token)
@@ -118,3 +137,22 @@ def evaluate(expression):
         apply_operation(op_stack, out_stack)
 
     return out_stack[-1]
+
+
+def main():
+    """
+        simple user-interface
+    """
+    print("\t\tCalculator\n\n")
+    userInput = input("expression or exit: ")
+    while userInput != "exit":
+        try:
+            print("The result is {0}".format(evaluate(userInput)))
+        except Exception:
+            print("invalid syntax!")
+        userInput = input("expression or exit: ")
+    print("program end")
+
+
+if __name__ == "__main__":
+    main()

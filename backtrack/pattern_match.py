@@ -29,7 +29,7 @@ def backtrack(pattern, string, dic):
         return False
     if len(pattern) == len(string) == 0:
         return True
-    for end in range(1, len(string)-len(pattern)+2):
+    for end in range(1, len(string) - len(pattern) + 2):
         if pattern[0] not in dic and string[:end] not in dic.values():
             dic[pattern[0]] = string[:end]
             if backtrack(pattern[1:], string[end:], dic):
@@ -39,6 +39,7 @@ def backtrack(pattern, string, dic):
             if backtrack(pattern[1:], string[end:], dic):
                 return True
     return False
+
 
 if __name__ == "__main__":
     pattern1 = "abab"

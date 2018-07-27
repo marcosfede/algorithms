@@ -33,10 +33,11 @@ def get_factors(n):
     def factor(n, i, combi, res):
         while i * i <= n:
             if n % i == 0:
-                res += combi + [i, int(n/i)],
-                factor(n/i, i, combi+[i], res)
+                res += combi + [i, int(n / i)],
+                factor(n / i, i, combi + [i], res)
             i += 1
         return res
+
     return factor(n, 2, [], [])
 
 
@@ -46,8 +47,8 @@ def get_factors_iterative1(self, n):
         n, i, combi = todo.pop()
         while i * i <= n:
             if n % i == 0:
-                res += combi + [i, n/i],
-                todo += (n/i, i, combi+[i]),
+                res += combi + [i, n / i],
+                todo += (n / i, i, combi + [i]),
             i += 1
     return res
 

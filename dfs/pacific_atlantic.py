@@ -16,13 +16,13 @@
 
 # Given the following 5x5 matrix:
 
-  # Pacific ~   ~   ~   ~   ~
-       # ~  1   2   2   3  (5) *
-       # ~  3   2   3  (4) (4) *
-       # ~  2   4  (5)  3   1  *
-       # ~ (6) (7)  1   4   5  *
-       # ~ (5)  1   1   2   4  *
-          # *   *   *   *   * Atlantic
+# Pacific ~   ~   ~   ~   ~
+# ~  1   2   2   3  (5) *
+# ~  3   2   3  (4) (4) *
+# ~  2   4  (5)  3   1  *
+# ~ (6) (7)  1   4   5  *
+# ~ (5)  1   1   2   4  *
+# *   *   *   *   * Atlantic
 
 # Return:
 
@@ -39,27 +39,28 @@ def pacific_atlantic(matrix):
     m = len(matrix[0])
     if not m: return []
     res = []
-    atlantic = [[False for _ in range (n)] for _ in range(m)]
-    pacific =  [[False for _ in range (n)] for _ in range(m)]
+    atlantic = [[False for _ in range(n)] for _ in range(m)]
+    pacific = [[False for _ in range(n)] for _ in range(m)]
     for i in range(n):
         DFS(pacific, matrix, float("-inf"), i, 0)
-        DFS(atlantic, matrix, float("-inf"), i, m-1)
+        DFS(atlantic, matrix, float("-inf"), i, m - 1)
     for i in range(m):
         DFS(pacific, matrix, float("-inf"), 0, i)
-        DFS(atlantic, matrix, float("-inf"), n-1, i)
+        DFS(atlantic, matrix, float("-inf"), n - 1, i)
     for i in range(n):
         for j in range(m):
             if pacific[i][j] and atlantic[i][j]:
                 res.append([i, j])
     return res
 
+
 def DFS(grid, matrix, height, i, j):
-    if i < 0 or i >= len(matrix) or j < 0 or  j >= len(matrix[0]):
+    if i < 0 or i >= len(matrix) or j < 0 or j >= len(matrix[0]):
         return
     if grid[i][j] or matrix[i][j] < height:
         return
     grid[i][j] = True
-    DFS(grid, matrix, matrix[i][j], i-1, j)
-    DFS(grid, matrix, matrix[i][j], i+1, j)
-    DFS(grid, matrix, matrix[i][j], i, j-1)
-    DFS(grid, matrix, matrix[i][j], i, j+1)
+    DFS(grid, matrix, matrix[i][j], i - 1, j)
+    DFS(grid, matrix, matrix[i][j], i + 1, j)
+    DFS(grid, matrix, matrix[i][j], i, j - 1)
+    DFS(grid, matrix, matrix[i][j], i, j + 1)

@@ -1,16 +1,16 @@
-from numpy.fft import rfft, irfft
 import numpy as np
+from numpy.fft import rfft, irfft
 
 
 def self_convolution(arr):
     n = len(arr)
-    k = 2*n - 1
+    k = 2 * n - 1
     ftarr = rfft(arr, k)
     return irfft(ftarr * ftarr, k)
 
 
 def calc_holes(moves, distances):
-    moves_poly = np.zeros(np.max(moves)+1)
+    moves_poly = np.zeros(np.max(moves) + 1)
     for move in moves:
         moves_poly[move] = 1
     moves_poly[0] = 1

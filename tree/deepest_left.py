@@ -3,26 +3,28 @@
 
 # Example:
 
-     # 1
-   # /   \
-  # 2     3
- # / \     \
+# 1
+# /   \
+# 2     3
+# / \     \
 # 4   5     6
-           # \
-            # 7
+# \
+# 7
 # should return 4.
 
 
 class Node:
-    def __init__(self, val = None):
+    def __init__(self, val=None):
         self.left = None
         self.right = None
         self.val = val
+
 
 class DeepestLeft:
     def __init__(self):
         self.depth = 0
         self.Node = None
+
 
 def find_deepest_left(root, is_left, depth, res):
     if not root:
@@ -32,6 +34,7 @@ def find_deepest_left(root, is_left, depth, res):
         res.Node = root
     find_deepest_left(root.left, True, depth + 1, res)
     find_deepest_left(root.right, False, depth + 1, res)
+
 
 root = Node(1)
 root.left = Node(2)
