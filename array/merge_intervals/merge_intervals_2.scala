@@ -4,7 +4,7 @@ object MergeIntervals extends App {
     val t0 = System.currentTimeMillis()
     val result = block // call-by-name
     val t1 = System.currentTimeMillis()
-    println("Elapsed time: " + (t1 - t0) + "ns")
+    println("Elapsed time: " + (t1 - t0) + "ms")
     result
   }
 
@@ -38,7 +38,7 @@ object MergeIntervals extends App {
       acc.lastOption match {
         case None => Vector(next)
         case Some(value) if value.overlap(next) && next.last > value.last => {
-          Vector(Range(value.head, List(value.last, next.last).max)) union acc.diff(Vector(value))
+          Vector(Range(value.head, next.last)) union acc.diff(Vector(value))
         }
         case Some(value) if value.overlap(next) && next.last <= value.last => acc
         case Some(value) => acc union Vector(next)
@@ -51,7 +51,7 @@ object MergeIntervals extends App {
     mergeIntervals(input)
   }
   
-  println(s" El intervalo resultante es: ${output.sorted}")
+  println(s" Los intervalos resultantes son: ${output.sorted}")
 }
 
 // For example, Given [1,3],[2,6],[8,10],[15,18], return [1,6],[8,10],[15,18].
