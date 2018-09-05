@@ -38,7 +38,7 @@ object MergeIntervals extends App {
       acc.lastOption match {
         case None => Vector(next)
         case Some(value) if value.overlap(next) && next.last > value.last => {
-          Vector(Range(value.head, next.last) union acc.diff(Vector(value))
+          Vector(Range(value.head, next.last)) union acc.diff(Vector(value))
         }
         case Some(value) if value.overlap(next) && next.last <= value.last => acc
         case Some(value) => acc union Vector(next)
