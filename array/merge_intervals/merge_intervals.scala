@@ -1,22 +1,57 @@
-def findMatch(interval:(Int, Int), intervals:Array[(Int, Int)]) : Option[Int] = {
-    var matchFound = false
-    var result:Option[Int] = None
-    for (i <- 0 until intervals.length; t = intervals(i) if !matchFound){
-        matchFound = !((t._2 < interval._1) || (interval._2 < t._1))
-        if (matchFound) result = Some(i)
+object MergeIntervals extends App {
+
+  def time[R](block: => R): R = {
+    val t0 = System.currentTimeMillis()
+    val result = block // call-by-name
+    val t1 = System.currentTimeMillis()
+    println("Elapsed time: " + (t1 - t0) + "ms")
+    result
+  }
+
+  implicit val orderRanges: Ordering[Range] = {
+    new Ordering[Range] {
+      def compare(x: Range, y: Range): Int = {
+        (x, y) match {
+          case (_, _) if x.head < y.head => -1
+          case (_, _) if x.head > y.head => 1
+          case _ => 0
+        }
+      }
     }
-    return result
+  }
+
+  trait Overlap[Range] {
+    def overlap(a: Range): Boolean
+  }
+
+  implicit class RangeOps[A](a: Range) {
+    def overlap(implicit b: Range): Boolean = {
+      (a, b) match {
+        case (_, _) if a.last < b.head => false
+        case _ => true
+      }
+    }
+  }
+
+  def mergeIntervals(input: Vector[Range]): Vector[Range] = {
+    input.sorted.foldLeft[Vector[Range]](Vector())((acc: Vector[Range], next: Range) => {
+      acc.lastOption match {
+        case None => Vector(next)
+        case Some(value) if value.overlap(next) && next.last > value.last => {
+          Vector(Range(value.head, next.last)) union acc.diff(Vector(value))
+        }
+        case Some(value) if value.overlap(next) && next.last <= value.last => acc
+        case Some(value) => acc union Vector(next)
+      }
+    })
+  }
+
+  val input = Vector(1 to 3, 2 to 6, 8 to 10, 8 to 10, 15 to 18)
+  val output = time {
+    mergeIntervals(input)
+  }
+  
+  println(s" Los intervalos resultantes son: ${output.sorted}")
 }
 
-def merge_intervals(input: List[(Int,Int)]) : List[(Int, Int)] = {
-    var result = Array[(Int, Int)]()
-    for (i <- 0 until input.length; interval = input(i)) {
-        val best = findMatch(interval, result)
-        best match {
-            case None => result = result :+ interval            
-            case Some(i) => result(i) = (math.min(interval._1, result(i)._1), math.max(interval._2, result(i)._2))
-        }    
-    }
-    return result.toList    
-}
-
+// For example, Given [1,3],[2,6],[8,10],[15,18], return [1,6],[8,10],[15,18].
