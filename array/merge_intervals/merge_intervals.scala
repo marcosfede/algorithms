@@ -8,40 +8,24 @@ object MergeIntervals extends App {
     result
   }
 
-  implicit val orderRanges: Ordering[Range] = {
-    new Ordering[Range] {
-      def compare(x: Range, y: Range): Int = {
-        (x, y) match {
-          case (_, _) if x.head < y.head => -1
-          case (_, _) if x.head > y.head => 1
-          case _ => 0
-        }
-      }
+  implicit val orderRanges = Ordering.by {range: Range => range.head}
+
+  implicit class RangeOps(a: Range) {
+    def overlaps(b: Range): Boolean = {
+      a.last >= b.head
     }
-  }
-
-  trait Overlap[Range] {
-    def overlap(a: Range): Boolean
-  }
-
-  implicit class RangeOps[A](a: Range) {
-    def overlap(implicit b: Range): Boolean = {
-      (a, b) match {
-        case (_, _) if a.last < b.head => false
-        case _ => true
-      }
+    def merge(b: Range): Range = {
+      val start = Math.min(a.head, b.head)
+      val end = Math.max(a.last, b.last)
+      start to end
     }
   }
 
   def mergeIntervals(input: Vector[Range]): Vector[Range] = {
-    input.sorted.foldLeft[Vector[Range]](Vector())((acc: Vector[Range], next: Range) => {
-      acc.lastOption match {
-        case None => Vector(next)
-        case Some(value) if value.overlap(next) && next.last > value.last => {
-          Vector(Range(value.head, next.last)) union acc.diff(Vector(value))
-        }
-        case Some(value) if value.overlap(next) && next.last <= value.last => acc
-        case Some(value) => acc union Vector(next)
+    input.sorted.foldLeft[Vector[Range]](Vector())((acc, next) => {
+      acc match {
+        case ranges :+ lastRange if lastRange.overlaps(next) => ranges :+ lastRange.merge(next)
+        case _ => acc :+ next
       }
     })
   }
@@ -50,8 +34,6 @@ object MergeIntervals extends App {
   val output = time {
     mergeIntervals(input)
   }
-  
-  println(s" Los intervalos resultantes son: ${output.sorted}")
-}
 
-// For example, Given [1,3],[2,6],[8,10],[15,18], return [1,6],[8,10],[15,18].
+  assert(output == Vector(1 to 6, 8 to 10, 15 to 18))
+}
