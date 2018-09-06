@@ -18,6 +18,7 @@ Click on the icons to search by language
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AElixir&type="><img height="70" src="assets/elixir.png" alt="elixir"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AScala&type="><img height="70" src="assets/scala.png" alt="scala"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3ARuby&type="><img height="60" src="assets/ruby.png" alt="ruby"/></a>
+  <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AC++&type="><img height="60" src="assets/cpp.png" alt="cpp"/></a>
 </p>
 
 ## Contributing
