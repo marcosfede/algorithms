@@ -36,7 +36,10 @@ Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land.
 0 1 0
 """
 
+# https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 
+
+# O(k) with k = len(positions). additions and unions take constant time
 def num_islands(m, n, positions):
     ans = []
     islands = Union()
@@ -44,35 +47,37 @@ def num_islands(m, n, positions):
         islands.add(p)
         for dp in (0, 1), (0, -1), (1, 0), (-1, 0):
             q = (p[0] + dp[0], p[1] + dp[1])
-            if q in islands.id:
-                islands.unite(p, q)
+            if q in islands.parents:
+                islands.union(p, q)
         ans += [islands.count]
     return ans
 
 
-class Union(object):
+class Union:
     def __init__(self):
-        self.id = {}
-        self.sz = {}
+        self.parents = {}
+        self.sizes = {}
         self.count = 0
 
     def add(self, p):
-        self.id[p] = p
-        self.sz[p] = 1
+        self.parents[p] = p
+        self.sizes[p] = 1
         self.count += 1
 
-    def root(self, i):
-        while i != self.id[i]:
-            self.id[i] = self.id[self.id[i]]
-            i = self.id[i]
+    def find(self, i):
+        # path halving
+        while i != self.parents[i]:
+            self.parents[i] = self.parents[self.parents[i]]
+            i = self.parents[i]
         return i
 
-    def unite(self, p, q):
+    def union(self, p, q):
         i, j = self.root(p), self.root(q)
         if i == j:
             return
-        if self.sz[i] > self.sz[j]:
+        # union by size. attach smallest to largest
+        if self.sizes[i] > self.sizes[j]:
             i, j = j, i
-        self.id[i] = j
-        self.sz[j] += self.sz[i]
+        self.parents[i] = j
+        self.sizes[j] += self.sizes[i]
         self.count -= 1

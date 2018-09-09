@@ -257,7 +257,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [same_tree](tree/same_tree.py)
     - [ ] [tree](tree/tree.py)
 - [ ] [union-find](union-find)
-    - [ ] [count_islands](union-find/count_islands.py)
+    - [x] [count_islands](union-find/count_islands.py)
 
 ## List of Designs
 
