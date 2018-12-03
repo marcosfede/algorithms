@@ -1,4 +1,4 @@
-file = open("1.in")
+file = open("input")
 lines = readlines(file)
 lines = parse.(Float64,lines)
 println(sum(lines))
