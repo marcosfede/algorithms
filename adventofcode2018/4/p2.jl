@@ -36,27 +36,32 @@ function solve(lines::Vector{String})
     end
   end
 
-  # find max sum ID
-  max_minutes_slept = 0
+  function guard_max_minute(guard)
+    max_minute = 0
+    max_minute_slept = 0
+    for (minute, guards) in minute_data
+      count = filter(gid -> gid == guard, guards) |> length
+      if count > max_minute_slept
+        max_minute_slept = count
+        max_minute = minute
+      end
+    end
+    return (max_minute_slept, max_minute)
+  end
+
+  guards = keys(minutes_sleep_per_guard)
+  mins_per_guard = Dict(guard => guard_max_minute(guard) for guard in guards)
+
+  max_mins = 0
   guard_id = nothing
-  for (guard, minutes) in minutes_sleep_per_guard
-    if minutes > max_minutes_slept
-      max_minutes_slept = minutes
+  for (guard, mins) in mins_per_guard
+    if mins[1] > max_mins
+      max_mins = mins[1]
       guard_id = guard
     end
   end
 
-  max_minute = 0
-  max_minute_slept = 0
-  for (minute, guards) in minute_data
-    count = filter(gid -> gid == guard_id, guards) |> length
-    if count > max_minute_slept
-      max_minute_slept = count
-      max_minute = minute
-    end
-  end
-
-  return guard_id * max_minute
+  return mins_per_guard[guard_id][2] * guard_id
 end
 
 println(solve(lines))
