@@ -45,15 +45,17 @@ for y in range(maxy):
         row.append(Neighbour(min_dist, best))
     matrix.append(row)
 
-infinite = set(n.to.id for n in matrix[0]) | set(n.to.id for n in matrix[-1]) | set(y[0].to.id for y in matrix) | set(y[-1].to.id for y in matrix)
-counter = Counter(n.to.id for y in matrix for n in y if n.to.id not in infinite)
+infinite = set(n.to.id for n in matrix[0]) | set(
+    n.to.id for n in matrix[-1]) | set(y[0].to.id for y in matrix) | set(y[-1].to.id for y in matrix)
+counter = Counter(
+    n.to.id for y in matrix for n in y if n.to.id not in infinite)
 print(max(counter.values()))
 
 # p2
 blocks = 0
 for y in range(maxy):
     for x in range(maxx):
-        total_dist = sum(p.dist_to(x,y) for p in points)
+        total_dist = sum(p.dist_to(x, y) for p in points)
         if total_dist < 10000:
             blocks += 1
 print(blocks)
