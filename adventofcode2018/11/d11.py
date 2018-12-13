@@ -1,9 +1,9 @@
-
-
 def power(snumber, x, y):
     return ((((((x + 10) * y) + snumber)*(x+10))//100) % 10)-5
 
 
+# A B
+# C D
 def build_grid_sum(grid):
     grid_sums = [[0]*300 for _ in range(300)]
     for y, vy in enumerate(grid):
@@ -21,6 +21,7 @@ grid_sums = build_grid_sum(grid)
 
 
 def power_between(grid_sums, x1, y1, x2, y2):
+    """ calcs the power between top left corner x1, y1 and bottom right corner x2, y2"""
     return grid_sums[y2][x2] + grid_sums[y1][x1] - grid_sums[y2][x1] - grid_sums[y1][x2]
 
 
