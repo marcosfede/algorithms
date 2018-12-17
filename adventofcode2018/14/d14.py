@@ -21,12 +21,11 @@ for i in range(len(cl)):
     if cl[i:i+6] == seek:
         print('found', i)
 
-
+# p2
 cl = [3, 7]
 elf1 = 0
 elf2 = 1
-offset = 21000000
-minscores = offset + 10
+minscores = 21000000
 
 while len(cl) < minscores:
     elf1_score = cl[elf1 % len(cl)]
