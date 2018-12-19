@@ -39,18 +39,6 @@ class Lumberyard(Acre):
         return self if (ntrees >= 1 and nlumberyards >= 1) else Open()
 
 
-# def transition_open(ntrees, nlumberyards):
-#     return '|' if ntrees >= 3 else '.'
-
-
-# def transition_tree(ntrees, nlumberyards):
-#     return '#' if nlumberyards >= 3 else '|'
-
-
-# def transition_lumberyard(ntrees, nlumberyards):
-#     return '|' if (ntrees >= 1 and nlumberyards >= 1) else '.'
-
-
 class Forest:
     @classmethod
     def from_file(cls, f):
@@ -86,9 +74,12 @@ class Forest:
             nextstate.append(newcol)
 
         self.forest = nextstate
-        # os.system('clear')
-        # print(self)
-        # sleep(0.01)
+        # self.visualize()
+
+    def visualize(self):
+        os.system('clear')
+        print(self)
+        sleep(0.01)
 
     def run_generations(self, number):
         for gen in range(number):
