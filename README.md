@@ -275,4 +275,3 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
 
 * [keon/algorithms](https://github.com/keon/algorithms)
 * [lndgalante/codewars-katas](https://github.com/lndgalante/codewars-katas)
-
