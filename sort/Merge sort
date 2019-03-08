@@ -1,0 +1,46 @@
+"""Merge Sort is a Divide and Conquer algorithm. 
+It divides input array in two halves, 
+calls itself for the two halves and then merges the two sorted halves. 
+"""
+def merge_sort(collection):                                 #function sorting the array 
+    length = len(collection)
+    if length > 1: 
+        midpoint = length // 2                              #middlemost index
+        left_half = merge_sort(collection[:midpoint])       #division of array into two parts from the middle
+        right_half = merge_sort(collection[midpoint:])
+        i = 0
+        j = 0
+        k = 0
+        left_length = len(left_half)                        #left part of the divided array
+        right_length = len(right_half)                      #right part of the divided array
+        while i < left_length and j < right_length:         
+            if left_half[i] < right_half[j]:                #sorting
+                collection[k] = left_half[i]
+                i += 1
+            else:
+                collection[k] = right_half[j]
+                j += 1
+            k += 1
+
+        while i < left_length:
+            collection[k] = left_half[i]
+            i += 1
+            k += 1
+
+        while j < right_length:
+            collection[k] = right_half[j]
+            j += 1
+            k += 1
+
+    return collection                                     #returning the sorted array
+
+
+if __name__ == '__main__':
+    try:
+        raw_input                                          # Python 2
+    except NameError:
+        raw_input = input                                  # Python 3
+
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()  #comma seperated input
+    unsorted = [int(item) for item in user_input.split(',')]
+    print(merge_sort(unsorted))                                              #function call
