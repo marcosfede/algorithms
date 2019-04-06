@@ -1,0 +1,34 @@
+#ip 1
+
+a, pointer, b, c, d, e
+
+0 seti 123 0 5    e = 123
+1 bani 5 456 5    e = 72
+2 eqri 5 72 5     e = 1
+3 addr 5 1 1      GOTO 5
+4 seti 0 0 1      GOTO 0
+# end check
+
+
+5 seti 0 2 5          e = 0
+6 bori 5 65536 4      d = e | 65536                   # 65536
+7 seti 3935295 1 5    e = 3935295                     # 3935295
+8 bani 4 255 2        b = d & 255                     # 0
+9 addr 5 2 5          e += b                          # 3935295
+10 bani 5 16777215 5  e &= 16777215                   # 3935295
+11 muli 5 65899 5     e *= 65899                      # 259332005205
+12 bani 5 16777215 5  e &= 16777215                   # 6577493
+13 gtir 256 4 2       b = 1 if 256 > d else 0         # 0
+14 addr 2 1 1         GOTO 16 if b == 1 else GOTO 18      # need b = 1 here!
+16 seti 27 1 1        GOTO 28  # terminate?
+18 addi 2 1 3         c = b + 1   # c = 1             # 1
+19 muli 3 256 3       c *= 256                        # 256
+20 gtrr 3 4 3         c = 1 if c > d else 0         # seems important that c > d   # 0
+21 addr 3 1 1         GOTO 26 if c == 1 else GOTO 24
+24 addi 2 1 2         b += 1                          # 1
+25 seti 17 7 1        GOTO 18
+26 setr 2 2 4         d = b             # d = 256
+27 seti 7 6 1         GOTO 8
+28 eqrr 5 0 2         b = 1 if a == e else 0
+29 addr 2 1 1         HALT if b == 1
+30 seti 5 4 1         GOTO 6

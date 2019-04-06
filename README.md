@@ -14,10 +14,11 @@ Click on the icons to search by language
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3APython&type="><img height="70" src="assets/python.png" alt="python"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AJavascript&type="><img height="70" src="assets/javascript.png" alt="javascript"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AHaskell&type="><img height="70" src="assets/haskell.png" alt="haskell"/></a>
-    <a href="https://github.com/marcosfede/algorithms/search?l=Go&q=language%3AJulia&type="><img height="70" src="assets/julia.png" alt="julia"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AJulia&type="><img height="70" src="assets/julia.png" alt="julia"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AElixir&type="><img height="70" src="assets/elixir.png" alt="elixir"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AScala&type="><img height="70" src="assets/scala.png" alt="scala"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3ARuby&type="><img height="60" src="assets/ruby.png" alt="ruby"/></a>
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AC++&type="><img height="60" src="assets/cpp.png" alt="cpp"/></a>
 </p>
 
 ## Contributing
@@ -84,7 +85,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [math_parser](calculator/math_parser.py)
 - [ ] [dfs](dfs)
     - [ ] [all_factors](dfs/all_factors.py)
-    - [ ] [count_islands](dfs/count_islands.py)
+    - [x] [count_islands](dfs/count_islands.py)
     - [ ] [pacific_atlantic](dfs/pacific_atlantic.py)
     - [ ] [sudoku_solver](dfs/sudoku_solver.py)
     - [ ] [walls_and_gates](dfs/walls_and_gates.py)
@@ -127,7 +128,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [copy_random_pointer](linkedlist/copy_random_pointer.py)
     - [ ] [delete_node](linkedlist/delete_node.py)
     - [ ] [first_cyclic_node](linkedlist/first_cyclic_node.py)
-    - [ ] [is_cyclic](linkedlist/is_cyclic.py)
+    - [x] [is_cyclic](linkedlist/is_cyclic.py)
     - [ ] [is_palindrome](linkedlist/is_palindrome.py)
     - [ ] [kth_to_last](linkedlist/kth_to_last.py)
     - [ ] [linkedlist](linkedlist/linkedlist.py)
@@ -196,6 +197,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [stack](stack/stack.py)
     - [ ] [valid_parenthesis](stack/valid_parenthesis.py)
 - [ ] [strings](strings)
+    - [x] [molecules_to_atoms](strings/molecules_to_atoms)
     - [ ] [add_binary](strings/add_binary.py)
     - [ ] [breaking_bad](strings/breaking_bad.py)
     - [ ] [decode_string](strings/decode_string.py)
@@ -255,7 +257,7 @@ I'd love to have contributors, all feedback is welcome! Take a look at [CONTRIBU
     - [ ] [same_tree](tree/same_tree.py)
     - [ ] [tree](tree/tree.py)
 - [ ] [union-find](union-find)
-    - [ ] [count_islands](union-find/count_islands.py)
+    - [x] [count_islands](union-find/count_islands.py)
 
 ## List of Designs
 
