@@ -8,15 +8,15 @@ def solve(arr):
         if arr[i] != arr[i+1]:
             break
     _gcd = gcd(arr[i], arr[i+1])
-    primes[i] = arr[i] / _gcd
+    primes[i] = arr[i] // _gcd
     primes[i+1] = _gcd
     j = i - 1
     while j >= 0:
-        primes[j] = arr[j] / primes[j+1]
+        primes[j] = arr[j] // primes[j+1]
         j -= 1
     j = i + 2
     while j <= len(arr):
-        primes[j] = arr[j-1] / primes[j-1]
+        primes[j] = arr[j-1] // primes[j-1]
         j += 1
 
     sorted_primes = sorted(list(set(primes)))
