@@ -22,13 +22,13 @@ matrix:
         - yarn
       script:
         - yarn run lint
-    - language: ruby
-      rvm:
-        - 2.5.0
-      install:
-        - gem install rubocop
-      script:
-        - rubocop
+    # - language: ruby
+    #   rvm:
+    #     - 2.5.0
+    #   install:
+    #     - gem install rubocop
+    #   script:
+    #     - rubocop
 script:
   - true
 notifications:
