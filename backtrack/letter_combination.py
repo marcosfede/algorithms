@@ -1,3 +1,4 @@
+from typing import List
 """
 Given a digit string, return all possible letter
 combinations that the number could represent.
@@ -7,7 +8,7 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 """
 
 
-def letter_combinations(digits: "str") -> "List[str]":
+def letter_combinations(digits: str) -> List[str]:
     if digits == "":
         return []
     kmaps = {
