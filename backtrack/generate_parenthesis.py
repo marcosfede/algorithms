@@ -1,3 +1,4 @@
+from typing import List
 """
 Given n pairs of parentheses, write a function to generate
 all combinations of well-formed parentheses.
@@ -14,7 +15,7 @@ For example, given n = 3, a solution set is:
 """
 
 
-def gen_parenthesis(n: "int") -> "List[str]":
+def gen_parenthesis(n: int) -> List[str]:
     res = []
     add_pair(res, "", n, 0)
     return res
