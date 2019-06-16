@@ -224,6 +224,7 @@ Click on the icons to search by language
   - [ ] [roman_to_int](strings/roman_to_int.py)
   - [ ] [word_squares](strings/word_squares.py)
 - [ ] [tree](tree)
+  - [ ] [binary](tree/binary)
   - [ ] [bst](tree/tree/bst)
     - [ ] [array2bst](tree/bst/array2bst.py)
     - [ ] [bst_closest_value](tree/bst/bst_closest_value.py)
@@ -260,8 +261,7 @@ Click on the icons to search by language
   - [ ] [min_height](tree/min_height)
   - [ ] [path_sum](tree/path_sum)
   - [ ] [is_same_tree](tree/is_same_tree)
-  - [ ] [binary](tree/binary)
-- [ ] [union-find](union-find)
+- [x] [union-find](union-find)
   - [x] [count_islands](union-find/count_islands.py)
 
 ## List of Designs
