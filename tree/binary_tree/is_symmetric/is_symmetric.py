@@ -1,27 +1,25 @@
 # TC: O(b) SC: O(log n)
 def is_symmetric(root):
-    if not root:
-        return True
-    return helper(root.left, root.right)
+    return _is_symmetric(root.left, root.right)
 
 
-def helper(p, q):
-    if not p and not q:
+# notice this is very similar to is_same_tree but comparing left with right branches
+def _is_symmetric(p, q):
+    if p is None and q is None:
         return True
-    if not p or not q or q.val != p.val:
+    if p is None or q is None or q.val != p.val:
         return False
-    return helper(p.left, q.right) and helper(p.right, q.left)
+    return _is_symmetric(p.left, q.right) and _is_symmetric(p.right, q.left)
 
 
+# same as above but using a stack
 def is_symmetric_iterative(root):
-    if not root:
-        return True
     stack = [[root.left, root.right]]
     while stack:
-        left, right = stack.pop()  # popleft
-        if not left and not right:
+        left, right = stack.pop()
+        if left is None and right is None:
             continue
-        if not left or not right:
+        if left is None or right is None:
             return False
         if left.val == right.val:
             stack.append([left.left, right.right])
