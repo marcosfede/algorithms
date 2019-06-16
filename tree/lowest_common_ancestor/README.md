@@ -1,4 +1,3 @@
-"""
 Given a binary tree, find the lowest common ancestor
 (LCA) of two given nodes in the tree.
 
@@ -18,20 +17,3 @@ According to the definition of LCA on Wikipedia:
 For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3.
 Another example is LCA of nodes 5 and 4 is 5,
 since a node can be a descendant of itself according to the LCA definition.
-"""
-
-
-def LCA(root, p, q):
-    """
-    :type root: TreeNode
-    :type p: TreeNode
-    :type q: TreeNode
-    :rtype: TreeNode
-    """
-    if not root or root is p or root is q:
-        return root
-    left = LCA(root.left, p, q)
-    right = LCA(root.right, p, q)
-    if left and right:
-        return root
-    return left if left else right

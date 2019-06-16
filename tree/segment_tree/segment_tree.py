@@ -1,11 +1,6 @@
-'''
-Segment_tree creates a segment tree with a given array and function,
-allowing queries to be done later in log(N) time
-function takes 2 values and returns a same type value
-'''
 
 
-class segment_tree:
+class SegmentTree:
     def __init__(self, arr, function):
         self.segment = [0 for x in range(3 * len(arr) + 3)]
         self.arr = arr
@@ -18,7 +13,8 @@ class segment_tree:
         elif l < r:
             self.maketree(2 * i + 1, l, int((l + r) / 2))
             self.maketree(2 * i + 2, int((l + r) / 2) + 1, r)
-            self.segment[i] = self.fn(self.segment[2 * i + 1], self.segment[2 * i + 2])
+            self.segment[i] = self.fn(
+                self.segment[2 * i + 1], self.segment[2 * i + 2])
 
     def __query(self, i, L, R, l, r):
         if l > R or r < L or L > R or l > r:
@@ -28,8 +24,8 @@ class segment_tree:
         val1 = self.__query(2 * i + 1, L, int((L + R) / 2), l, r)
         val2 = self.__query(2 * i + 2, int((L + R + 2) / 2), R, l, r)
         print(L, R, " returned ", val1, val2)
-        if val1 != None:
-            if val2 != None:
+        if val1 is not None:
+            if val2 is not None:
                 return self.fn(val1, val2)
             return val1
         return val2
@@ -39,13 +35,11 @@ class segment_tree:
 
 
 '''
-Example -
-mytree = segment_tree([2,4,5,3,4],max)
+Example:
+mytree = SegmentTree([2,4,5,3,4],max)
 mytree.query(2,4)
-mytree.query(0,3) ...
+mytree.query(0,3)
 
-mytree = segment_tree([4,5,2,3,4,43,3],sum)
+mytree = SegmentTree([4,5,2,3,4,43,3],sum)
 mytree.query(1,8)
-...
-
 '''
