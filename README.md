@@ -262,7 +262,7 @@ Click on the icons to search by language
     - [x] [binary_tree_paths](tree/binary_tree/binary_tree_paths)
     - [x] [deepest_left](tree/binary_tree/deepest_left)
     - [x] [invert_tree](tree/binary_tree/invert_tree)
-    - [ ] [is_balanced](tree/binary_tree/is_balanced)
+    - [x] [is_balanced](tree/binary_tree/is_balanced)
     - [ ] [is_same_tree](tree/binary_tree/is_same_tree)
     - [ ] [is_subtree](tree/binary_tree/is_subtree)
     - [ ] [is_symmetric](tree/binary_tree/is_symmetric)

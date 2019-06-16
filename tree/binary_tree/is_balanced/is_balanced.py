@@ -1,35 +1,43 @@
+class Node:
+    def __init__(self, val=None):
+        self.left = None
+        self.right = None
+        self.val = val
+
+
+def is_balanced_rec(root, depth):
+
+    if root is None:
+        return True, depth
+
+    left_balanced, left_depth = is_balanced_rec(root.left, depth + 1)
+    right_balanced, right_depth = is_balanced_rec(root.right, depth + 1)
+
+    subtree_depth = max(left_depth, right_depth)
+    if not left_balanced or not right_balanced:
+        return False, subtree_depth
+    return abs(left_depth - right_depth) <= 1, subtree_depth
+
+
 def is_balanced(root):
-    """
-    O(N) solution
-    """
-    return -1 != get_depth(root)
+    balanced, depth = is_balanced_rec(root, 1)
+    return balanced
 
 
-def get_depth(root):
-    """
-    return 0 if unbalanced else depth + 1
-    """
-    if not root:
-        return 0
-    left = get_depth(root.left)
-    right = get_depth(root.right)
-    if abs(left - right) > 1:
-        return -1
-    return 1 + max(left, right)
+if __name__ == '__main__':
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.right.left = Node(5)
+    root.right.left.left = Node(6)
+    root.right.right = Node(7)
+    assert is_balanced(root) is True
 
-
-################################
-
-def is_balanced(root):
-    """
-    O(N^2) solution
-    """
-    left = max_height(root.left)
-    right = max_height(root.right)
-    return abs(left - right) <= 1 and is_balanced(root.left) and is_balanced(root.right)
-
-
-def max_height(root):
-    if not root:
-        return 0
-    return max(max_height(root.left), max_height(root.right)) + 1
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.right.left = Node(5)
+    root.right.left.left = Node(6)
+    assert is_balanced(root) is False
