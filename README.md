@@ -264,7 +264,7 @@ Click on the icons to search by language
     - [x] [invert_tree](tree/binary_tree/invert_tree)
     - [x] [is_balanced](tree/binary_tree/is_balanced)
     - [x] [is_same_tree](tree/binary_tree/is_same_tree)
-    - [ ] [is_subtree](tree/binary_tree/is_subtree)
+    - [x] [is_subtree](tree/binary_tree/is_subtree)
     - [ ] [is_symmetric](tree/binary_tree/is_symmetric)
     - [ ] [longest_consecutive_sequence](tree/binary_tree/longest_consecutive_sequence)
     - [ ] [lowest_common_ancestor](tree/binary_tree/lowest_common_ancestor)
