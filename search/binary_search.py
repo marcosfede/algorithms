@@ -5,18 +5,37 @@
 # T(n): O(log n)
 #
 
+# A binary_search function. It returns 
+# location of query in given array array[l..r] is present, 
+# otherwise -1 
 
+# Python program to implement Binary Search 
 def binary_search(array, query):
     lo, hi = 0, len(array) - 1
     while lo <= hi:
         mid = lo + (hi - lo) // 2
         val = array[mid]
+        
+        # If the element is present at the middle itself 
+        
         if val == query:
             return mid
+        
+        # If element is smaller than mid, then 
+        # it can only be present in right subarray 
+        
         elif val < query:
             lo = mid + 1
+            
+        # Else the element can only be present 
+        # in left subarray     
+            
         else:
             hi = mid - 1
+            
+    # We reach here when element is not 
+    # present in array 
+    
     return None
 
 
