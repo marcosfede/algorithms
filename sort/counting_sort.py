@@ -1,8 +1,8 @@
 """
 For doctests run following command:
-python -m doctest -v quick_sort.py
+python -m doctest -v counting_sort.py
 or
-python3 -m doctest -v quick_sort.py
+python3 -m doctest -v counting_sort.py
 """
 
 def counting_sort(arr):
