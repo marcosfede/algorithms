@@ -1,3 +1,10 @@
+"""
+For doctests run following command:
+python -m doctest -v quick_sort.py
+or
+python3 -m doctest -v quick_sort.py
+"""
+
 def counting_sort(arr):
     """
     Counting_sort
@@ -7,6 +14,13 @@ def counting_sort(arr):
     Then placing the number i into a correct position in the result_arr
     return the result_arr
     Complexity: 0(n)
+
+    Examples:
+    >>> counting_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+    
+    >>> counting_sort([-2, -5, -45])
+    [-45, -5, -2]
     """
 
     m = min(arr)
