@@ -1,3 +1,62 @@
+"""
+Quicksort
+Given an array, it takes a divide-and-conquer strategy
+by dividing the given array into two smaller subarrays.
+The following script takes a recursive approach and defines
+quicksort function and a partition function.
+
+Steps:
+1. Pick a pivot, an element from the array.
+   The following script takes the last element as pivot.
+2. Partition the elements in the given array by reordering
+   them in a way that elements with value less than the pivot
+   are moved to the left of the pivot and elements with value
+   greater than the pivot are moved to the right of the pivot.
+3. Reapply the above steps recursively to the subarrays formed
+   by dividing the array at the pivot.
+
+https://en.wikipedia.org/wiki/Quicksort
+
+eg
+
+[3, 7, 6, 5] Initial array
+
+in quick_sort(arr = [3, 7, 6, 5], first = 0, last = 3):
+  pos = partition(arr = [3, 7, 6, 5], first = 0, last = 3):
+    in partition:
+      wall = 0, last = 3
+      1st loop (pos = 0):
+        3 < 5
+        wall = 1
+        [3, 7, 6, 5]
+      2nd loop (pos = 1):
+        7 > 5
+        wall = 1
+        [3, 5, 6, 7]
+      return wall(= 1)
+
+  in quick_sort(arr = [3, 5, 6, 7], first = 0, pos - 1 = 0)
+    'if first < pos - 1' is not true, thus no execution.
+
+  in quick_sort(arr = [3, 5, 6, 7], pos + 1 = 2, last = 3)
+    pos = partition(arr = [3, 5, 6, 7], first = 2, last = 3)
+      in partition:
+        wall = 2, last = 3
+        1st for loop (pos = 2):
+          6 < 7
+          wall = 3
+        [3, 5, 6, 7]
+        return wall(= 3)
+
+    in quick_sort(arr = [3, 5, 6, 7], first = 2, pos - 1 = 2)
+      'if first < pos - 1' is not true, thus no execution.
+
+    in quick_sort(arr = [3, 5, 6, 7], pos + 1 = 4, last = 3)
+      'if pos + 1 < last' is not true, thus no execution.
+
+arr is sorted. [3, 5, 6, 7]
+"""
+
 def quick_sort(arr, first, last):
     """ Quicksort
         Complexity: best O(n) avg O(n log(n)), worst O(N^2)
