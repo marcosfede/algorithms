@@ -1,3 +1,5 @@
+"""https://en.wikipedia.org/wiki/Quicksort"""
+
 def quick_sort(arr, first, last):
     """ Quicksort
         Complexity: best O(n) avg O(n log(n)), worst O(N^2)
