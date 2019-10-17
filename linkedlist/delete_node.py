@@ -7,7 +7,7 @@ you are given the third node with value 3,
 the linked list should become 1 -> 2 -> 4 after calling your function.
 """
 
-
+# Function Deletes the node from the linked list
 def delete_node(node):
     if node is None or node.next is None:
         raise ValueError
