@@ -23,6 +23,8 @@ matrix:
       script:
         - yarn run lint
     - language: rust
+      script:
+        - cargo test
     # - language: ruby
     #   rvm:
     #     - 2.5.0
