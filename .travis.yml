@@ -22,6 +22,7 @@ matrix:
         - yarn
       script:
         - yarn run lint
+    - language: rust
     # - language: ruby
     #   rvm:
     #     - 2.5.0
