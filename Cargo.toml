@@ -1,0 +1,18 @@
+[package]
+name = "algorithms"
+version = "1.0.0"
+edition = "2018"
+
+[dependencies]
+
+[[bin]]
+name = "circular_counter"
+path = "array/circular_counter/circular_counter.rs"
+
+[[bin]]
+name = "bubble_sort"
+path = "sort/bubble_sort/bubble_sort.rs"
+
+[[bin]]
+name = "merge_sort"
+path = "sort/merge_sort/merge_sort.rs"

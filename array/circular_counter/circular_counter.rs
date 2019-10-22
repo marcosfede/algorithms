@@ -15,3 +15,13 @@ fn main() {
     let b = circular_counter(&a);
     println!("{:?}", b);
 }
+
+#[test]
+fn test() {
+    assert_eq!(
+        circular_counter(
+            &vec![1, 2, 3, 4, 5, 6, 7, 8, 9]
+        ),
+        vec![3, 6, 9, 4, 8, 5, 2, 7, 1]
+    );
+}
