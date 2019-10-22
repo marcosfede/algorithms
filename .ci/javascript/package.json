@@ -20,7 +20,7 @@
     "prettier-eslint": "^8.8.1"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint ../../",
     "prettier": "prettier --write '{,!(node_modules)/**/}*.js'",
     "fix": "yarn run prettier && eslint --fix ."
   },
