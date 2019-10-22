@@ -20,7 +20,6 @@ jobs:
     - name: npm install, build, and test
       working-directory: ./.ci/javascript
       run: |
-        cd .ci/javascript
         npm ci
         npm run build --if-present
         npm test
