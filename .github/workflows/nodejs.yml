@@ -21,7 +21,6 @@ jobs:
       working-directory: ./.ci/javascript
       run: |
         npm install
-        npm run build --if-present
-        npm test
+        npm run lint
       env:
         CI: true
