@@ -1,30 +1,35 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <set>
+#include <vector>
+
 using namespace std;
+
+vector<int> missing_ranges(vector<int> arr, int low, int high)
+{
+  set<int> s;
+  vector<int> v;
+  for (auto x : arr)
+  {
+    s.insert(x);
+  }
+  for (int i = low; i < high; i++)
+  {
+    if (s.find(i) == s.end())
+      v.push_back(i);
+  }
+  return v;
+}
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+  vector<int> arr = {10, 12, 11, 15};
+  int low = 10;
+  int high = 15;
 
-    int arr[]={10,12,11,15};
-    cout<<"Input : ";
-    for(int x:arr)
-        cout<<x<<" ";
-    cout<<endl;
-    sort(arr,arr+4);
-    int low=arr[0];
-    int high=arr[3];
-    set<int>s;
-    vector<int>v;
-    for(int i=0;i<4;i++)
-        s.insert(arr[i]);
-    for(int i=low;i<high;i++)
-    {
-        if(s.find(i)==s.end())
-            v.push_back(i);
-    }
-    for(int x:v)
-        cout<<x<<endl;
+  vector<int> missing = missing_ranges(arr, low, high);
 
-    return 0;
+  for (int x : missing)
+    cout << x << endl;
+
+  return 0;
 }
