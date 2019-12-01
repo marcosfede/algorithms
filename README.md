@@ -10,6 +10,7 @@ Solutions may be my own, or taken from the internet.
 Click on the icons to search by language
 
 <p  align="center">
+    <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3ARust&type="><img height="70" src="assets/rust.png" alt="rust"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AGo&type="><img height="70" src="assets/go.png" alt="go"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3APython&type="><img height="70" src="assets/python.png" alt="python"/></a>
     <a href="https://github.com/marcosfede/algorithms/search?utf8=%E2%9C%93&q=language%3AJavascript&type="><img height="70" src="assets/javascript.png" alt="javascript"/></a>

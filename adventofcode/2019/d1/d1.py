@@ -1,5 +1,3 @@
-import math
-
 masses = []
 with open('./input.txt') as f:
     for i, line in enumerate(f):
@@ -7,16 +5,12 @@ with open('./input.txt') as f:
 
 
 def calc_fuel(mass):
-    return math.floor(mass/3) - 2
+    return mass//3 - 2
 
 
 def calc_true_fuel(mass):
     fuel = calc_fuel(mass)
-    next_cost = calc_fuel(fuel)
-    while next_cost > 0:
-        fuel += next_cost
-        next_cost = calc_fuel(next_cost)
-    return fuel
+    return 0 if fuel <= 0 else fuel + calc_true_fuel(fuel)
 
 
 # p1

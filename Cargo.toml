@@ -16,3 +16,7 @@ path = "sort/bubble_sort/bubble_sort.rs"
 [[bin]]
 name = "merge_sort"
 path = "sort/merge_sort/merge_sort.rs"
+
+[[bin]]
+name = "aoc-2019-d1"
+path = "adventofcode/2019/d1/d1.rs"
