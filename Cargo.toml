@@ -20,3 +20,7 @@ path = "sort/merge_sort/merge_sort.rs"
 [[bin]]
 name = "aoc-2019-d1"
 path = "adventofcode/2019/d1/d1.rs"
+
+[[bin]]
+name = "aoc-2019-d2"
+path = "adventofcode/2019/d2/d2.rs"
