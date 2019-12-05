@@ -13,7 +13,7 @@ function valid(code::Int64, pred::Function)
     end
     # 599922 => ('5', '9', '2'), (1, 3, 2)
     c = Counter(scode)
-    digits, counts = collect(keys(c)), collect(values(c))
+    counts = collect(keys(c)), collect(values(c))
     return pred(counts)
 end
 
