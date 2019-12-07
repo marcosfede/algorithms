@@ -144,26 +144,9 @@ class VM:
             operation.run(params, modes, self)
 
 
-# p1
-max_output = 0
-for perm in permutations(range(5)):
-    prev_output = 0
-    for phase in perm:
-        vm = VM(program)
-        vm.add_input(phase)
-        vm.add_input(prev_output)
-        prev_output = vm.output[-1]
-    if prev_output > max_output:
-        max_output = prev_output
-
-print(f'Max output: {max_output}')
-
-# p2
-max_output = 0
-for perm in permutations(range(5, 10)):
+def run_amplifiers(program, phases):
     vms = [VM(program) for _ in range(5)]
-    for i, phase in enumerate(perm):
-        vm = vms[i]
+    for phase, vm in zip(phases, vms):
         vm.add_input(phase)
     vms[0].add_input(0)
 
@@ -171,8 +154,12 @@ for perm in permutations(range(5, 10)):
         for i, vm in enumerate(vms):
             vms[(i+1) % 5].add_input(vm.output[-1])
 
-    out = vms[4].output[-1]
-    if out > max_output:
-        max_output = out
+    return vms[4].output[-1]
 
-print(f'Max output: {max_output}')
+
+# p1
+print(max(run_amplifiers(program, phases)
+          for phases in permutations(range(5))))
+# p2
+print(max(run_amplifiers(program, phases)
+          for phases in permutations(range(5, 10))))
