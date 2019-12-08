@@ -4,6 +4,7 @@ version = "1.0.0"
 edition = "2018"
 
 [dependencies]
+itertools = "0.8.2"
 
 [[bin]]
 name = "circular_counter"
@@ -28,3 +29,7 @@ path = "adventofcode/2019/d2/d2.rs"
 [[bin]]
 name = "aoc-2019-d4"
 path = "adventofcode/2019/d4/d4.rs"
+
+[[bin]]
+name = "aoc-2019-d8"
+path = "adventofcode/2019/d8/d8.rs"
