@@ -80,8 +80,15 @@ Click on the icons to search by language
     - [ ] [24](adventofcode/2018/24)
     - [ ] [25](adventofcode/2018/25)
 
-  - [ ] [2019](adventofcode/2019)
+  - [x] [2019](adventofcode/2019)
     - [x] [d1](adventofcode/2019/d1)
+    - [x] [d2](adventofcode/2019/d2)
+    - [x] [d3](adventofcode/2019/d3)
+    - [x] [d4](adventofcode/2019/d4)
+    - [x] [d5](adventofcode/2019/d5)
+    - [x] [d6](adventofcode/2019/d6)
+    - [x] [d7](adventofcode/2019/d7)
+    - [x] [d8](adventofcode/2019/d8)
 
 ### Data Structures
 - [x] [array](array)
