@@ -6,10 +6,8 @@ size = width * height
 layers = [digits[start:start + size - 1] for start in 1:size:length(digits)]
 
 # p1
-number_of_digits(digit::Int, arr::Vector{Int}) = sum([x == digit for x in arr])
-
-layer = layers[argmin([number_of_digits(0, layer) for layer in layers])]
-println(number_of_digits(1, layer) * number_of_digits(2, layer))
+layer = layers[argmin([sum(layer .== 0) for layer in layers])]
+println(sum(layer .== 1) * sum(layer .== 2))
 
 # p2
 function print_image(image::Array{Int,2})
