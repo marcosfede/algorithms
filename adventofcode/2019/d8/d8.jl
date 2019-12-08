@@ -14,9 +14,9 @@ function print_image(image::Array{Int,2})
     for row in eachrow(image)
         for pixel in row
             if pixel == 0
-                print("■")
+                print(" ")
             elseif pixel == 1
-                print("□")
+                print("#")
             end
         end
         print("\n")
