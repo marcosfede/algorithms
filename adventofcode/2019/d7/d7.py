@@ -5,116 +5,6 @@ with open(os.path.join(os.path.dirname(__file__), 'input.txt')) as f:
     program = [int(x) for x in f.read().split(",")]
 
 
-mode_to_accesor = {
-    0: lambda x, y: y[x],
-    1: lambda x, y: x,
-}
-
-
-class Mult:
-    params = 3
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        a, b, to = params
-        accesors = [mode_to_accesor[c] for c in modes]
-        acc_a, acc_b, acc_c = accesors
-        vm.program[to] = acc_a(a, vm.program) * acc_b(b, vm.program)
-        vm.pointer += cls.params + 1
-
-
-class Add:
-    params = 3
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        a, b, to = params
-        accesors = [mode_to_accesor[c] for c in modes]
-        acc_a, acc_b, acc_c = accesors
-        vm.program[to] = acc_a(a, vm.program) + acc_b(b, vm.program)
-        vm.pointer += cls.params + 1
-
-
-class Input:
-    params = 1
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        to = params[0]
-        vm.program[to] = vm.input.pop(0)
-        vm.pointer += cls.params + 1
-
-
-class Output:
-    params = 1
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        source = params[0]
-        accesors = [mode_to_accesor[c] for c in modes]
-        acc_source = accesors[0]
-        vm.output.append(acc_source(source, vm.program))
-        vm.pointer += cls.params + 1
-
-
-class JumpIfTrue:
-    params = 2
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        bool, dest = params
-        acc_bool, acc_dest = [mode_to_accesor[c] for c in modes]
-        if acc_bool(bool, vm.program) != 0:
-            vm.pointer = acc_dest(dest, vm.program)
-        else:
-            vm.pointer += cls.params + 1
-
-
-class JumpIfFalse:
-    params = 2
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        boolean, dest = params
-        acc_bool, acc_dest = [mode_to_accesor[c] for c in modes]
-        if acc_bool(boolean, vm.program) == 0:
-            vm.pointer = acc_dest(dest, vm.program)
-        else:
-            vm.pointer += cls.params + 1
-
-
-class LessThan:
-    params = 3
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        first, second, dest = params
-        acc_first, acc_second, acc_dest = [mode_to_accesor[c] for c in modes]
-        if acc_first(first, vm.program) < acc_second(second, vm.program):
-            vm.program[dest] = 1
-        else:
-            vm.program[dest] = 0
-        vm.pointer += cls.params + 1
-
-
-class Equals:
-    params = 3
-
-    @classmethod
-    def run(cls, params, modes, vm):
-        first, second, dest = params
-        acc_first, acc_second, acc_dest = [mode_to_accesor[c] for c in modes]
-        if acc_first(first, vm.program) == acc_second(second, vm.program):
-            vm.program[dest] = 1
-        else:
-            vm.program[dest] = 0
-        vm.pointer += cls.params + 1
-
-
-code_to_operation = {1: Add, 2: Mult, 3: Input, 4: Output,
-                     5: JumpIfTrue, 6: JumpIfFalse, 7: LessThan, 8: Equals}
-
-
 class VM:
     def __init__(self, program):
         self.pointer = 0
@@ -122,6 +12,22 @@ class VM:
         self.input = []
         self.output = []
         self.done = False
+        self.base = 0
+
+        self.op_params = {
+            1: 3, 2: 3, 3: 1, 4: 1, 5: 2, 6: 2, 7: 3, 8: 3
+        }
+
+    def get_param(self, param, mode):
+        if mode == 0:
+            return self.program[param]
+        if mode == 1:
+            return param
+        if mode == 2:
+            return self.program[self.base+param]
+
+    def get_params(self, params, modes):
+        return [self.get_param(p, m) for p, m in zip(params, modes)]
 
     def add_input(self, input):
         self.input.append(input)
@@ -136,12 +42,47 @@ class VM:
                 return
             if code == 3 and len(self.input) == 0:
                 return
-            operation = code_to_operation[code]
+
+            num_params = self.op_params[code]
             modes = [(opcode // 10**i) %
-                     10 for i in range(2, 2+operation.params)]
-            params = self.program[self.pointer +
-                                  1: self.pointer + 1 + operation.params]
-            operation.run(params, modes, self)
+                     10 for i in range(2, 2+num_params)]
+            raw_params = self.program[self.pointer +
+                                      1: self.pointer + 1 + num_params]
+            params = self.get_params(raw_params, modes)
+
+            self.pointer += num_params + 1
+            if code == 1:
+                _, _, to = raw_params
+                a, b, _ = params
+                self.program[to] = a + b
+            elif code == 2:
+                _, _, to = raw_params
+                a, b, _ = params
+                self.program[to] = a * b
+            elif code == 3:
+                to = raw_params[0]
+                self.program[to] = self.input.pop(0)
+            elif code == 4:
+                source = params[0]
+                self.output.append(source)
+            elif code == 5:
+                boolean, dest = params
+                if boolean != 0:
+                    self.pointer = dest
+            elif code == 6:
+                boolean, dest = params
+                if boolean == 0:
+                    self.pointer = dest
+            elif code == 7:
+                _, _, dest = raw_params
+                first, second, _ = params
+                self.program[dest] = int(first < second)
+            elif code == 8:
+                _, _, dest = raw_params
+                first, second, _ = params
+                self.program[dest] = int(first == second)
+            elif code == 9:
+                pass
 
 
 def run_amplifiers(program, phases):
