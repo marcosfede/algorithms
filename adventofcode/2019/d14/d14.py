@@ -51,7 +51,6 @@ def binary_search(func, low, high):
     hi = high
 
     while lo <= hi:
-        print(f'lo {lo}, hi {hi}')
         if lo == hi:
             return lo
         if lo + 1 == hi:
