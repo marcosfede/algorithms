@@ -1,9 +1,9 @@
 import os
 import math
-from collections import defaultdict, deque
+from collections import defaultdict
 
 G = {}
-with open(os.path.join(os.path.dirname(__file__), 'input1.txt')) as f:
+with open(os.path.join(os.path.dirname(__file__), 'input.txt')) as f:
     for line in f:
         mats, outcome = line.strip().split('=>')
         outcome = outcome.strip().split(' ')
@@ -16,38 +16,55 @@ with open(os.path.join(os.path.dirname(__file__), 'input1.txt')) as f:
 recipies_used = defaultdict(int)
 
 
-def part1():
-    queue = deque([[1, 'FUEL']])
+def ore_needed(fuel):
+    needed = defaultdict(int)
+    needed['FUEL'] = fuel
     waste = defaultdict(int)
-    ore = 0
 
-    while len(queue) > 0:
-        q, mat = queue.popleft()
-        # print(f'need {q} of {mat}')
-        if mat == 'ORE':
-            ore += q
-            # print(f'adding for a total of {ore} ORE needed')
-            # print()
-            continue
+    while not (len(needed) == 1 and 'ORE' in needed):
+        for mat, q in needed.items():
+            if mat == 'ORE':
+                continue
 
-        # get from waste first
-        # print(f'there is {waste[mat]} in wastes')
-        q -= min(waste[mat], q)
-        waste[mat] -= min(waste[mat], q)
-        # print(f'so i need to produce an extra {q}')
+            q -= min(waste[mat], q)
+            waste[mat] -= min(waste[mat], q)
 
-        if q > 0:
-            recipe = G[mat]
-            # print(
-            #     f'using recipe {", ".join([str(mat["q"])+ " " + mat["mat"] for mat in recipe["mats"]])} => {recipe["q"]} {mat}')
-            reactions_needed = math.ceil(q/recipe['q'])
-            # print(f'reaction will be used {reactions_needed} times, leaving {recipe["q"] * reactions_needed - q} waste')
-            for child in recipe['mats']:
-                queue.append([reactions_needed * child['q'], child['mat']])
-            waste[mat] += recipe['q'] * reactions_needed - q
-        # print()
+            if q > 0:
+                recipe = G[mat]
+                reactions_needed = math.ceil(q/recipe['q'])
+                for child in recipe['mats']:
+                    needed[child['mat']] += reactions_needed * child['q']
+                waste[mat] += recipe['q'] * reactions_needed - q
+            del needed[mat]
+            break
 
-    return ore
+    return needed['ORE']
 
 
-print(part1())
+# p1
+print(ore_needed(1))
+
+
+# p2
+def binary_search(func, low, high):
+    lo = low
+    hi = high
+
+    while lo <= hi:
+        print(f'lo {lo}, hi {hi}')
+        if lo == hi:
+            return lo
+        if lo + 1 == hi:
+            return lo + 1 if func(lo + 1) else lo
+        mid = (lo + hi) // 2
+        if func(mid):
+            lo = mid
+        else:
+            hi = mid - 1
+
+
+arr = [1, 2, 3, 4, 5, 6]
+
+
+print(binary_search(lambda fuel: ore_needed(fuel)
+                    <= 1000000000000, low=1, high=10000000))
