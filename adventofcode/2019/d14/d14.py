@@ -53,9 +53,7 @@ def binary_search(func, low, high):
     while lo <= hi:
         if lo == hi:
             return lo
-        if lo + 1 == hi:
-            return lo + 1 if func(lo + 1) else lo
-        mid = (lo + hi) // 2
+        mid = (lo + hi + 1) // 2
         if func(mid):
             lo = mid
         else:
