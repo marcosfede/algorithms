@@ -1,5 +1,6 @@
+import networkx as nx
 import os
-from collections import defaultdict
+from collections import defaultdict, deque
 
 with open(os.path.join(os.path.dirname(__file__), 'input.txt')) as f:
     program = [int(x) for x in f.read().split(",")]
@@ -74,38 +75,64 @@ class VM:
         return vm
 
 
-dirs: {
+dirs = {
     1: 4,
     -1: 3,
     1j: 1,
     -1j: 2
 }
-reverse: {
+reverse = {
     1: -1,
     -1: 1,
     1j: -1j,
     -1j: 1j,
 }
 
-edges = defaultdict(set)
-vm = VM(program)
-pos = (0, 0)
-oxi = None
+G = nx.Graph()
 
-"""
-take from queue
-for neigh in neighbours:
-    if neigh is wall:
-        save as wall
-    else:
-        enqueue neigh
-enqueue neighbors if not in seen
+seen = {}
+queue = deque([[]])
+while len(queue):
+    path = queue.popleft()
+    pos = sum(path)
+    vm = VM(program)
+    for m in path:
+        vm.add_input(dirs[m])
+    for move in dirs.keys():
+        next_pos = pos + move
+        if next_pos in seen:
+            continue
+        vm.add_input(dirs[move])
+        out = vm.output[-1]
+        if out == 0:
+            seen[next_pos] = 0
+        else:
+            seen[next_pos] = out
+            queue.append(path + [move])
+            vm.add_input(dirs[reverse[move]])
+            G.add_edge(pos, next_pos)
 
-"""
+
+def plot(seen):
+    xs = [int(x.real) for x in seen.keys()]
+    ys = [int(x.imag) for x in seen.keys()]
+    min_x, max_x, min_y, max_y = min(xs), max(xs), min(ys), max(ys)
+    print(f'x from {min_x} to {max_x}. y from {min_y} to {max_y}')
+    arr = [[' ']*(max_x-min_x+1) for _ in range(max_y-min_y+1)]
+    for coord, obj in seen.items():
+        char = ['#', ' ', 'O'][obj]
+        arr[int(coord.imag)-min_y][int(coord.real) - min_x] = char
+        print(
+            f'setting a {char} at {int(pos.real) - min_x}, {int(pos.imag) - min_y}')
+    arr[0-min_y][0-min_x] = 'S'
+    print('\n'.join(reversed([''.join(row) for row in arr])))
 
 
-def shortest_path(start, end, graph):
-    pass
+# p1
+plot(seen)
 
+oxi = next(pos for pos, obj in seen.items() if obj == 2)
+print(nx.shortest_path_length(G, 0, oxi))
 
-print(shortest_path((0, 0), oxi), edges)
+# p2
+print(max(nx.shortest_path_length(G, oxi).values()))
