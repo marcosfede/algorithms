@@ -1,4 +1,3 @@
-import networkx as nx
 import os
 from collections import defaultdict, deque
 
@@ -113,44 +112,106 @@ matrix = arr_to_matrix(vm.output)
 plot_matrix(matrix, reverse=False, show_guide=True)
 
 G = defaultdict(set)
+start = None
 for y, row in enumerate(matrix):
     for x, char in enumerate(row):
-        if char == '#' or char in '^><v':
+        if char in '#^><v':
+            if char in '^><v':
+                start = x + y*1j
             for dx, dy in dirs:
                 xp, yp = x+dx, y+dy
                 if 0 <= xp < len(matrix[0]) and 0 <= yp < len(matrix) and matrix[yp][xp] == '#':
-                    G[(x, y)].add((xp, yp))
-                    G[(xp, yp)].add((x, y))
+                    G[x+y*1j].add(xp+yp*1j)
+                    G[xp+yp*1j].add(x+y*1j)
 
 
 # p1
 intersections = set(x for x, neigh in G.items() if len(neigh) == 4)
-print(sum(x*y for x, y in intersections))
+print('part1', sum(i.real*i.imag for i in intersections))
 
 # p2
-pos = next((x, y) for y, row in enumerate(matrix)
-           for x, char in enumerate(row) if char in '<>v^')
-seen = set()
-path = []
+
+cmd = []
+pos = start
+facing = -1j
+count = 0
 while True:
-    seen.add(pos)
-    path.append(pos)
-    try:
-        it = iter(G[pos])
-        while True:
-            nxt = next(it)
-            if nxt not in seen:
-                pos = nxt
-                seen.add(nxt)
-                break
-    except StopIteration:
-        nxt = next(iter(G[pos]))
-        if nxt in intersections:
-            pos = nxt
+    neigh = G[pos]
+    if pos + facing not in neigh:
+        if count > 0:
+            cmd.append(count)
+            count = 0
+        if pos + facing * -1j in neigh:
+            facing *= -1j
+            cmd.append('L')
+        elif pos + facing * 1j in neigh:
+            facing *= 1j
+            cmd.append('R')
         else:
             break
-print(pos)
-print(G[pos])
-print(path)
+    count += 1
+    pos += facing
 
-assert len(G) == len(seen)
+
+def replace_subarr(arr, sub, char):
+    ans = []
+    count = 0
+    i = 0
+    while i < len(arr):
+        if arr[i:i+len(sub)] == sub:
+            count += 1
+            ans.append(char)
+            i += len(sub)
+        else:
+            ans.append(arr[i])
+            i += 1
+    return ans
+
+
+def find_subroutines(cmd):
+    for a in range(1, 11):
+        A = cmd[0:a]
+        for c in range(1, 11):
+            if cmd[-a:] == A:
+                C = cmd[-c-a:-a]
+            else:
+                C = cmd[-c:]
+            replaced = replace_subarr(replace_subarr(cmd, A, 'A'), C, 'C')
+            fragments = []
+            fragment = []
+            i = 0
+            while i < len(replaced):
+                if replaced[i] == 'A' or replaced[i] == 'C':
+                    if len(fragment) > 0:
+                        fragments.append(fragment)
+                        fragment = []
+                else:
+                    fragment.append(replaced[i])
+                i += 1
+            shortest_fragment = min(fragments, key=len)
+            main = replace_subarr(replaced, shortest_fragment, 'B')
+            if all(char in 'ABC' for char in ''.join(str(x) for x in main)):
+                return A, shortest_fragment, C
+
+
+A, B, C = find_subroutines(cmd)
+main = replace_subarr(replace_subarr(
+    replace_subarr(cmd, A, "A"), B, "B"), C, "C")
+print(f'A: {A}')
+print(f'B: {B}')
+print(f'C: {C}')
+print(f'main: {main}')
+
+program[0] = 2
+vm = VM(program)
+
+
+def asciify(cmd):
+    return ','.join(str(x) for x in cmd) + '\n'
+
+
+ascii_cmd = asciify(main) + asciify(A) + asciify(B) + asciify(C) + 'n' + '\n'
+for char in ascii_cmd:
+    vm.add_input(ord(char))
+
+print('part2:', vm.output[-1])
