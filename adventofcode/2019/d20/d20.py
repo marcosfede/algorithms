@@ -103,6 +103,7 @@ for name, drs in groupby(doors, lambda d: d.name):
         for d2 in drs:
             if d1 != d2:
                 G.add_edge(d1, d2, weight=0)
+
 # p1
 start = Door('AA', True)
 end = Door('ZZ', True)
