@@ -1,5 +1,5 @@
 import os
-from collections import defaultdict, deque
+from collections import defaultdict
 
 with open(os.path.join(os.path.dirname(__file__), 'input.txt')) as f:
     program = [int(x) for x in f.read().split(",")]
@@ -107,7 +107,7 @@ for char in code.lstrip('\n') + '\n':
 
 out = vm.output
 if out[-1] > 256:
-    print('part1: ', out[-1])
+    print('part2: ', out[-1])
 else:
     for asc in out:
         print(chr(asc), end='')
