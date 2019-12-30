@@ -1,5 +1,4 @@
 
-from functools import lru_cache
 shuffles = []
 with open('input.txt') as f:
     for line in f:
@@ -15,88 +14,36 @@ with open('input.txt') as f:
             assert False
 
 
-def deal_with(inc, arr):
-    ans = arr[:]
-    for idx, card in enumerate(arr):
-        idx_new = (idx * inc) % len(arr)
-        ans[idx_new] = card
-    return ans
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
 
 
-def cut(n, arr):
-    return arr[n:] + arr[:n]
-
-
-def deal_into(arr):
-    return list(reversed(arr))
+def modinv(a, m):
+    g, x, y = egcd(a, m)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % m
 
 
 def reverse_deal_into(ncards, idx):
     return ncards - idx - 1
 
 
-assert reverse_deal_into(10, 0) == 9
-assert reverse_deal_into(10, 9) == 0
-
-
 def reverse_cut(ncards, n, idx):
     n = n % ncards
-    if idx < ncards - n:
-        return n + idx
-    else:
-        return idx - (ncards - n)
-
-
-assert reverse_cut(10, 3, 0) == 3
-assert reverse_cut(10, 3, 6) == 9
-assert reverse_cut(10, 3, 7) == 0
-assert reverse_cut(10, 3, 9) == 2
-assert reverse_cut(10, -4, 4) == 0
-assert reverse_cut(10, -4, 0) == 6
-assert reverse_cut(10, -4, 9) == 5
+    return (n+idx) % ncards
 
 
 def reverse_deal_with(ncards, inc, idx):
-    return ((ncards - inc)*idx) % ncards
+    return modinv(inc, ncards)*idx % ncards
+    # return pow(inc, ncards - 2, ncards)*idx % ncards  # fetmat's little theorem, only works for prime ncards
 
 
-assert reverse_deal_with(10, 3, 0) == 0
-assert reverse_deal_with(10, 3, 1) == 7
-assert reverse_deal_with(10, 3, 3) == 1
-assert reverse_deal_with(10, 3, 2) == 4
-assert reverse_deal_with(10, 3, 4) == 8
-assert reverse_deal_with(10007, 31, 1) == 8393
-
-
-def shuffle_many(deck, shuffles):
-    for shuffle in shuffles:
-        if shuffle[0] == 0:
-            new_deck = deal_into(deck)
-            for idx in range(len(deck)):
-                prev_idx = reverse_deal_into(len(deck), idx)
-                assert deck[prev_idx] == new_deck[idx]
-            deck = deal_into(deck)
-        elif shuffle[0] == 1:
-            new_deck = cut(shuffle[1], deck)
-            for idx in range(len(deck)):
-                prev_idx = reverse_cut(len(deck), shuffle[1], idx)
-                assert deck[prev_idx] == new_deck[idx]
-            deck = cut(shuffle[1], deck)
-        elif shuffle[0] == 2:
-            new_deck = deal_with(shuffle[1], deck)
-            for idx in range(len(deck)):
-                prev_idx = reverse_deal_with(len(deck), shuffle[1], idx)
-                print(shuffle)
-                print(prev_idx, idx)
-                assert deck[prev_idx] == new_deck[idx]
-            deck = deal_with(shuffle[1], deck)
-    return deck
-
-
-print('part1: ', shuffle_many(list(range(10007)), shuffles).index(2019))
-
-
-@lru_cache()
 def reverse_shuffle(ncards, idx):
     for shuffle in reversed(shuffles):
         if shuffle[0] == 0:
@@ -108,22 +55,27 @@ def reverse_shuffle(ncards, idx):
     return idx
 
 
-def reverse_shuffles(ntimes, ncards, idx):
-    seen = {}
-    for time in range(ntimes):
-        if time % 100000 == 0:
-            print(time)
-        idx = reverse_shuffle(ncards, idx)
-        if idx in seen:
-            print('seen at', seen[idx], 'idx: ', idx)
-        else:
-            seen[idx] = time
-    return idx
-
-
+# p1
 for i in range(10007):
     if reverse_shuffle(10007, i) == 2019:
         print('part1: ', i)
         break
 
-# print(reverse_shuffles(101741582076661, 119315717514047, 2020))
+# p2
+ntimes = 101741582076661
+ncards = 119315717514047
+
+# all operations are linear in the index modulo ncards. f(x) = A*x + B. We can get A, B using 2 points
+X = 2020
+Y = reverse_shuffle(ncards, X)
+Z = reverse_shuffle(ncards, Y)
+A = (Y-Z) * modinv(X-Y+ncards, ncards) % ncards
+B = (Y-A*X) % ncards
+"""
+apply f(x) ntimes, use geometric series formula
+f^n(x) = A^n*x + A^(n-1)*B + A^(n-2)*B + ... + B
+       = A^n*x + (A^(n-1) + A^(n-2) + ... + 1) * B
+       = A^n*x + (A^n-1) / (A-1) * B
+"""
+print('part2: ', (pow(A, ntimes, ncards)*X + (pow(A, ntimes, ncards)-1)
+                  * modinv(A-1, ncards) * B) % ncards)
