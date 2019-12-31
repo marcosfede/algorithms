@@ -33,3 +33,7 @@ path = "adventofcode/2019/d4/d4.rs"
 [[bin]]
 name = "aoc-2019-d8"
 path = "adventofcode/2019/d8/d8.rs"
+
+[[bin]]
+name = "aoc-2019-d24"
+path = "adventofcode/2019/d24/d24.rs"
