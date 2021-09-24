@@ -24,3 +24,10 @@ def add_binary(a, b):
         # c //= 2 for python3
         c /= 2
     return s
+
+
+def add_binary_pythonic(a, b):
+    decimal_a = int('0b' + a, 2)
+    decimal_b = int('0b' + b, 2)
+    s = bin(decimal_a + decimal_b)[2:]
+    return s
