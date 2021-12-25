@@ -34,3 +34,15 @@ def is_palindrome(s):
 
 # Time Complexity : O(len(s))
 # Space Complexity : O(1)
+
+
+def is_palindrome_pythonic(s):
+    """
+    :type s: str
+    :rtype: bool
+    """
+    alphanumerics = [c.lower() for c in s if c.isalnum()]
+    return alphanumerics == alphanumerics[::-1]
+
+# Time Complexity : O(len(s))
+# Space Complexity : O(len(s))
