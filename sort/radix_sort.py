@@ -64,6 +64,5 @@ def radix_sort(array):
 
     return array
 
-
 array = [1, 5, 65, 23, 57, 1232, -1, -5, -2, 242, 100, 4, 423, 2, 564, 9, 0, 10, 43, 64]
 print(radix_sort(array))
