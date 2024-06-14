@@ -6,6 +6,7 @@
 This repository is inspired by [keon's](https://github.com/keon/algorithms) solved problems in Python 3.
 I wanted to compare solutions across different languages and learn them in the process.
 Solutions may be my own, or taken from the internet.
+This is a random line added for testing purposes.
 
 Click on the icons to search by language
 
@@ -119,7 +120,7 @@ Click on the icons to search by language
   - [ ] [permute_unique](backtrack/permute_unique.py)
   - [ ] [subsets](backtrack/subsets.py)
   - [ ] [subsets_unique](backtrack/subsets_unique.py)
-- [ ] [bfs](bfs) 
+- [ ] [bfs](bfs)
   - [x] [puzzle_game](bfs/puzzle_game)
   - [ ] [shortest_distance_from_all_buildings](bfs/shortest_distance_from_all_buildings.py)
   - [ ] [word_ladder](bfs/word_ladder.py)
