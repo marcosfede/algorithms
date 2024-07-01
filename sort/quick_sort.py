@@ -11,7 +11,6 @@ def quick_sort(arr, first, last):
         quick_sort(arr, first, pos - 1)
         quick_sort(arr, pos + 1, last)
 
-
 def partition(arr, first, last):
     wall = first
     for pos in range(first, last):
@@ -22,8 +21,9 @@ def partition(arr, first, last):
     print(wall)
     return wall
 
-
 array = [1, 5, 65, 23, 57, 1232, -1, -5, -2, 242, 100, 4, 423, 2, 564, 9, 0, 10, 43, 64]
 print(array)
 quick_sort(array, 0, len(array) - 1)
 print(array)
+
+# This is a random comment added for demonstration purposes.
