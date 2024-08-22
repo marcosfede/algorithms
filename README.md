@@ -306,7 +306,7 @@ Click on the icons to search by language
     - [ ] [add_and_search](tree/trie/add_and_search)
     - [ ] [trie](tree/trie/trie)
   - [x] [new_tree_algorithm](tree/new_tree_algorithm)
-    - [x] [new_tree_algorithm](tree/new_tree_algorithm/new_tree_algorithm)
+    - [x] [boundary_traversal](tree/new_tree_algorithm/new_tree_algorithm)
 
 - [x] [union-find](union-find)
   - [x] [count_islands](union-find/count_islands.py)
