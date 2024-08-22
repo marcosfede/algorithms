@@ -285,7 +285,7 @@ Click on the icons to search by language
     - [ ] [path_sum](tree/binary_tree/path_sum)
     - [ ] [serialize_deserialize](tree/binary_tree/serialize_deserialize)
     - [ ] [traversal](tree/traversal)
-      - [ ] [inorder](tree/traversal/inorder)
+      - [x] [inorder](tree/traversal/inorder)
       - [ ] [level_order](tree/traversal/level_order)
       - [ ] [zigzag](tree/traversal/zigzag)
   - [ ] [binary_search_tree](tree/binary_search_tree)
@@ -305,6 +305,8 @@ Click on the icons to search by language
   - [ ] [trie](tree/trie)
     - [ ] [add_and_search](tree/trie/add_and_search)
     - [ ] [trie](tree/trie/trie)
+  - [x] [new_tree_algorithm](tree/new_tree_algorithm)
+    - [x] [new_tree_algorithm](tree/new_tree_algorithm/new_tree_algorithm)
 
 - [x] [union-find](union-find)
   - [x] [count_islands](union-find/count_islands.py)
