@@ -1,6 +1,3 @@
-maxlen = 0
-
-
 class Node:
     def __init__(self, val=None):
         self.left = None
@@ -15,21 +12,22 @@ def longest_consecutive(root):
     """
     if not root:
         return 0
-    DFS(root, 0, root.val)
-    return maxlen
+    return DFS(root, None, 0)
 
 
-def DFS(root, cur, target):
-    global maxlen
+def DFS(root, parent, length):
     if not root:
-        return
-    if root.val == target:
-        cur += 1
+        return length
+
+    if parent and root.val == parent.val + 1:
+        length += 1
     else:
-        cur = 1
-    maxlen = max(cur, maxlen)
-    DFS(root.left, cur, root.val + 1)
-    DFS(root.right, cur, root.val + 1)
+        length = 1
+
+    left_length = DFS(root.left, root, length)
+    right_length = DFS(root.right, root, length)
+
+    return max(length, left_length, right_length)
 
 
 if __name__ == '__main__':
