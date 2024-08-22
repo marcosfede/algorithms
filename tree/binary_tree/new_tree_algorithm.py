@@ -6,23 +6,34 @@ class TreeNode:
 
 def new_tree_algorithm(root):
     """
-    This function implements an inorder traversal algorithm.
+    This function calculates the sum of all nodes at each level of a binary tree.
     
     Args:
     root (TreeNode): The root node of the binary tree.
     
     Returns:
-    list: The inorder traversal of the binary tree.
+    list: A list where each element is the sum of node values at the corresponding level.
     """
-    def inorder_traversal(node, result):
-        if node:
-            inorder_traversal(node.left, result)
-            result.append(node.val)
-            inorder_traversal(node.right, result)
+    if not root:
+        return []
     
-    result = []
-    inorder_traversal(root, result)
-    return result
+    level_sums = []
+    current_level = [root]
+    
+    while current_level:
+        level_sum = sum(node.val for node in current_level)
+        level_sums.append(level_sum)
+        
+        next_level = []
+        for node in current_level:
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        
+        current_level = next_level
+    
+    return level_sums
 
 # Example usage:
 if __name__ == "__main__":
@@ -34,4 +45,4 @@ if __name__ == "__main__":
     root.left.right = TreeNode(5)
     
     result = new_tree_algorithm(root)
-    print(f"Inorder traversal of the binary tree: {result}")
+    print(f"Sum of nodes at each level: {result}")
