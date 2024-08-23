@@ -1,48 +1,50 @@
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 
-def new_tree_algorithm(root):
-    """
-    This function calculates the sum of all nodes at each level of a binary tree.
-    
-    Args:
-    root (TreeNode): The root node of the binary tree.
-    
-    Returns:
-    list: A list where each element is the sum of node values at the corresponding level.
-    """
-    if not root:
-        return []
-    
-    level_sums = []
-    current_level = [root]
-    
-    while current_level:
-        level_sum = sum(node.val for node in current_level)
-        level_sums.append(level_sum)
-        
-        next_level = []
-        for node in current_level:
-            if node.left:
-                next_level.append(node.left)
-            if node.right:
-                next_level.append(node.right)
-        
-        current_level = next_level
-    
-    return level_sums
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        if not self.root:
+            self.root = TreeNode(value)
+        else:
+            self._insert_recursive(self.root, value)
+
+    def _insert_recursive(self, node, value):
+        if value < node.value:
+            if node.left is None:
+                node.left = TreeNode(value)
+            else:
+                self._insert_recursive(node.left, value)
+        else:
+            if node.right is None:
+                node.right = TreeNode(value)
+            else:
+                self._insert_recursive(node.right, value)
+
+    def dfs_traversal(self):
+        def dfs(node):
+            if node:
+                print(node.value, end=' ')  # Visit the current node
+                dfs(node.left)              # Traverse left subtree
+                dfs(node.right)             # Traverse right subtree
+
+        print("DFS traversal:")
+        dfs(self.root)
+        print()  # Add a newline after traversal
 
 # Example usage:
 if __name__ == "__main__":
-    # Create a sample binary tree
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
-    root.left.right = TreeNode(5)
-    
-    result = new_tree_algorithm(root)
-    print(f"Sum of nodes at each level: {result}")
+    tree = BinaryTree()
+    tree.insert(5)
+    tree.insert(3)
+    tree.insert(7)
+    tree.insert(1)
+    tree.insert(9)
+
+    # Perform DFS traversal
+    tree.dfs_traversal()
