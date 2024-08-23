@@ -6,15 +6,15 @@ class TestTrie(unittest.TestCase):
         self.trie = Trie()
 
     def test_insert_and_search(self):
-        self.trie.insert("apple")
-        self.assertTrue(self.trie.search("apple"))
-        self.assertFalse(self.trie.search("app"))
-        self.assertFalse(self.trie.search("appl"))
+        self.trie.insert("orange")
+        self.assertTrue(self.trie.search("orange"))
+        self.assertFalse(self.trie.search("ora"))
+        self.assertFalse(self.trie.search("orang"))
 
     def test_startswith(self):
-        self.trie.insert("apple")
-        self.assertTrue(self.trie.startsWith("app"))
-        self.assertTrue(self.trie.startsWith("appl"))
+        self.trie.insert("orange")
+        self.assertTrue(self.trie.startsWith("ora"))
+        self.assertTrue(self.trie.startsWith("orang"))
         self.assertFalse(self.trie.startsWith("b"))
 
     def test_empty_string(self):
@@ -35,19 +35,19 @@ class TestTrie(unittest.TestCase):
         self.assertTrue(self.trie.startsWith("abcdef"))
 
     def test_case_sensitivity(self):
-        self.trie.insert("apple")
-        self.assertFalse(self.trie.search("Apple"))
-        self.assertFalse(self.trie.startsWith("App"))
+        self.trie.insert("orange")
+        self.assertFalse(self.trie.search("Orange"))
+        self.assertFalse(self.trie.startsWith("Ora"))
 
     def test_multiple_words(self):
-        words = ["apple", "app", "apricot", "banana"]
+        words = ["orange", "ora", "orchard", "banana"]
         for word in words:
             self.trie.insert(word)
 
         for word in words:
             self.assertTrue(self.trie.search(word))
 
-        self.assertTrue(self.trie.startsWith("ap"))
+        self.assertTrue(self.trie.startsWith("or"))
         self.assertTrue(self.trie.startsWith("ban"))
         self.assertTrue(self.trie.startsWith("banan"))
 
