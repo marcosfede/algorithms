@@ -1,8 +1,25 @@
 """
 Implement a trie data structure with insert, search, and delete operations.
 
+This implementation provides an efficient tree-like data structure for storing and retrieving strings.
+It is particularly useful for tasks such as prefix matching, autocomplete, and spell checking.
+
+Structure:
+- The trie is composed of TrieNodes, each representing a character in the stored words.
+- Each TrieNode has a dictionary of children nodes and a boolean flag indicating if it's the end of a word.
+
+Functions:
+- insert: Adds a word to the trie by creating a path of nodes for each character.
+- search: Checks if a word exists in the trie by traversing the path of nodes.
+- delete: Removes a word from the trie, cleaning up any unnecessary nodes.
+
+Performance:
+- Time complexity for insert, search, and delete operations is O(m), where m is the length of the word.
+- Space complexity is O(n*m), where n is the number of words and m is the average word length.
+
 Note:
-This implementation assumes that all inputs consist of lowercase letters a-z.
+- This implementation assumes all inputs consist of lowercase letters a-z.
+- For larger datasets or more complex use cases, additional optimizations may be necessary.
 """
 
 class TrieNode:
@@ -14,7 +31,10 @@ class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-    def insert(self, word):
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
         node = self.root
         for char in word:
             if char not in node.children:
@@ -22,7 +42,10 @@ class Trie:
             node = node.children[char]
         node.is_end_of_word = True
 
-    def search(self, word):
+    def search(self, word: str) -> bool:
+        """
+        Returns True if the word is in the trie, False otherwise.
+        """
         node = self.root
         for char in word:
             if char not in node.children:
@@ -30,7 +53,10 @@ class Trie:
             node = node.children[char]
         return node.is_end_of_word
 
-    def delete(self, word):
+    def delete(self, word: str) -> None:
+        """
+        Removes a word from the trie if it exists.
+        """
         def _delete_helper(node, word, index):
             if index == len(word):
                 if not node.is_end_of_word:
