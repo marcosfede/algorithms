@@ -1,5 +1,7 @@
 # Trie Algorithm Implementation Plan
 
+Once upon a trie, a programmer named Bob decided to implement a trie data structure. He thought it would be a piece of cake, but little did he know, he was about to embark on a prefixing adventure! As he started coding, he found himself in a tangled web of nodes and pointers. "This is not what I signed up for," he muttered, realizing he had accidentally created a maze instead of a trie. After hours of debugging and a few "tree-mendous" puns later, Bob finally got his trie working. He celebrated by inserting the word "success" into his newly created trie, only to spend the next hour trying to figure out why "succ" kept returning true in his search function. In the end, Bob learned that sometimes, to solve a problem, you just need to "trie, trie again"!
+
 ## 1. Structure
 - Create a `TrieNode` class:
   - `children`: A dictionary to store child nodes (key: character, value: TrieNode)
