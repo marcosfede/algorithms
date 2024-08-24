@@ -15,9 +15,8 @@ class TrieNode:
     A node in the trie structure.
 
     Attributes:
-        children (defaultdict): A dictionary of child nodes, where keys are characters
-                                and values are TrieNode objects.
-        is_word (bool): Flag to mark the end of a word.
+        children (defaultdict): Child nodes, keyed by characters.
+        is_word (bool): Marks end of a word.
     """
     def __init__(self):
         self.children = defaultdict(TrieNode)
@@ -28,10 +27,29 @@ class Trie:
     """
     Trie data structure for efficient string storage and retrieval.
 
+    A trie, also called a prefix tree, is an ordered tree data structure used to store a dynamic set or associative
+    array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key
+    associated with that node; instead, its position in the tree defines the key with which it is associated.
+
+    Time Complexity:
+        - Insert: O(m) where m is the length of the word
+        - Search: O(m) where m is the length of the word
+        - StartsWith: O(m) where m is the length of the prefix
+
+    Space Complexity:
+        - O(n * m) where n is the number of words and m is the average length of the words
+
     Methods:
         insert(word): Inserts a word into the trie.
         search(word): Returns True if the word is in the trie, False otherwise.
         startsWith(prefix): Returns True if there is any word in the trie that starts with the given prefix.
+
+    Use cases:
+        - Autocomplete
+        - Spell checkers
+        - IP routing (longest prefix matching)
+        - T9 predictive text
+        - Solving word games
     """
     def __init__(self):
         self.root = TrieNode()
