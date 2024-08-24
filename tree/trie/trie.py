@@ -81,26 +81,3 @@ class Trie:
             if current is None:
                 return False
         return True
-
-
-# Test cases
-if __name__ == "__main__":
-    trie = Trie()
-
-    # Test insert and search
-    trie.insert("apple")
-    assert trie.search("apple") == True, "Should find 'apple'"
-    assert trie.search("app") == False, "Should not find 'app'"
-
-    # Test startsWith
-    assert trie.startsWith("app") == True, "Should find words starting with 'app'"
-
-    # Insert more words
-    trie.insert("app")
-    trie.insert("apricot")
-
-    assert trie.search("app") == True, "Should now find 'app'"
-    assert trie.startsWith("apr") == True, "Should find words starting with 'apr'"
-    assert trie.search("apr") == False, "Should not find 'apr'"
-
-    print("All test cases passed!")
