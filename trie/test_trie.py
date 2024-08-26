@@ -158,8 +158,22 @@ class TestTrie(unittest.TestCase):
         words = ["prefix", "preface", "prepare", "prevent"]
         for word in words:
             self.trie.insert(word)
-        self.assertTrue(all(self.trie.search(word[:i]) for word in words for i in range(3, len(word) + 1)))
+
+        # Test exact word matches
+        for word in words:
+            self.assertTrue(self.trie.search(word))
+
+        # Test prefix matches
+        for word in words:
+            for i in range(3, len(word)):
+                self.assertTrue(self.trie.search(word[:i], is_prefix=True))
+
+        # Test that "pre" is found as a prefix but not as a complete word
+        self.assertTrue(self.trie.search("pre", is_prefix=True))
         self.assertFalse(self.trie.search("pre"))
+
+        # Test non-existent prefix
+        self.assertFalse(self.trie.search("pra", is_prefix=True))
 
     def test_edge_cases(self):
         self.trie.insert("a")

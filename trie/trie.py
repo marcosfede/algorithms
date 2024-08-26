@@ -19,10 +19,10 @@ class Trie:
             node = node.children[char]
         node.is_end_of_word = True
 
-    def search(self, word):
+    def search(self, word, is_prefix=False):
         """
-        Search for a word in the trie.
-        Returns True if the word is found, False otherwise.
+        Search for a word or prefix in the trie.
+        Returns True if the word/prefix is found, False otherwise.
         Time complexity: O(m), where m is the length of the word.
         """
         node = self.root
@@ -30,7 +30,7 @@ class Trie:
             if char not in node.children:
                 return False
             node = node.children[char]
-        return node.is_end_of_word
+        return is_prefix or node.is_end_of_word
 
     def delete(self, word):
         """
