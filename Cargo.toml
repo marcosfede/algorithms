@@ -37,3 +37,7 @@ path = "adventofcode/2019/d8/d8.rs"
 [[bin]]
 name = "aoc-2019-d24"
 path = "adventofcode/2019/d24/d24.rs"
+
+[[bin]]
+name = "dijkstra"
+path = "graph/dijkstra.rs"
