@@ -123,5 +123,28 @@ class TestTrie(unittest.TestCase):
         self.assertTrue(self.trie.search("algorithmic"))
         self.assertFalse(self.trie.search("algorithm"))
 
+    def test_unicode_characters(self):
+        words = ["café", "résumé", "über", "naïve"]
+        for word in words:
+            self.trie.insert(word)
+        for word in words:
+            self.assertTrue(self.trie.search(word))
+        self.assertFalse(self.trie.search("cafe"))
+        self.assertFalse(self.trie.search("resume"))
+
+    def test_mixed_operations(self):
+        self.trie.insert("programming")
+        self.trie.insert("program")
+        self.assertTrue(self.trie.search("program"))
+        self.trie.delete("programming")
+        self.assertFalse(self.trie.search("programming"))
+        self.assertTrue(self.trie.search("program"))
+        self.trie.insert("progress")
+        self.assertTrue(self.trie.search("progress"))
+
+    def test_empty_trie(self):
+        self.assertFalse(self.trie.search("any"))
+        self.assertFalse(self.trie.delete("any"))
+
 if __name__ == "__main__":
     unittest.main()
