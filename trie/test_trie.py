@@ -146,5 +146,29 @@ class TestTrie(unittest.TestCase):
         self.assertFalse(self.trie.search("any"))
         self.assertFalse(self.trie.delete("any"))
 
+    def test_large_dataset(self):
+        words = [f"word{i}" for i in range(10000)]
+        for word in words:
+            self.trie.insert(word)
+        for word in words:
+            self.assertTrue(self.trie.search(word))
+        self.assertFalse(self.trie.search("nonexistent"))
+
+    def test_prefix_matching(self):
+        words = ["prefix", "preface", "prepare", "prevent"]
+        for word in words:
+            self.trie.insert(word)
+        self.assertTrue(all(self.trie.search(word[:i]) for word in words for i in range(3, len(word) + 1)))
+        self.assertFalse(self.trie.search("pre"))
+
+    def test_edge_cases(self):
+        self.trie.insert("a")
+        self.assertTrue(self.trie.search("a"))
+        self.trie.delete("a")
+        self.assertFalse(self.trie.search("a"))
+        self.trie.insert("ab")
+        self.assertTrue(self.trie.search("ab"))
+        self.assertFalse(self.trie.search("a"))
+
 if __name__ == "__main__":
     unittest.main()
