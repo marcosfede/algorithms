@@ -33,8 +33,8 @@ def dijkstra(graph: Dict[int, List[Tuple[int, int]]], start: int) -> Dict[int, i
 
 # Example usage
 if __name__ == "__main__":
-    # Example graph
-    graph = {
+    # Simple graph example
+    simple_graph = {
         0: [(1, 4), (2, 1)],
         1: [(3, 1)],
         2: [(1, 2), (3, 5)],
@@ -42,8 +42,28 @@ if __name__ == "__main__":
         4: []
     }
 
+    print("Simple Graph Example:")
     start_node = 0
-    shortest_paths = dijkstra(graph, start_node)
+    shortest_paths = dijkstra(simple_graph, start_node)
+    print(f"Shortest paths from node {start_node}:")
+    for node, distance in shortest_paths.items():
+        print(f"To node {node}: {distance}")
+
+    # More complex graph example
+    complex_graph = {
+        0: [(1, 4), (2, 2)],
+        1: [(2, 1), (3, 5)],
+        2: [(3, 8), (4, 10)],
+        3: [(4, 2), (5, 6)],
+        4: [(5, 3)],
+        5: [(6, 1)],
+        6: [(4, 4), (7, 2)],
+        7: []
+    }
+
+    print("\nComplex Graph Example:")
+    start_node = 0
+    shortest_paths = dijkstra(complex_graph, start_node)
     print(f"Shortest paths from node {start_node}:")
     for node, distance in shortest_paths.items():
         print(f"To node {node}: {distance}")
