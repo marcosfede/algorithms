@@ -85,5 +85,43 @@ class TestTrie(unittest.TestCase):
         self.assertFalse(self.trie.search("a"))
         self.assertTrue(self.trie.search("ab"))
 
+    def test_case_sensitivity(self):
+        words = ["Apple", "apple", "APPLE", "bAnAnA"]
+        for word in words:
+            self.trie.insert(word)
+
+        for word in words:
+            self.assertTrue(self.trie.search(word))
+
+        self.assertFalse(self.trie.search("aPpLe"))
+        self.assertTrue(self.trie.delete("Apple"))
+        self.assertFalse(self.trie.search("Apple"))
+        self.assertTrue(self.trie.search("apple"))
+
+    def test_special_characters(self):
+        words = ["hello!", "@world", "#python", "$100"]
+        for word in words:
+            self.trie.insert(word)
+
+        for word in words:
+            self.assertTrue(self.trie.search(word))
+
+        self.assertFalse(self.trie.search("hello"))
+        self.assertFalse(self.trie.search("world"))
+
+    def test_complex_operations(self):
+        words = ["tree", "trie", "algo", "algorithm", "algorithms"]
+        for word in words:
+            self.trie.insert(word)
+
+        self.assertTrue(self.trie.search("algo"))
+        self.assertTrue(self.trie.delete("algorithm"))
+        self.assertFalse(self.trie.search("algorithm"))
+        self.assertTrue(self.trie.search("algorithms"))
+
+        self.trie.insert("algorithmic")
+        self.assertTrue(self.trie.search("algorithmic"))
+        self.assertFalse(self.trie.search("algorithm"))
+
 if __name__ == "__main__":
     unittest.main()
