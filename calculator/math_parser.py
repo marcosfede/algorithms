@@ -68,6 +68,8 @@ def calc(n2, n1, operator):
     elif operator == '*':
         return n1 * n2
     elif operator == '/':
+        if n2 == 0:
+            raise ZeroDivisionError("Division by zero is undefined")
         return n1 / n2
     elif operator == '^':
         return n1 ** n2
@@ -148,6 +150,8 @@ def main():
     while userInput != "exit":
         try:
             print("The result is {0}".format(evaluate(userInput)))
+        except ZeroDivisionError as e:
+            print(f"Error: {e}")
         except Exception:
             print("invalid syntax!")
         userInput = input("expression or exit: ")
